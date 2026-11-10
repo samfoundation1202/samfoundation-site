@@ -3,7 +3,6 @@
 Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of companies that are not our clients.
 
 ## Open
-- Header: sticky header gets a subtle background blur and shrink on scroll; active section highlighted in the nav.
 - "What we do": each of the 4 cards gets its own small animated proof (UI mock or SVG loop), per PAGE-PROTOCOL rule 2.
 - Free audit section: a short, real example voice-note player (waveform + transcript) instead of text only.
 - Resources: each card shows a preview image or short muted loop of the real page it links to.
@@ -15,7 +14,10 @@ Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of
 - Open Graph image: a real 1200x630 share image so links on Facebook/WhatsApp look professional.
 - Favicon set and apple-touch-icon from the SF mark.
 - Typography rhythm: consistent section spacing and heading sizes across all sections.
+- Mobile: the nav links are hidden under 820px; add a compact menu button so visitors can reach sections.
+- Tools strip: pause on hover/focus so it can be read.
 
 ## Done
+- 2026-11-10 Header active-section underline, scroll shadow, skip-to-content link.
 - 2026-11-10 Hero typewriter headline (by hand).
 - 2026-11-10 Moving tools strip (by hand).
