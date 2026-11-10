@@ -1,0 +1,55 @@
+/* Sam Foundation design tokens v2 (calm: neutral dark + solid yellow; gradient only on the SF logo)
+   Shared by every samfoundation.tech page. Change values here, not in pages. */
+:root{
+  /* Colour */
+  --sf-bg:#0b0b0c;            /* page background, neutral near-black */
+  --sf-bg-2:#111113;          /* second background stop */
+  --sf-surface:#141416;       /* solid panels */
+  --sf-card:rgba(255,255,255,.04);
+  --sf-card-hover:rgba(255,255,255,.07);
+  --sf-line:rgba(255,255,255,.10);
+  --sf-text:#ededed;
+  --sf-muted:#a1a1aa;
+  --sf-accent:#FEC702;        /* yellow, the main brand colour */
+  --sf-warn:#FA7E1E;          /* orange */
+  --sf-pink:#D62976;          /* pink */
+  --sf-ok:#3ecf8e;
+  --sf-on-accent:#111111;     /* text on yellow */
+  --sf-accent-soft:rgba(254,199,2,.08);  /* yellow tint for highlights */
+  --sf-accent-line:rgba(254,199,2,.35);  /* yellow borders */
+  --sf-grad:linear-gradient(135deg,#FEC702 0%,#FA7E1E 48%,#D62976 100%); /* SF logo mark only */
+
+  /* Type */
+  --sf-font:ui-sans-serif,-apple-system,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --sf-font-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sf-fs-xs:13px;
+  --sf-fs-sm:15px;
+  --sf-fs-md:17px;
+  --sf-fs-lg:clamp(20px,2.4vw,24px);
+  --sf-fs-xl:clamp(28px,4.4vw,40px);
+  --sf-fs-hero:clamp(36px,7vw,68px);
+  --sf-lh:1.6;
+  --sf-tracking-tight:-.025em;
+
+  /* Shape and space */
+  --sf-radius-sm:10px;
+  --sf-radius:16px;
+  --sf-radius-lg:24px;
+  --sf-pill:999px;
+  --sf-gutter:16px;
+  --sf-maxw:1120px;
+  --sf-section:clamp(64px,10vw,120px);
+  --sf-shadow:0 10px 30px rgba(0,0,0,.35);
+
+  /* Motion */
+  --sf-ease:cubic-bezier(.2,.7,.2,1);
+  --sf-ease-in-out:cubic-bezier(.65,0,.35,1);
+  --sf-dur-1:180ms;           /* hover, press */
+  --sf-dur-2:600ms;           /* reveal */
+  --sf-dur-3:1400ms;          /* draw-in, larger moves */
+  --sf-dur-loop:14s;          /* ambient loops */
+  --sf-stagger:90ms;
+}
+@media (prefers-reduced-motion:reduce){
+  :root{--sf-dur-1:0ms;--sf-dur-2:0ms;--sf-dur-3:0ms;--sf-stagger:0ms}
+}

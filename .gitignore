@@ -1,0 +1,4 @@
+club/
+tests/node_modules/
+tests/out/
+.DS_Store
