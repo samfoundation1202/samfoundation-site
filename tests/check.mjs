@@ -24,7 +24,7 @@ await new Promise((r) => server.listen(8811, "127.0.0.1", r));
 const BASE = "http://127.0.0.1:8811/";
 
 const problems = [];
-const browser = await chromium.launch();
+const browser = await chromium.launch({executablePath:process.env.PW_EXE||undefined});
 for (const [label, viewport, reduced] of [["desktop", { width: 1280, height: 800 }, false], ["mobile", { width: 375, height: 812 }, false], ["mobile-reduced", { width: 375, height: 812 }, true]]) {
   const ctx = await browser.newContext({ viewport, reducedMotion: reduced ? "reduce" : "no-preference", isMobile: viewport.width < 768, hasTouch: viewport.width < 768 });
   const page = await ctx.newPage();

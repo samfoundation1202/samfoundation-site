@@ -14,8 +14,7 @@
 <link rel="stylesheet" href="/sf/sf-tokens.css?v=2">
 <link rel="stylesheet" href="/sf/sf-base.css?v=2">
 <script defer src="/sf/sf-motion.js?v=2"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q1PRBX503"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-2Q1PRBX503');</script>
+<script>window.dataLayer=window.dataLayer||[];window.gtag=function(){};/* real Google Analytics (G-2Q1PRBX503) loads only after analytics consent, see cookie banner script at the end of the page */</script>
 <style>
 /* ---------- Header ---------- */
 .top{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(13,9,8,.72);border-bottom:1px solid var(--sf-line)}
@@ -237,6 +236,27 @@ a.res:hover .go svg{transform:translateX(4px)}
 .offer .sf-btn{margin-top:auto;align-self:flex-start;padding:10px 16px;font-size:var(--sf-fs-sm)}
 .offer.featured{border-color:rgba(254,199,2,.45);background:linear-gradient(180deg,rgba(254,199,2,.08),rgba(255,255,255,.03))}
 
+/* ---------- Cookie banner ---------- */
+.ck{position:fixed;z-index:60;left:var(--sf-gutter);right:var(--sf-gutter);bottom:var(--sf-gutter);max-width:560px;background:var(--sf-surface);border:1px solid var(--sf-line);border-radius:var(--sf-radius);box-shadow:var(--sf-shadow);padding:20px;color:var(--sf-text);font-size:var(--sf-fs-sm);line-height:1.5;opacity:0;transform:translateY(16px);visibility:hidden;transition:opacity var(--sf-dur-2) var(--sf-ease),transform var(--sf-dur-2) var(--sf-ease),visibility 0s linear var(--sf-dur-2)}
+.ck.show{opacity:1;transform:none;visibility:visible;transition-delay:0s}
+.ck h2{font-size:var(--sf-fs-md);margin:0 0 8px}
+.ck p{margin:0 0 14px;color:var(--sf-muted)}
+.ck a{color:var(--sf-text);text-decoration:underline;text-underline-offset:3px}
+.ck-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ck-btn{font:inherit;font-weight:700;font-size:15px;padding:12px 8px;border-radius:12px;border:1px solid rgba(255,255,255,.28);background:var(--sf-card);color:var(--sf-text);cursor:pointer;transition:background var(--sf-dur-1),border-color var(--sf-dur-1)}
+.ck-btn:hover{background:var(--sf-card-hover);border-color:rgba(254,199,2,.6)}
+.ck-btn:focus-visible,.ck-link:focus-visible,.ck input:focus-visible{outline:2px solid var(--sf-accent);outline-offset:2px}
+.ck-opts{display:none;margin:0 0 14px;padding:0;border:0}
+.ck.custom .ck-opts{display:block}
+.ck-opts label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--sf-line)}
+.ck-opts input{width:20px;height:20px;margin-top:2px;accent-color:var(--sf-accent);flex:none}
+.ck-opts b{display:block}
+.ck-opts small{color:var(--sf-muted);font-size:var(--sf-fs-xs)}
+.ck-link{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:none}
+.ck-link:hover{color:var(--sf-text)}
+@media (min-width:640px){.ck{right:auto;left:24px;bottom:24px}}
+@media (max-width:420px){.ck-actions{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.ck{transition:none;transform:none}}
 /* Final CTA + footer */
 .final{text-align:center;border:1px solid rgba(254,199,2,.3);border-radius:var(--sf-radius-lg);padding:clamp(32px,6vw,64px) 20px;background:radial-gradient(600px 300px at 50% 0%,rgba(254,199,2,.07),transparent),var(--sf-card)}
 .final .sf-lead{margin-left:auto;margin-right:auto}
@@ -761,10 +781,57 @@ footer a:hover{color:var(--sf-text)}
       <a href="/contact/">Contact</a>
       <a href="/privacy-policy/">Privacy</a>
       <a href="/terms/">Terms</a>
+      <button type="button" class="ck-link" data-cookie-settings>Cookie settings</button>
     </nav>
     <span>&copy; 2026 Sam Foundation</span>
   </div>
 </footer>
+<div class="ck" id="ck" role="dialog" aria-labelledby="ck-t" aria-describedby="ck-d" tabindex="-1">
+  <h2 id="ck-t">Your cookie choices</h2>
+  <p id="ck-d">We use cookies to run the site and, only if you agree, to measure traffic with Google Analytics. Nothing else is set. You can change your choice any time under “Cookie settings” in the footer. See our <a href="/privacy-policy/">privacy policy</a>.</p>
+  <fieldset class="ck-opts">
+    <legend class="sr-only" style="position:absolute;left:-9999px">Cookie categories</legend>
+    <label><input type="checkbox" checked disabled><span><b>Necessary</b><small>Remembers your cookie choice on this device. Always on.</small></span></label>
+    <label><input type="checkbox" id="ck-an"><span><b>Analytics</b><small>Google Analytics (cookies _ga and _ga_2Q1PRBX503, up to 2 years) shows us how many people visit and which sections they read.</small></span></label>
+  </fieldset>
+  <div class="ck-actions">
+    <button type="button" class="ck-btn" data-ck="accept">Accept all</button>
+    <button type="button" class="ck-btn" data-ck="reject">Reject all</button>
+    <button type="button" class="ck-btn" data-ck="custom" aria-expanded="false">Customize</button>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY='sf_consent',VER=1,MAX=180*864e5,GA='G-2Q1PRBX503',box=document.getElementById('ck');if(!box)return;
+  var an=document.getElementById('ck-an'),cb=box.querySelector('[data-ck=custom]'),loaded=false;
+  function read(){try{var c=JSON.parse(localStorage.getItem(KEY));if(c&&c.v===VER&&Date.now()-c.t<MAX)return c}catch(e){}return null}
+  function write(a){try{localStorage.setItem(KEY,JSON.stringify({v:VER,a:a,t:Date.now()}))}catch(e){}}
+  function loadGA(){
+    if(loaded)return;loaded=true;window['ga-disable-'+GA]=false;
+    window.gtag=function(){dataLayer.push(arguments)};
+    gtag('js',new Date());gtag('config',GA);
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA;document.head.appendChild(s);
+  }
+  function dropGA(){
+    window['ga-disable-'+GA]=true;window.gtag=function(){};
+    document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(n==='_ga'||n.indexOf('_ga_')===0){['','.'+location.hostname,'.'+location.hostname.replace(/^www\./,'')].forEach(function(d){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+(d?';domain='+d:'')})}});
+  }
+  function apply(a){a?loadGA():dropGA()}
+  function hide(){box.classList.remove('show');box.classList.remove('custom');cb.setAttribute('aria-expanded','false')}
+  function show(focus){var c=read();an.checked=!!(c&&c.a);box.classList.add('show');if(focus)box.focus()}
+  function choose(a){write(a);apply(a);hide()}
+  box.addEventListener('click',function(e){
+    var b=e.target.closest('[data-ck]');if(!b)return;var k=b.getAttribute('data-ck');
+    if(k==='accept')choose(true);
+    else if(k==='reject')choose(false);
+    else if(box.classList.contains('custom'))choose(an.checked);
+    else{box.classList.add('custom');cb.textContent='Save choice';cb.setAttribute('aria-expanded','true')}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&box.classList.contains('show')&&read())hide()});
+  document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-settings]')){cb.textContent='Customize';box.classList.add('custom');cb.textContent='Save choice';cb.setAttribute('aria-expanded','true');show(true)}});
+  var c=read();if(c){apply(c.a)}else{setTimeout(function(){show(false)},600)}
+})();
+</script>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   var w=document.querySelector('.demo-wrap');
