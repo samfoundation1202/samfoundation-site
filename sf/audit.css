@@ -48,7 +48,24 @@
 .sf-audit .next a{transition:transform .2s cubic-bezier(.2,.7,.2,1), border-color .2s}
 .sf-audit .next a:hover{transform:translateY(-3px); border-color:rgba(254,199,2,.4)}
 
+/* Surprise: teaser under the voice note, and the section near the bottom */
+.sf-audit .surprise-teaser{display:inline-flex; align-items:center; gap:6px; margin-top:12px; font-size:14px; font-weight:600; text-decoration:none; color:var(--accent)}
+.sf-audit .surprise-teaser span{display:inline-block; animation:sfa-bob 1.6s ease-in-out infinite}
+@keyframes sfa-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.sf-audit .surprise{position:relative; overflow:hidden; border:1px solid rgba(254,199,2,.45);
+  background:radial-gradient(500px 240px at 100% 0%,rgba(254,199,2,.16),transparent 70%), radial-gradient(400px 200px at 0% 100%,rgba(250,126,30,.10),transparent 70%), var(--card)}
+.sf-audit .surprise h2{font-size:26px}
+.sf-audit .surprise .lead{color:var(--text)}
+.sf-audit .surprise-btn{border:0; cursor:pointer; font:inherit; font-weight:700}
+.sf-audit .surprise.is-in{animation:sfa-pop .7s cubic-bezier(.2,.7,.2,1) .15s 1 both}
+@keyframes sfa-pop{0%{box-shadow:0 0 0 0 rgba(254,199,2,.5)}100%{box-shadow:0 0 0 18px rgba(254,199,2,0), 0 22px 60px -30px rgba(254,199,2,.6)}}
+.sf-audit .surprise.is-in .surprise-btn{animation:sfa-nudge 2.8s ease-in-out 1s infinite}
+@keyframes sfa-nudge{0%,80%,100%{transform:none}88%{transform:translateX(4px)}94%{transform:translateX(-2px)}}
+html{scroll-behavior:smooth}
+
 @media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .sf-audit .surprise-teaser span,.sf-audit .surprise.is-in,.sf-audit .surprise.is-in .surprise-btn{animation:none}
   .sf-audit main > *,.sf-audit .services .offer{opacity:1 !important; transform:none !important; transition:none !important}
   .sf-audit .item .bar i{transform:none; transition:none}
   .sf-audit h1 em{animation:none; color:var(--accent); background:none}

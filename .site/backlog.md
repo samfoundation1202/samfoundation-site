@@ -5,6 +5,10 @@ Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of
 ## Needs Sam
 - Privacy policy page (/privacy-policy/, not in this repo) should mention Google Analytics cookies _ga and _ga_2Q1PRBX503 and the cookie banner; a dedicated cookie policy page could be added there. Not deployable from this repo.
 
+## Every run, before picking an idea: audit page design notes from Sam
+Sam gives design notes on audit pages on Telegram. Read them with `curl -s https://samfoundation-dm-bot.onrender.com/api/public/audit-design-notes` (JSON list of {id, text, at}).
+For every note whose id is not in `.site/audit-notes-done.json`: apply it to the audit page design in `sf/audit.css` and `sf/audit.js` (the page itself is public_html/audit/index.html, which loads these; it renders `#app` and fires `sf:audit-rendered`, with `window.sfAudit = {audit, track, esc}`). Keep the page readable if the script fails, follow PAGE-PROTOCOL motion rules, never invent prices or offers (use the existing offer codes DIY, DFY, BUILD, OFFER, CLUB, REFER). Then add the id to `.site/audit-notes-done.json` and note it in CHANGES.md. These notes come before backlog ideas. If the list can't be read, say so in CHANGES.md and go on.
+
 ## Open
 - "What we do": each of the 4 cards gets its own small animated proof (UI mock or SVG loop), per PAGE-PROTOCOL rule 2.
 - Free audit section: a short, real example voice-note player (waveform + transcript) instead of text only.
