@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-11 (by hand, from Sam's Telegram notes): audit page motion, services cards, surprise
+- What: new `sf/audit.css` and `sf/audit.js`, loaded by public_html/audit/index.html (uploaded once by hand, backup audit/index.before-motion.html). Sections rise in, score bars fill, play icon pulses until played, stronger services cards with hover, surprise section "We'll do your first fix for you" (DFY offer, tracked) with a teaser under the voice note.
+- Why: Sam's design notes on audit pages. From now on the daily routine applies these notes (see the top of .site/backlog.md).
+- Checked: local preview with real audit data, desktop width; page stays visible if the script fails; reduced motion respected. The deploy card for this change was wrongly titled "EU cookie banner" because last-change.json was not updated; fixed afterwards.
+
 ## 2026-11-11 (daily routine): EU cookie banner with consent-gated Google Analytics
 - What: bottom card on first visit with Accept all / Reject all / Customize (same size and style, nothing pre-ticked, page stays usable). Categories: Necessary (always on, only stores the choice) and Analytics (Google Analytics G-2Q1PRBX503). Google Analytics no longer loads until Analytics is accepted; rejecting or withdrawing stops it and deletes _ga cookies. Choice saved in localStorage for 180 days, re-asked if the version changes. "Cookie settings" button in the footer reopens it.
 - Why: Sam's request (GDPR/ePrivacy). The site sets no ads cookies, so no Ads category is listed. There is no separate cookie policy page in this repo, so the cookies are listed in the banner and it links to /privacy-policy/. The privacy policy text should mention Google Analytics and the cookie choice.
