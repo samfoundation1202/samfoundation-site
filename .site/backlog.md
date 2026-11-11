@@ -3,6 +3,12 @@
 Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of companies that are not our clients.
 
 ## Open
+- DO FIRST (Sam asked for this on 2026-11-11): EU cookie banner (GDPR + ePrivacy/TTDSG), in the site's design.
+  - Text to start from (Sam's words): "We use cookies to run the site, measure traffic, and show non-personalized ads. Cookies are also used for ads personalization. Change your choice anytime under Cookie settings in the footer. Read our privacy policy and cookie policy." Buttons: Accept all, Reject all, plus Customize (categories: necessary always on; analytics; ads). Only list categories the site really uses.
+  - Accept all and Reject all must look equally prominent (same size and weight). No pre-ticked boxes. Not a cookie wall: the page stays usable.
+  - Nothing non-essential (Google Analytics or any tag that sets cookies) loads before consent; load it only after the matching choice. Save the choice (localStorage, 6-12 months) and re-ask when categories change.
+  - "Cookie settings" link in the footer reopens the banner. Links to the privacy policy and cookie policy; if a cookie policy page does not exist, add a short honest one listing the real cookies.
+  - Check against current EU guidance and what serious sites in the German/EU market do; keyboard and screen-reader accessible; works on mobile.
 - "What we do": each of the 4 cards gets its own small animated proof (UI mock or SVG loop), per PAGE-PROTOCOL rule 2.
 - Free audit section: a short, real example voice-note player (waveform + transcript) instead of text only.
 - Resources: each card shows a preview image or short muted loop of the real page it links to.
