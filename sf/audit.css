@@ -1,0 +1,57 @@
+/* Audit page design (samfoundation.tech/audit/). Loaded by public_html/audit/index.html.
+   Edit here; the site routine deploys it. Only transform/opacity animate; nothing moves under reduced motion. */
+
+/* Sections rise in as they enter the view (only once audit.js runs: .sfm on body) */
+.sf-audit.sfm main > *{opacity:0; transform:translateY(18px); transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--i,0) * 70ms)}
+.sf-audit.sfm main > *.is-in{opacity:1; transform:none}
+.sf-audit.sfm main > .state{opacity:1; transform:none}
+
+/* Headline name shimmer, once */
+.sf-audit h1 em{background:linear-gradient(90deg,var(--accent) 0%,#fff2b3 45%,var(--accent) 60%); background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent; animation:sfa-shine 2.2s ease .4s 1 both}
+@keyframes sfa-shine{from{background-position:100% 0}to{background-position:0 0}}
+
+/* Voice note: a soft ring pulses on the play icon until it is played */
+.sf-audit .play-icon{position:relative}
+.sf-audit .play-icon::after{content:""; position:absolute; inset:0; border-radius:50%; border:2px solid var(--accent); animation:sfa-ring 2.4s ease-out infinite; pointer-events:none}
+.sf-audit .player.played .play-icon::after{animation:none; opacity:0}
+@keyframes sfa-ring{0%{transform:scale(1); opacity:.7}100%{transform:scale(1.7); opacity:0}}
+
+/* First fix gets a gentle glow when it arrives */
+.sf-audit .fix.is-in{box-shadow:0 0 0 1px rgba(254,199,2,.18), 0 18px 50px -24px rgba(254,199,2,.45)}
+
+/* Score bars fill when seen */
+.sf-audit.sfm .item .bar i{transform-origin:left center; transform:scaleX(0); transition:transform 1s cubic-bezier(.2,.7,.2,1); transition-delay:calc(var(--i,0) * 90ms)}
+.sf-audit.sfm .check.is-in .item .bar i{transform:scaleX(1)}
+
+/* Services ("How do you want to grow?"): stronger cards, clear button, hover lift */
+.sf-audit .services{position:relative; overflow:hidden; border-color:rgba(254,199,2,.22);
+  background:radial-gradient(600px 220px at 0% 0%,rgba(254,199,2,.07),transparent 70%), var(--card)}
+.sf-audit .services h2{font-size:24px}
+.sf-audit .services .offers{gap:14px}
+.sf-audit .services .offer{position:relative; padding:18px; border-radius:16px; background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.12); transition:transform .25s cubic-bezier(.2,.7,.2,1), border-color .25s, box-shadow .25s;
+}
+.sf-audit.sfm .services .offer{opacity:0; transform:translateY(12px)}
+.sf-audit.sfm .services.is-in .offer{opacity:1; transform:none; transition-delay:calc(var(--i,0) * 80ms)}
+.sf-audit .services .offer::before{content:""; width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(254,199,2,.15)}
+.sf-audit .services .offer b{font-size:17px}
+.sf-audit .services .offer em{align-self:flex-start; margin-top:8px; padding:9px 14px; border-radius:999px; background:var(--accent); color:#111;
+  font-weight:700; font-size:14px; transition:transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s}
+.sf-audit .services .offer:hover,.sf-audit .services .offer:focus-visible,.sf-audit.sfm .services.is-in .offer:hover,.sf-audit.sfm .services.is-in .offer:focus-visible{transform:translateY(-4px); border-color:rgba(254,199,2,.55);
+  box-shadow:0 18px 40px -22px rgba(254,199,2,.5); transition-delay:0s}
+.sf-audit .services .offer:hover em,.sf-audit .services .offer:focus-visible em{transform:translateX(4px); box-shadow:0 8px 22px -10px rgba(254,199,2,.8)}
+.sf-audit .services .offer:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+
+/* Buttons and tool cards */
+.sf-audit .btn{transition:transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s}
+.sf-audit .btn:hover{transform:translateY(-2px); box-shadow:0 12px 28px -14px rgba(254,199,2,.7)}
+.sf-audit .next a{transition:transform .2s cubic-bezier(.2,.7,.2,1), border-color .2s}
+.sf-audit .next a:hover{transform:translateY(-3px); border-color:rgba(254,199,2,.4)}
+
+@media (prefers-reduced-motion: reduce){
+  .sf-audit main > *,.sf-audit .services .offer{opacity:1 !important; transform:none !important; transition:none !important}
+  .sf-audit .item .bar i{transform:none; transition:none}
+  .sf-audit h1 em{animation:none; color:var(--accent); background:none}
+  .sf-audit .play-icon::after{animation:none; opacity:0}
+  .sf-audit .btn,.sf-audit .next a,.sf-audit .services .offer em{transition:none}
+}
