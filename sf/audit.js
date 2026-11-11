@@ -26,34 +26,117 @@
     var player = app.querySelector(".player");
     if (audio && player) audio.addEventListener("play", function () { player.classList.add("played"); }, { once: true });
   }
-  // Surprise: the first fix, done for them (the "We do it for you" offer, no new price).
-  // A teaser under the voice note jumps to it.
+  // The personal fix: one paid fix for this person's weakest point (audit.fix from the server).
+  // Honest urgency only: the deadline comes from the server, starts on their first open and never resets.
+  // Without audit.fix (older server) it falls back to the free "we do your first fix" offer.
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function left(ms) {
+    var s = Math.max(0, Math.floor(ms / 1000));
+    return pad(Math.floor(s / 3600)) + ":" + pad(Math.floor((s % 3600) / 60)) + ":" + pad(s % 60);
+  }
+
   function addSurprise(app) {
     var ctx = window.sfAudit;
-    if (!ctx || !ctx.audit || !ctx.audit.firstFix || app.querySelector(".surprise")) return;
-    var audit = ctx.audit, esc = ctx.esc;
+    if (!ctx || !ctx.audit || app.querySelector(".surprise")) return;
+    var audit = ctx.audit, esc = ctx.esc, fix = audit.fix;
+    var paidNow = /[?&]paid=1/.test(location.search);
     var player = app.querySelector(".player");
-    if (player) {
-      var teaser = document.createElement("a");
-      teaser.className = "surprise-teaser";
-      teaser.href = "#surprise";
-      teaser.innerHTML = "Listen, then scroll down: there's a surprise for you at the bottom <span aria-hidden=\"true\">&darr;</span>";
-      player.appendChild(teaser);
+
+    if (!fix) {
+      if (!audit.firstFix) return;
+      fix = { title: "We'll do your first fix for you", deliver: [audit.firstFix], why: null, legacy: true };
     }
+    var deadline = fix.deadline ? new Date(fix.deadline).getTime() : null;
+    var paid = fix.paid || paidNow;
+
+    function priceLine() {
+      if (paid || fix.legacy) return "";
+      if (fix.expired) return "<b>$" + fix.regularPrice + "</b>";
+      if (!deadline) return "<b>$" + fix.introPrice + "</b> for " + fix.windowHours + " hours from today, then $" + fix.regularPrice;
+      return "<b>$" + fix.introPrice + "</b> for <span class=\"fix-timer\" data-left>" + left(deadline - Date.now()) + "</span>, then $" + fix.regularPrice;
+    }
+    function barPrice() {
+      if (fix.expired) return "<b>$" + fix.regularPrice + "</b>";
+      if (!deadline) return "<b>$" + fix.introPrice + "</b> <small>for " + fix.windowHours + "h</small>";
+      return "<b>$" + fix.introPrice + '</b> <span class="fix-timer" data-left>' + left(deadline - Date.now()) + "</span>";
+    }
+    function buttonHtml() {
+      if (paid) return "";
+      var label = fix.legacy ? "Yes, do it for me" : "Fix it for $" + (fix.expired ? fix.regularPrice : fix.introPrice);
+      return '<button class="btn fix-btn" type="button">' + label + ' <span aria-hidden="true">&rarr;</span></button>';
+    }
+
+    // 1. Top strip, right under the intro: the first thing they see
+    var strip = document.createElement("section");
+    strip.className = "card fix-strip" + (paid ? " is-paid" : "");
+    strip.innerHTML = paid
+      ? '<div class="label">Your fix</div><p><b>Thank you, it\'s paid.</b> We start within 1 working day and message you when it\'s ready (within 3 working days).</p>'
+      : '<div class="label">Your personal fix' + (fix.legacy ? "" : " · picked from your weakest point") + "</div>" +
+        '<p class="fix-title">' + esc(fix.title) + "</p>" +
+        '<div class="fix-row"><span class="fix-price">' + priceLine() + "</span>" + buttonHtml() + "</div>" +
+        '<a class="surprise-teaser" href="#surprise">See exactly what you get <span aria-hidden="true">&darr;</span></a>';
+    var lead = app.querySelector(".lead");
+    app.insertBefore(strip, player || (lead && lead.nextSibling) || null);
+
+    // 2. Full offer near the bottom
     var section = document.createElement("section");
     section.className = "card surprise";
     section.id = "surprise";
     section.innerHTML =
       '<div class="label">Your surprise</div>' +
-      "<h2>We'll do your first fix for you</h2>" +
-      '<p class="lead">' + esc(audit.firstFix) + "</p>" +
-      '<p class="lead" style="margin-top:-8px">Our team writes it and sets it up on your page, so you don\'t have to.</p>' +
-      '<div class="cta"><button class="btn surprise-btn" type="button">Yes, do it for me <span aria-hidden="true">&rarr;</span></button></div>';
+      "<h2>" + esc(paid ? "Your fix is on its way" : fix.legacy ? fix.title : "We fix your weakest point for you") + "</h2>" +
+      (fix.why ? '<p class="lead fix-why">What we saw: ' + esc(fix.why) + "</p>" : "") +
+      (fix.legacy ? "" : '<p class="fix-title">' + esc(fix.title) + "</p>") +
+      '<ul class="fix-list">' + fix.deliver.map(function (d) { return "<li>" + esc(d) + "</li>"; }).join("") + "</ul>" +
+      (fix.legacy ? '<p class="lead">Our team writes it and sets it up on your page, so you don\'t have to.</p>' :
+        '<p class="lead">Done for you by our team, ready within 3 working days.</p>') +
+      (paid ? "" : '<div class="fix-row"><span class="fix-price">' + priceLine() + "</span>" + buttonHtml() + "</div>");
     var help = Array.prototype.find.call(app.querySelectorAll("section.card"), function (el) { return /Want help with that fix/.test(el.textContent); });
     app.insertBefore(section, help || null);
-    section.querySelector(".surprise-btn").addEventListener("click", function () {
-      if (ctx.track) ctx.track("offer", "DFY");
-      if (audit.contactUrl) window.open(audit.contactUrl, "_blank", "noopener");
+
+    // 3. Small sticky bar on phones once the top strip is out of view
+    var bar = null;
+    if (!paid && !fix.legacy) {
+      bar = document.createElement("div");
+      bar.className = "fix-bar";
+      bar.setAttribute("aria-hidden", "true");
+      bar.innerHTML = '<span class="fix-bar-price">' + barPrice() + "</span>" + buttonHtml();
+      document.body.appendChild(bar);
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          var off = !entries[0].isIntersecting && entries[0].boundingClientRect.top < 0;
+          bar.classList.toggle("is-on", off);
+          bar.setAttribute("aria-hidden", off ? "false" : "true");
+        }).observe(strip);
+      }
+    }
+
+    // Live countdown; at zero the price changes for real (the server does the same)
+    if (deadline && !paid && !fix.expired) {
+      var tick = setInterval(function () {
+        var ms = deadline - Date.now();
+        document.querySelectorAll("[data-left]").forEach(function (el) { el.textContent = left(ms); });
+        if (ms <= 0) {
+          clearInterval(tick);
+          fix.expired = true;
+          document.querySelectorAll(".fix-price").forEach(function (el) { el.innerHTML = priceLine(); });
+          document.querySelectorAll(".fix-bar-price").forEach(function (el) { el.innerHTML = barPrice(); });
+          document.querySelectorAll(".fix-btn").forEach(function (el) { el.firstChild.textContent = "Fix it for $" + fix.regularPrice + " "; });
+        }
+      }, 1000);
+    }
+
+    // Pay: the server makes the Stripe checkout at the real price
+    document.querySelectorAll(".fix-btn").forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (ctx.track) ctx.track("offer", "DFY");
+        if (fix.legacy || !fix.checkoutUrl) { if (audit.contactUrl) window.open(audit.contactUrl, "_blank", "noopener"); return; }
+        button.disabled = true;
+        fetch(fix.checkoutUrl, { method: "POST" })
+          .then(function (r) { return r.json().then(function (d) { if (!r.ok || !d.url) throw new Error(d.error || "error"); return d; }); })
+          .then(function (d) { location.href = d.url; })
+          .catch(function () { button.disabled = false; if (audit.contactUrl) window.open(audit.contactUrl, "_blank", "noopener"); });
+      });
     });
   }
 
