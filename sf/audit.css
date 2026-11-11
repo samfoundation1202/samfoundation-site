@@ -81,7 +81,13 @@ html{scroll-behavior:smooth}
 .sf-audit .vn-seek::-webkit-slider-thumb{-webkit-appearance:none; width:16px; height:16px; margin-top:-5px; border-radius:50%; background:var(--accent); border:0}
 .sf-audit .vn-seek::-moz-range-thumb{width:16px; height:16px; border-radius:50%; background:var(--accent); border:0}
 .sf-audit .vn-time{font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
-.sf-audit .is-playing .play-icon::after{animation:none; opacity:0}
+/* Motion: before the first play the button breathes and sends out two rings; while playing it glows in rhythm */
+.sf-audit .vn-btn::before{content:""; position:absolute; inset:0; border-radius:50%; border:2px solid var(--accent); animation:sfa-ring 2.4s ease-out 1.2s infinite; pointer-events:none}
+.sf-audit .player:not(.played) .vn-btn{animation:sfa-breathe 2.4s ease-in-out infinite}
+.sf-audit .player.played .vn-btn::before{animation:none; opacity:0}
+.sf-audit .is-playing .vn-btn{animation:sfa-glow 1.2s ease-in-out infinite}
+@keyframes sfa-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@keyframes sfa-glow{0%,100%{box-shadow:0 0 0 0 rgba(254,199,2,.55)}50%{box-shadow:0 0 0 10px rgba(254,199,2,0)}}
 
 /* Personal fix: top strip, bottom offer, sticky phone bar */
 .sf-audit .fix-strip{border:1px solid rgba(254,199,2,.5); background:linear-gradient(135deg,rgba(254,199,2,.12),rgba(250,126,30,.06) 60%,transparent), var(--card)}
@@ -109,7 +115,8 @@ html{scroll-behavior:smooth}
 
 @media (prefers-reduced-motion: reduce){
   .sf-audit .fix-bar{transition:none}
-  .sf-audit .vn-btn{transition:none}
+  .sf-audit .vn-btn{transition:none; animation:none !important}
+  .sf-audit .vn-btn::before{animation:none !important; opacity:0}
   html{scroll-behavior:auto}
   .sf-audit .surprise-teaser span,.sf-audit .surprise.is-in,.sf-audit .surprise.is-in .surprise-btn{animation:none}
   .sf-audit main > *,.sf-audit .services .offer{opacity:1 !important; transform:none !important; transition:none !important}
