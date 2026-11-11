@@ -63,6 +63,26 @@
 @keyframes sfa-nudge{0%,80%,100%{transform:none}88%{transform:translateX(4px)}94%{transform:translateX(-2px)}}
 html{scroll-behavior:smooth}
 
+/* Voice note player: the round icon plays and pauses */
+.sf-audit .player-head{cursor:pointer}
+.sf-audit .vn-btn{border:0; padding:0; cursor:pointer; width:56px; height:56px; flex:none; box-shadow:0 10px 26px -12px rgba(254,199,2,.8);
+  transition:transform .2s cubic-bezier(.2,.7,.2,1)}
+.sf-audit .vn-btn svg{width:22px; height:22px; fill:#1a0f00; margin-left:2px}
+.sf-audit .is-playing .vn-btn svg{margin-left:0}
+.sf-audit .vn-btn:hover{transform:scale(1.06)}
+.sf-audit .vn-btn:active{transform:scale(.96)}
+.sf-audit .vn-btn:focus-visible{outline:2px solid var(--accent); outline-offset:4px}
+.sf-audit .vn-audio{display:none}
+.sf-audit .vn-bar{display:flex; align-items:center; gap:12px}
+.sf-audit .vn-seek{flex:1; min-width:0; height:24px; margin:0; background:transparent; -webkit-appearance:none; appearance:none; cursor:pointer}
+.sf-audit .vn-seek::-webkit-slider-runnable-track{height:6px; border-radius:999px; background:linear-gradient(90deg,var(--accent) var(--p,0%),rgba(255,255,255,.12) var(--p,0%))}
+.sf-audit .vn-seek::-moz-range-track{height:6px; border-radius:999px; background:rgba(255,255,255,.12)}
+.sf-audit .vn-seek::-moz-range-progress{height:6px; border-radius:999px; background:var(--accent)}
+.sf-audit .vn-seek::-webkit-slider-thumb{-webkit-appearance:none; width:16px; height:16px; margin-top:-5px; border-radius:50%; background:var(--accent); border:0}
+.sf-audit .vn-seek::-moz-range-thumb{width:16px; height:16px; border-radius:50%; background:var(--accent); border:0}
+.sf-audit .vn-time{font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
+.sf-audit .is-playing .play-icon::after{animation:none; opacity:0}
+
 /* Personal fix: top strip, bottom offer, sticky phone bar */
 .sf-audit .fix-strip{border:1px solid rgba(254,199,2,.5); background:linear-gradient(135deg,rgba(254,199,2,.12),rgba(250,126,30,.06) 60%,transparent), var(--card)}
 .sf-audit .fix-strip.is-paid{border-color:rgba(62,207,142,.5); background:rgba(62,207,142,.08)}
@@ -89,6 +109,7 @@ html{scroll-behavior:smooth}
 
 @media (prefers-reduced-motion: reduce){
   .sf-audit .fix-bar{transition:none}
+  .sf-audit .vn-btn{transition:none}
   html{scroll-behavior:auto}
   .sf-audit .surprise-teaser span,.sf-audit .surprise.is-in,.sf-audit .surprise.is-in .surprise-btn{animation:none}
   .sf-audit main > *,.sf-audit .services .offer{opacity:1 !important; transform:none !important; transition:none !important}

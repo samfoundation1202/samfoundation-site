@@ -22,10 +22,69 @@
     }, { threshold: 0.05, rootMargin: "0px 0px -5% 0px" });
     targets.forEach(function (el) { seen.observe(el); });
 
-    var audio = app.querySelector("audio");
-    var player = app.querySelector(".player");
-    if (audio && player) audio.addEventListener("play", function () { player.classList.add("played"); }, { once: true });
+    setupPlayer(app);
   }
+  // Voice note: the round icon is the real play/pause button, with a seek bar and time under it.
+  // The browser's own audio controls are hidden (they were cut off on phones); the <audio> stays, so tracking still works.
+  function fmt(t) { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ":" + pad(t % 60); }
+  function setupPlayer(app) {
+    var audio = app.querySelector(".player audio");
+    var player = app.querySelector(".player");
+    var icon = player && player.querySelector(".play-icon");
+    if (!audio || !icon || player.querySelector(".vn-btn")) return;
+    var PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z"/></svg>';
+    var PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.5h4v15h-4zM13.5 4.5h4v15h-4z"/></svg>';
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "play-icon vn-btn";
+    btn.setAttribute("aria-label", "Play your voice note");
+    btn.innerHTML = PLAY;
+    icon.replaceWith(btn);
+
+    var bar = document.createElement("div");
+    bar.className = "vn-bar";
+    bar.innerHTML = '<input class="vn-seek" type="range" min="0" max="1000" value="0" aria-label="Voice note position">' +
+      '<span class="vn-time"><span class="vn-now">0:00</span> / <span class="vn-dur">--:--</span></span>';
+    audio.after(bar);
+    audio.removeAttribute("controls");
+    audio.classList.add("vn-audio");
+    player.classList.add("vn-ready");
+
+    var seek = bar.querySelector(".vn-seek"), now = bar.querySelector(".vn-now"), dur = bar.querySelector(".vn-dur");
+    function sync() {
+      var d = audio.duration;
+      if (d && isFinite(d)) { dur.textContent = fmt(d); if (!seek.dragging) seek.value = Math.round(audio.currentTime / d * 1000); }
+      now.textContent = fmt(audio.currentTime);
+      seek.style.setProperty("--p", (seek.value / 10) + "%");
+    }
+    function playing(on) {
+      btn.innerHTML = on ? PAUSE : PLAY;
+      btn.setAttribute("aria-label", on ? "Pause your voice note" : "Play your voice note");
+      player.classList.toggle("is-playing", on);
+      if (on) player.classList.add("played");
+    }
+    btn.addEventListener("click", function () {
+      if (audio.paused) { var p = audio.play(); if (p && p.catch) p.catch(function () { playing(false); }); } else audio.pause();
+    });
+    // Tapping the title area plays too
+    var head = player.querySelector(".player-head");
+    if (head) head.addEventListener("click", function (e) { if (!e.target.closest(".vn-btn")) btn.click(); });
+    audio.addEventListener("play", function () { playing(true); });
+    audio.addEventListener("pause", function () { playing(false); });
+    audio.addEventListener("ended", function () { playing(false); });
+    audio.addEventListener("timeupdate", sync);
+    audio.addEventListener("loadedmetadata", sync);
+    audio.addEventListener("durationchange", sync);
+    seek.addEventListener("input", function () {
+      seek.dragging = true;
+      if (audio.duration) { audio.currentTime = seek.value / 1000 * audio.duration; }
+      sync();
+    });
+    seek.addEventListener("change", function () { seek.dragging = false; });
+    sync();
+  }
+
   // The personal fix: one paid fix for this person's weakest point (audit.fix from the server).
   // Honest urgency only: the deadline comes from the server, starts on their first open and never resets.
   // Without audit.fix (older server) it falls back to the free "we do your first fix" offer.
