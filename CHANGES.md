@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-12: Audit page loads the live version at once
+- What: the audit design moved to `sf/audit-main.css` and `sf/audit-main.js`. `sf/audit.js` is now a small loader: it reads `sf/site-status.json` (no cache) and loads audit-main.* with the live commit as `?v=`, falling back to the hourly version after 2.5 s. `sf/audit.css` stays empty because the template links it.
+- Why: the template loads audit.css/js with an hourly `?v=` and the host caches for a year, so anyone who opened an audit in the hour before a deploy kept the old design until the hour turned (Sam saw the old Refer card after the panel went live).
+- Checked: local copy of the live template with mocked API, with and without site-status.json; tests/check.mjs passed.
+
 ## 2026-11-12: Audit page, Refer a business as a living panel
 - What: `sf/audit.js` takes the REFER card out of the offer grid and builds its own panel under it: a 3-step path (line draws, dots pop, the highlight walks 1-2-3 while on screen), "Introduce a business" opens a 2-step form (business + link with live ticks, then contact, note and consent) with a progress bar, a done state, and "Your introductions" with each business's real stage from the new `GET /api/public/audits/:id/referrals` on the DM bot. The page's own hidden form is removed; the same POST endpoint and consent rule are used. No percentages or amounts shown. Styles in `sf/audit.css`; reduced motion shows the final state.
 - Why: Sam wanted the referral offer to feel alive and personal, not one card among four.
