@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-12: Audit page, Refer a business as a living panel
+- What: `sf/audit.js` takes the REFER card out of the offer grid and builds its own panel under it: a 3-step path (line draws, dots pop, the highlight walks 1-2-3 while on screen), "Introduce a business" opens a 2-step form (business + link with live ticks, then contact, note and consent) with a progress bar, a done state, and "Your introductions" with each business's real stage from the new `GET /api/public/audits/:id/referrals` on the DM bot. The page's own hidden form is removed; the same POST endpoint and consent rule are used. No percentages or amounts shown. Styles in `sf/audit.css`; reduced motion shows the final state.
+- Why: Sam wanted the referral offer to feel alive and personal, not one card among four.
+- Checked: local copy of the live audit template with mocked API at 1280px, iPhone 13 and 375px reduced motion: no console errors, no horizontal scroll, full introduce flow (Next and Send stay locked until valid).
+
 ## 2026-11-12 (daily routine): Mobile menu button
 - What: under 820px the header shows a menu button (hamburger turns into a cross) that opens a panel with the five section links. Closes on link tap, Escape, outside tap; current section highlighted in yellow; aria-expanded/controls; only opacity/transform animate.
 - Why: nav links were hidden on phones, so visitors could not jump to sections. Standard on professional sites.

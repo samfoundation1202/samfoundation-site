@@ -9,6 +9,7 @@
     document.body.classList.add("sfm");
 
     addSurprise(app);
+    upgradeReferral(app);
 
     Array.prototype.forEach.call(app.children, function (el, i) { el.style.setProperty("--i", Math.min(i, 6)); });
     app.querySelectorAll(".offer, .item .bar i").forEach(function (el, i) { el.style.setProperty("--i", i % 8); });
@@ -197,6 +198,203 @@
           .catch(function () { button.disabled = false; if (audit.contactUrl) window.open(audit.contactUrl, "_blank", "noopener"); });
       });
     });
+  }
+
+
+  // Refer a business, earn a share: its own living panel instead of one card among four.
+  // A 3-step path that lights up, a 2-step introduce form with live checks, a done state,
+  // and "Your introductions" with the real status of each one (GET <referralUrl>s).
+  // No percentages or amounts here: those are decided per deal.
+  var RX_STAGES = {
+    received: { label: "Received", step: 1 },
+    contacted: { label: "We reached out", step: 2 },
+    talking: { label: "In talks", step: 2 },
+    won: { label: "Working with us", step: 3 },
+    closed: { label: "Not a fit right now", step: 0 }
+  };
+
+  function upgradeReferral(app) {
+    var ctx = window.sfAudit;
+    if (!ctx || !ctx.audit || app.querySelector(".rx")) return;
+    var audit = ctx.audit, esc = ctx.esc;
+    var refer = (audit.offers || []).filter(function (o) { return o.code === "REFER"; })[0];
+    var card = app.querySelector('.offer[data-offer="REFER"]');
+    var services = card && card.closest(".services");
+    if (!refer || !audit.referralUrl || !services) return;
+
+    // The plain card and the page's own hidden form make way for the panel
+    var grid = card.parentNode;
+    card.remove();
+    var oldForm = services.querySelector("#refer");
+    if (oldForm) oldForm.remove();
+    var left = grid.querySelectorAll(".offer");
+    if (left.length % 2 === 1) left[left.length - 1].classList.add("offer-wide");
+
+    var panel = document.createElement("div");
+    panel.className = "rx";
+    panel.id = "refer";
+    panel.innerHTML =
+      '<div class="rx-head">' +
+        '<span class="rx-badge"><i aria-hidden="true"></i>Earn a share</span>' +
+        "<h3>" + esc(refer.title) + "</h3>" +
+        "<p>" + esc(refer.text) + "</p>" +
+      "</div>" +
+      '<ol class="rx-steps" aria-label="How it works">' +
+        '<li style="--s:0"><i>1</i><b>You introduce</b><span>A business that wants more customers online.</span></li>' +
+        '<li style="--s:1"><i>2</i><b>We talk to them</b><span>Only if they know you sent them.</span></li>' +
+        '<li style="--s:2"><i>3</i><b>You earn a share</b><span>When they start working with us.</span></li>' +
+        '<span class="rx-line" aria-hidden="true"><span></span></span>' +
+      "</ol>" +
+      '<div class="rx-track" hidden><b class="rx-track-title">Your introductions</b><ul></ul></div>' +
+      '<button class="btn rx-open" type="button">Introduce a business <span aria-hidden="true">&rarr;</span></button>' +
+      '<form class="rx-form" hidden novalidate>' +
+        '<div class="rx-progress" aria-hidden="true"><span></span></div>' +
+        '<p class="rx-stepno">Step <b>1</b> of 2</p>' +
+        '<fieldset class="rx-pane" data-pane="1">' +
+          '<legend>Which business?</legend>' +
+          '<label>Business name<span class="rx-field"><input name="businessName" maxlength="120" autocomplete="off"><i aria-hidden="true">&#10003;</i></span></label>' +
+          '<label>Their page or website<span class="rx-field"><input name="businessLink" maxlength="300" placeholder="@handle or link" autocomplete="off"><i aria-hidden="true">&#10003;</i></span></label>' +
+          '<div class="rx-actions"><button class="btn rx-next" type="button" disabled>Next <span aria-hidden="true">&rarr;</span></button></div>' +
+        "</fieldset>" +
+        '<fieldset class="rx-pane" data-pane="2" hidden>' +
+          '<legend>Who should we talk to?</legend>' +
+          '<label>Who to talk to there (optional)<input name="contact" maxlength="200" placeholder="Name, @ or how to reach them"></label>' +
+          '<label>Anything we should know? (optional)<textarea name="note" maxlength="600"></textarea></label>' +
+          '<label class="rx-check"><input type="checkbox" name="consent"> They know I\'m introducing them to Sam Foundation.</label>' +
+          '<div class="rx-actions"><button class="rx-back" type="button">&larr; Back</button><button class="btn rx-send" type="submit" disabled>Send introduction</button></div>' +
+        "</fieldset>" +
+        '<p class="rx-msg" role="status"></p>' +
+      "</form>" +
+      '<div class="rx-done" hidden role="status">' +
+        '<span class="rx-tick" aria-hidden="true">&#10003;</span>' +
+        '<div><b>Introduction sent.</b><p>We got it and will message you about next steps. You can follow it right here.</p></div>' +
+        '<button class="rx-again" type="button">Introduce another business</button>' +
+      "</div>";
+    grid.parentNode.insertBefore(panel, grid.nextSibling);
+
+    var form = panel.querySelector(".rx-form");
+    var openBtn = panel.querySelector(".rx-open");
+    var done = panel.querySelector(".rx-done");
+    var msg = panel.querySelector(".rx-msg");
+    var listUrl = audit.referralUrl.replace(/\/referral$/, "/referrals");
+
+    // The path lights up once seen, then the highlight walks 1 -> 2 -> 3 while it is on screen
+    var walk = null, step = 0;
+    function walking(on) {
+      if (on && !walk && !reduced()) {
+        walk = setInterval(function () { step = (step + 1) % 3; panel.style.setProperty("--on", step); panel.dataset.on = step; }, 2200);
+      } else if (!on && walk) { clearInterval(walk); walk = null; }
+    }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        var e = entries[0];
+        if (e.isIntersecting) panel.classList.add("is-live");
+        walking(e.isIntersecting && form.hidden && done.hidden);
+      }, { threshold: 0.35 }).observe(panel);
+    } else panel.classList.add("is-live");
+    panel.dataset.on = 0;
+
+    // Live checks: a tick appears when a field looks right; Next and Send unlock when ready
+    var name = form.businessName, link = form.businessLink;
+    function okName() { return name.value.trim().length >= 2; }
+    function okLink() { var v = link.value.trim(); return /^@[A-Za-z0-9._]{2,}$/.test(v) || /[A-Za-z0-9-]+\.[A-Za-z]{2,}/.test(v); }
+    function check() {
+      name.parentNode.classList.toggle("is-ok", okName());
+      link.parentNode.classList.toggle("is-ok", okLink());
+      form.querySelector(".rx-next").disabled = !(okName() && okLink());
+      form.querySelector(".rx-send").disabled = !form.consent.checked;
+    }
+    form.addEventListener("input", check);
+    form.addEventListener("change", check);
+
+    function pane(n) {
+      form.querySelectorAll(".rx-pane").forEach(function (p) {
+        var on = p.dataset.pane === String(n);
+        p.hidden = !on;
+        if (on) { p.classList.remove("rx-enter"); void p.offsetWidth; p.classList.add("rx-enter"); }
+      });
+      form.dataset.pane = n;
+      form.querySelector(".rx-stepno b").textContent = n;
+      msg.textContent = ""; msg.className = "rx-msg";
+      var first = form.querySelector('.rx-pane[data-pane="' + n + '"] input');
+      if (first) first.focus({ preventScroll: true });
+    }
+
+    openBtn.addEventListener("click", function () {
+      if (ctx.track) ctx.track("offer", "REFER");
+      walking(false);
+      openBtn.hidden = true;
+      form.hidden = false;
+      form.classList.remove("rx-enter"); void form.offsetWidth; form.classList.add("rx-enter");
+      pane(1);
+      form.scrollIntoView({ behavior: reduced() ? "auto" : "smooth", block: "center" });
+    });
+    form.querySelector(".rx-next").addEventListener("click", function () { if (okName() && okLink()) pane(2); });
+    form.querySelector(".rx-back").addEventListener("click", function () { pane(1); });
+    link.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); if (okName() && okLink()) pane(2); } });
+    name.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); link.focus(); } });
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (!form.consent.checked) { msg.className = "rx-msg bad"; msg.textContent = "Please confirm they know you're introducing them."; return; }
+      var send = form.querySelector(".rx-send");
+      send.disabled = true; send.textContent = "Sending…";
+      var data = { businessName: name.value.trim(), businessLink: link.value.trim(), contact: form.contact.value.trim(), note: form.note.value.trim(), consent: true };
+      fetch(audit.referralUrl, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) { if (!r.ok) throw new Error(b.error || "Could not send that."); return b; }); })
+        .then(function () {
+          form.reset(); check();
+          form.hidden = true;
+          done.hidden = false;
+          done.classList.remove("rx-enter"); void done.offsetWidth; done.classList.add("rx-enter");
+          addRow({ businessName: data.businessName, stage: "received", at: new Date().toISOString() }, true);
+          setTimeout(loadList, 1500);
+        })
+        .catch(function (error) {
+          msg.className = "rx-msg bad";
+          msg.textContent = error.message + " You can also message us directly.";
+        })
+        .then(function () { send.disabled = !form.consent.checked; send.textContent = "Send introduction"; });
+    });
+    panel.querySelector(".rx-again").addEventListener("click", function () {
+      done.hidden = true;
+      form.hidden = false;
+      pane(1);
+    });
+
+    // Your introductions: real status from the server, newest first
+    var track = panel.querySelector(".rx-track"), list = track.querySelector("ul");
+    function rowHtml(r) {
+      var st = RX_STAGES[r.stage] || RX_STAGES.received;
+      var dots = "";
+      for (var i = 1; i <= 3; i++) dots += '<i class="' + (st.step >= i ? "on" : "") + '"></i>';
+      return '<span class="rx-biz">' + esc(r.businessName) + "</span>" +
+        '<span class="rx-stage rx-' + esc(r.stage) + '"><span class="rx-dots" aria-hidden="true">' + dots + "</span>" + esc(st.label) + "</span>";
+    }
+    function addRow(r, fresh) {
+      var li = document.createElement("li");
+      li.innerHTML = rowHtml(r);
+      if (fresh) li.className = "rx-new";
+      list.insertBefore(li, list.firstChild);
+      track.hidden = false;
+    }
+    function loadList() {
+      fetch(listUrl, { cache: "no-store" })
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (rows) {
+          if (!Array.isArray(rows) || !rows.length) return;
+          list.innerHTML = "";
+          rows.slice().reverse().forEach(function (r) { addRow(r, false); });
+          var count = track.querySelector(".rx-track-title");
+          count.textContent = "Your introductions (" + rows.length + ")";
+        })
+        .catch(function () {});
+    }
+    loadList();
+  }
+
+  function reduced() {
+    return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
   document.addEventListener("sf:audit-rendered", start);
