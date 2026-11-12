@@ -76,5 +76,9 @@ for (const [label, viewport, reduced] of [["desktop", { width: 1280, height: 800
 await browser.close();
 server.close();
 
+// Audit pages must stay living too (tests/audit-check.mjs)
+const { auditCheck } = await import("./audit-check.mjs");
+problems.push(...(await auditCheck()));
+
 if (problems.length) { console.log("CHECK FAILED\n- " + problems.join("\n- ")); process.exit(1); }
-console.log("CHECK PASSED (desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");
+console.log("CHECK PASSED (home page and audit page: desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");
