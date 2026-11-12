@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-12 (daily routine): Mobile menu button
+- What: under 820px the header shows a menu button (hamburger turns into a cross) that opens a panel with the five section links. Closes on link tap, Escape, outside tap; current section highlighted in yellow; aria-expanded/controls; only opacity/transform animate.
+- Why: nav links were hidden on phones, so visitors could not jump to sections. Standard on professional sites.
+- Checked: tests/check.mjs passed; Playwright at 375px: menu opens, link jumps to #bot and closes it, no horizontal scroll; screenshot reviewed.
+
 ## 2026-11-11 (by hand, from Sam's Telegram notes): audit page motion, services cards, surprise
 - What: new `sf/audit.css` and `sf/audit.js`, loaded by public_html/audit/index.html (uploaded once by hand, backup audit/index.before-motion.html). Sections rise in, score bars fill, play icon pulses until played, stronger services cards with hover, surprise section "We'll do your first fix for you" (DFY offer, tracked) with a teaser under the voice note.
 - Why: Sam's design notes on audit pages. From now on the daily routine applies these notes (see the top of .site/backlog.md).

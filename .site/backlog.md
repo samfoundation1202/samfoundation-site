@@ -21,11 +21,12 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Open Graph image: a real 1200x630 share image so links on Facebook/WhatsApp look professional.
 - Favicon set and apple-touch-icon from the SF mark.
 - Typography rhythm: consistent section spacing and heading sizes across all sections.
-- Mobile: the nav links are hidden under 820px; add a compact menu button so visitors can reach sections.
 - Cookie banner: add a link in the footer legal text to a cookie policy once that page exists.
+- Menu panel: add a primary "Work with us" button style at the bottom of the mobile menu.
 - Tools strip: pause on hover/focus so it can be read.
 
 ## Done
+- 2026-11-12 Mobile menu button with section list.
 - 2026-11-11 EU cookie banner (Accept/Reject/Customize, GA only after consent, footer Cookie settings).
 - 2026-11-10 Header active-section underline, scroll shadow, skip-to-content link.
 - 2026-11-10 Hero typewriter headline (by hand).
