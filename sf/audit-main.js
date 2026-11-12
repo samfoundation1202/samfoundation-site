@@ -10,6 +10,7 @@
 
     addSurprise(app);
     upgradeReferral(app);
+    liveOffers(app);
 
     Array.prototype.forEach.call(app.children, function (el, i) { el.style.setProperty("--i", Math.min(i, 6)); });
     app.querySelectorAll(".offer, .item .bar i").forEach(function (el, i) { el.style.setProperty("--i", i % 8); });
@@ -391,6 +392,77 @@
         .catch(function () {});
     }
     loadList();
+  }
+
+
+  // The offer cards ("How do you want to grow?") come alive: each one gets a small moving picture of what it
+  // is (steps built from its own text), the first card, which the server orders as the best fit, says so,
+  // and the pictures only run while the section is on screen. Nothing new is promised.
+  var OFFER_STEPS = {
+    DIY: { kind: "learn", items: ["Your niche", "Competitors", "Hero offer", "Landing page", "Hosting + domain"] },
+    DFY: { kind: "done", items: ["Niche", "Competitors", "Hero offer", "Landing page", "Hosting + domain"] },
+    BUILD: { kind: "together", items: ["Setup", "Build it together", "Keep building"] },
+    OFFER: { kind: "together", items: ["Your proposal", "We talk", "Grow together"] },
+    CLUB: { kind: "drops", items: ["New hooks", "New scripts", "AI templates", "Live Q&A"] }
+  };
+
+  function liveOffers(app) {
+    var services = app.querySelector(".services");
+    if (!services || services.dataset.live) return;
+    services.dataset.live = "1";
+    var cards = services.querySelectorAll(".offer[data-offer]");
+    Array.prototype.forEach.call(cards, function (card, n) {
+      var plan = OFFER_STEPS[card.dataset.offer];
+      if (!plan) return;
+      var viz = document.createElement("span");
+      viz.className = "ov ov-" + plan.kind;
+      viz.setAttribute("aria-hidden", "true");
+      if (plan.kind === "drops") {
+        viz.innerHTML = plan.items.map(function (t, i) { return '<span class="ov-drop" style="--k:' + i + '"><i></i>' + t + "</span>"; }).join("");
+      } else {
+        viz.innerHTML = '<span class="ov-bar"><span></span></span>' +
+          plan.items.map(function (t, i) { return '<span class="ov-chip" style="--k:' + i + '"><i></i>' + t + "</span>"; }).join("");
+      }
+      viz.style.setProperty("--n", plan.items.length);
+      var title = card.querySelector("b");
+      card.insertBefore(viz, title);
+      var ranked = ((window.sfAudit && window.sfAudit.audit && window.sfAudit.audit.offers) || [])[0];
+      if (n === 0 && cards.length > 1 && ranked && ranked.code === card.dataset.offer) {
+        var pick = document.createElement("span");
+        pick.className = "ov-pick";
+        pick.textContent = "Best fit for you";
+        card.insertBefore(pick, viz);
+        card.classList.add("is-pick");
+      }
+    });
+
+    // Steps light up one after another, then start again; only while the cards can be seen
+    var step = 0, timer = null;
+    function tick() {
+      step += 1;
+      Array.prototype.forEach.call(services.querySelectorAll(".ov"), function (viz) {
+        var n = Number(viz.style.getPropertyValue("--n")) || 3;
+        var at = step % (n + 2);
+        viz.style.setProperty("--at", Math.min(at, n));
+        viz.querySelectorAll(".ov-chip,.ov-drop").forEach(function (chip, i) {
+          chip.classList.toggle("on", viz.classList.contains("ov-drops") ? i === at % n : i < at);
+        });
+        var bar = viz.querySelector(".ov-bar span");
+        if (bar) bar.style.transform = "scaleX(" + Math.min(at, n) / n + ")";
+      });
+    }
+    function run(on) {
+      if (on && !timer && !reduced()) { tick(); timer = setInterval(tick, 900); }
+      else if (!on && timer) { clearInterval(timer); timer = null; }
+    }
+    if (reduced()) {
+      services.querySelectorAll(".ov-chip,.ov-drop").forEach(function (c) { c.classList.add("on"); });
+      services.querySelectorAll(".ov-bar span").forEach(function (b) { b.style.transform = "none"; });
+      return;
+    }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) { run(entries[0].isIntersecting); }, { threshold: 0.15 }).observe(services.querySelector(".offers") || services);
+    } else run(true);
   }
 
   function reduced() {

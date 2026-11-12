@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-12: Audit page, living offer cards
+- What: `liveOffers` in `sf/audit-main.js` adds a small moving picture to each offer card, built only from that offer's own text: DIY and DFY steps light up one by one with a progress bar (green ticks for done-for-you), BUILD and OFFER show their 3 steps, the Club cycles through its weekly drops. The first card gets "Best fit for you" only when it is first in the person's own offer list. Runs only while the cards are on screen; reduced motion shows everything lit and still.
+- Why: Sam pointed at the offer cards as static after the referral panel went live.
+- Checked: local copy of the live template with Piezul's real audit data at 1280px, iPhone 13 and 375px reduced motion; no errors, no horizontal scroll; tests/check.mjs passed.
+
 ## 2026-11-12: Audit page loads the live version at once
 - What: the audit design moved to `sf/audit-main.css` and `sf/audit-main.js`. `sf/audit.js` is now a small loader: it reads `sf/site-status.json` (no cache) and loads audit-main.* with the live commit as `?v=`, falling back to the hourly version after 2.5 s. `sf/audit.css` stays empty because the template links it.
 - Why: the template loads audit.css/js with an hourly `?v=` and the host caches for a year, so anyone who opened an audit in the hour before a deploy kept the old design until the hour turned (Sam saw the old Refer card after the panel went live).
