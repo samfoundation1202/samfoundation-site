@@ -18,14 +18,16 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Footer: clearer contact block, page links, small "built in Germany" style line only if true (ask before adding any claim).
 - Performance: lazy-load below-the-fold media, compress images, check total page weight under 1 MB for the first view.
 - Accessibility: focus styles visible on every button and link, skip-to-content link, contrast check on muted text.
-- Open Graph image: a real 1200x630 share image so links on Facebook/WhatsApp look professional.
 - Favicon set and apple-touch-icon from the SF mark.
 - Typography rhythm: consistent section spacing and heading sizes across all sections.
 - Cookie banner: add a link in the footer legal text to a cookie policy once that page exists.
 - Menu panel: add a primary "Work with us" button style at the bottom of the mobile menu.
 - Tools strip: pause on hover/focus so it can be read.
+- Add canonical link and JSON-LD Organization data (only facts on the page) for search results.
+- Apple-touch-icon PNG from the SF mark (sf/ file) next to the existing SVG favicon.
 
 ## Done
+- 2026-11-13 Open Graph share image (sf/og-image.png) + twitter card tags.
 - 2026-11-12 Mobile menu button with section list.
 - 2026-11-11 EU cookie banner (Accept/Reject/Customize, GA only after consent, footer Cookie settings).
 - 2026-11-10 Header active-section underline, scroll shadow, skip-to-content link.

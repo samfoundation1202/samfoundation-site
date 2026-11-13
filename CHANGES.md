@@ -2,6 +2,12 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-13 (daily routine): Share preview image for link sharing
+- What: new `sf/og-image.png` (1200x630, SF mark, "Grow your business with AI", site address; text taken from the page title and description) plus `og:image`, size, alt and `twitter:card` meta tags in `index.html`.
+- Why: the page had no share image, so links on Facebook, WhatsApp and Telegram looked bare. A branded card is standard on professional sites.
+- Also: audit notes d8464c9e and 12aca5b8 (REFER card stand-out) are marked done: the 2026-11-12 referral panel already covers them. Note: the exact line "Introduce a business to us..." comes from the offer text in the template data; I could not see the template here.
+- Checked: tests/check.mjs passed (with the local Chromium, the Playwright download is blocked in this environment); image reviewed.
+
 ## 2026-11-12: Audit page, living offer cards
 - What: `liveOffers` in `sf/audit-main.js` adds a small moving picture to each offer card, built only from that offer's own text: DIY and DFY steps light up one by one with a progress bar (green ticks for done-for-you), BUILD and OFFER show their 3 steps, the Club cycles through its weekly drops. The first card gets "Best fit for you" only when it is first in the person's own offer list. Runs only while the cards are on screen; reduced motion shows everything lit and still.
 - Why: Sam pointed at the offer cards as static after the referral panel went live.
