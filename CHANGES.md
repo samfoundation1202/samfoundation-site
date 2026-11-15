@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-15 (daily routine): Shorter cookie banner on phones
+- What: at 420px and below the banner keeps its three equal buttons in one row (was stacked) and uses tighter padding and text size.
+- Why: the stacked banner covered about half of the first phone screen on a first visit; equal prominence of Accept/Reject/Customize is kept.
+- Checked: tests/check.mjs passed; 375px screenshot reviewed, no horizontal scroll.
+
 ## 2026-11-14 (daily routine): Primary button in the mobile menu
 - What: the mobile menu panel ends with a yellow "Message us on Facebook" button (same m.me link as the page's final CTA).
 - Why: a clear primary action in the menu is standard on professional sites and shortens the path to contact on phones.
