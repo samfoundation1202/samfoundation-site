@@ -404,6 +404,17 @@ footer a:hover{color:var(--sf-text)}
 .ea-done .tick{width:56px;height:56px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;background:var(--sf-accent);color:var(--sf-on-accent);font-size:28px;font-weight:800;animation:ea-pop .5s var(--sf-ease)}
 @keyframes ea-pop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.1)}100%{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.ea-box,.ea-done .tick{animation:none}}
+/* "Comment or DM": a gold pill with the word in black; Comment and DM take turns, letters roll up one by one */
+.swap-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.cdm{display:inline-flex;align-items:center;justify-content:center;vertical-align:-.1em;height:1.12em;padding:0 .26em;border-radius:.22em;
+  background:var(--sf-accent);color:#0b0b0c;overflow:hidden;white-space:nowrap;line-height:1}
+.cdm span{display:inline-block;transform:translateY(110%);animation:cdm-up .45s cubic-bezier(.22,.8,.24,1) forwards}
+.cdm.out span{animation:cdm-out .3s ease forwards}
+@keyframes cdm-up{to{transform:none}}
+@keyframes cdm-out{from{transform:none}to{transform:translateY(-120%)}}
+.steps .cdm,.steps .cdm span{font-size:inherit;color:#0b0b0c}
+.steps .cdm{vertical-align:-.15em;margin-right:.1em}
+@media (prefers-reduced-motion:reduce){.cdm{display:none}.swap-txt{position:static;width:auto;height:auto;overflow:visible;clip:auto}}
 </style>
 </head>
 <body>
@@ -630,7 +641,7 @@ footer a:hover{color:var(--sf-text)}
     <div class="sf-wrap audit">
       <div>
         <span class="sf-tag sf-reveal">Free page audit</span>
-        <h2 class="sf-h2 sf-reveal" style="--i:1">Comment or DM <span class="sf-grad-text">AUDIT</span>.<br>Get your page reviewed for free.</h2>
+        <h2 class="sf-h2 sf-reveal" style="--i:1"><span class="swap-txt">Comment or DM</span><span class="cdm" aria-hidden="true">Comment</span> AUDIT.<br>Get your page reviewed for free.</h2>
         <p class="sf-lead sf-reveal" style="--i:2">We look at your Instagram or Facebook page and tell you what works, what to fix first, and how, in a short voice note.</p>
         <div class="cta sf-reveal" style="--i:6" >
           <a class="sf-btn" href="https://m.me/1322082717660422" target="_blank" rel="noopener"><svg><use href="#i-dm"/></svg>DM AUDIT on Facebook</a>
@@ -639,7 +650,7 @@ footer a:hover{color:var(--sf-text)}
       </div>
 
       <ol class="steps">
-          <li class="sf-reveal" style="--i:3"><span class="n">1</span><div><b>Comment or DM "AUDIT"</b><span>On any of our <a href="https://www.facebook.com/1322082717660422" target="_blank" rel="noopener">Facebook posts</a>, or straight in our Facebook inbox.</span></div></li>
+          <li class="sf-reveal" style="--i:3"><span class="n">1</span><div><b><span class="swap-txt">Comment or DM</span><span class="cdm" aria-hidden="true">Comment</span> "AUDIT"</b><span>On any of our <a href="https://www.facebook.com/1322082717660422" target="_blank" rel="noopener">Facebook posts</a>, or straight in our Facebook inbox.</span></div></li>
           <li class="sf-reveal" style="--i:4"><span class="n">2</span><div><b>Send your page link or @</b><span>So we know which page to look at.</span></div></li>
           <li class="sf-reveal" style="--i:5"><span class="n">3</span><div><b>Get your audit</b><span>A private audit page with a 60-second voice note and the one fix to do first.</span></div></li>
       </ol>
@@ -1114,6 +1125,20 @@ document.addEventListener('DOMContentLoaded',function(){
   window.addEventListener("resize",function(){if(window.innerWidth>820)set(false);});
   var pl=[].slice.call(panel.querySelectorAll("a")),ml=[].slice.call(document.querySelectorAll(".nav .links a"));
   if(ml.length&&"MutationObserver" in window){var mo=new MutationObserver(function(){ml.forEach(function(a,i){if(pl[i])pl[i].classList.toggle("on",a.classList.contains("on"));});});ml.forEach(function(a){mo.observe(a,{attributes:true,attributeFilter:["class"]});});}
+})();
+</script>
+<script>
+/* "Comment or DM" pills: each word stays 2s, then the letters roll out and the next word rolls in. Pauses while the tab is hidden. */
+(function(){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var W=["Comment","DM"];
+  document.querySelectorAll(".cdm").forEach(function(el){
+    var i=0;
+    function show(){el.classList.remove("out");el.innerHTML=W[i].split("").map(function(c,k){return '<span style="animation-delay:'+(k*0.03)+'s">'+c+'</span>'}).join("");
+      setTimeout(next,2000)}
+    function next(){if(document.hidden){setTimeout(next,1000);return}el.classList.add("out");setTimeout(function(){i=(i+1)%W.length;show()},320)}
+    show();
+  });
 })();
 </script>
 </body>

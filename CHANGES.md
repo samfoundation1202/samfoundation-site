@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-15 (by hand, chosen by Sam): "Comment or DM" as a rotating gold pill
+- What: in the audit section heading and in step 1, "Comment or DM" is now a gold pill with the word in black. "Comment" and "DM" take turns every 2 seconds and the letters roll up one by one; the pill resizes with the word. In the heading, AUDIT is now white next to the pill.
+- Why: Sam asked for the words to move like the patterns he likes; he picked this style (React Bits "Rotating Text") from 5 live options. His taste is now written down in `.site/taste.md` for the daily routine.
+- Checked: tests/check.mjs passed (desktop 1280, mobile 375, reduced motion); screen readers and reduced motion get the plain text "Comment or DM".
+
 ## 2026-11-15 (daily routine): Shorter cookie banner on phones
 - What: at 420px and below the banner keeps its three equal buttons in one row (was stacked) and uses tighter padding and text size.
 - Why: the stacked banner covered about half of the first phone screen on a first visit; equal prominence of Accept/Reject/Customize is kept.
