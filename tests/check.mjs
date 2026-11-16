@@ -25,14 +25,17 @@ const BASE = "http://127.0.0.1:8811/";
 
 const problems = [];
 const browser = await chromium.launch({executablePath:process.env.PW_EXE||undefined});
-for (const [label, viewport, reduced] of [["desktop", { width: 1280, height: 800 }, false], ["mobile", { width: 375, height: 812 }, false], ["mobile-reduced", { width: 375, height: 812 }, true]]) {
+// Pages in this repo: the home page and the Trade guides hub (/trade/)
+for (const PAGE of ["", "trade/"]) {
+for (const [label0, viewport, reduced] of [["desktop", { width: 1280, height: 800 }, false], ["mobile", { width: 375, height: 812 }, false], ["mobile-reduced", { width: 375, height: 812 }, true]]) {
+  const label = (PAGE ? PAGE.replace(/\/$/, "") + "-" : "") + label0;
   const ctx = await browser.newContext({ viewport, reducedMotion: reduced ? "reduce" : "no-preference", isMobile: viewport.width < 768, hasTouch: viewport.width < 768 });
   const page = await ctx.newPage();
   let bytes = 0;
   page.on("console", (m) => { if (m.type() === "error" && !/googletagmanager|gtag|onrender\.com|Failed to load resource/.test(m.text())) problems.push(`${label}: console error: ${m.text()}`); });
   page.on("pageerror", (e) => problems.push(`${label}: page error: ${e.message}`));
   page.on("response", async (r) => { if (r.url().startsWith(BASE)) { try { bytes += (await r.body()).length; } catch {} } });
-  await page.goto(BASE, { waitUntil: "load" });
+  await page.goto(BASE + PAGE, { waitUntil: "load" });
   await page.waitForTimeout(1500);
   // scroll through so reveals run, then measure
   const h = await page.evaluate(() => document.documentElement.scrollHeight);
@@ -59,11 +62,13 @@ for (const [label, viewport, reduced] of [["desktop", { width: 1280, height: 800
   if (!info.title) problems.push(`${label}: missing <title>`);
   if (info.desc.length < 50) problems.push(`${label}: meta description missing or too short`);
   if (info.noAlt.length) problems.push(`${label}: images without alt: ${info.noAlt.join(", ")}`);
-  if (label === "desktop") {
-    if (bytes > 1.5 * 1024 * 1024) problems.push(`desktop: first load is ${(bytes / 1048576).toFixed(2)} MB (limit 1.5 MB)`);
+  if (label0 === "desktop") {
+    if (bytes > 1.5 * 1024 * 1024) problems.push(`${label}: first load is ${(bytes / 1048576).toFixed(2)} MB (limit 1.5 MB)`);
     // root-relative links must exist on the live site (pages outside this repo, like /club/ or /Hooks/)
     for (const href of info.links) {
       if (!href.startsWith("/") || href.startsWith("//")) continue;
+      const localPath = path.join(ROOT, href.split("#")[0]); // pages in this repo are checked locally
+      if (fs.existsSync(localPath.endsWith("/") ? localPath + "index.html" : localPath)) continue;
       const u = "https://samfoundation.tech" + href.split("#")[0];
       try { const r = await fetch(u, { method: "GET", redirect: "follow" }); if (r.status >= 400) problems.push(`link ${href} -> ${r.status}`); }
       catch (e) { problems.push(`link ${href} -> ${e.message}`); }
@@ -73,6 +78,7 @@ for (const [label, viewport, reduced] of [["desktop", { width: 1280, height: 800
   await page.screenshot({ path: path.join(OUT, `${label}-full.png`), fullPage: true });
   await ctx.close();
 }
+}
 await browser.close();
 server.close();
 
@@ -81,4 +87,4 @@ const { auditCheck } = await import("./audit-check.mjs");
 problems.push(...(await auditCheck()));
 
 if (problems.length) { console.log("CHECK FAILED\n- " + problems.join("\n- ")); process.exit(1); }
-console.log("CHECK PASSED (home page and audit page: desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");
+console.log("CHECK PASSED (home page, /trade/ and audit page: desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");

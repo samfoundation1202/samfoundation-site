@@ -2,6 +2,12 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-16 (by hand, asked by Sam): Trade guides hub at /trade/ with the CANDLE guide
+- What: new page `trade/index.html` (samfoundation.tech/trade/), the home for every free guide promised in a @tradewithsam1202 reel caption. Each guide is a section with its keyword as anchor; the first is `#candle`, the First Candle Rule from reel DfsG2sSRpL4. Hero: the reel's chart, cropped and sped up (`trade/media/candle-loop.mp4`, 68 KB, poster jpg). 6 steps, each with its own SVG chart that builds that step (Replay button); "A wick is not a break" with 3 animated mini charts; a 7-box pre-trade checklist with a progress meter (remembered on the device); risk rules and a not-financial-advice note (the reel's income claim is not repeated).
+- Deploy: the host script now also allows `trade/index.html` and `trade/media/*` (copy in `.site/host/deploy.php`); the host file must be uploaded by hand once.
+- Check: `tests/check.mjs` now checks `/trade/` too (desktop 1280, mobile 375, reduced motion) and skips the live link test for pages that exist in this repo.
+- Next guide: add a section with the keyword as id, a link in the "Free guides from the reels" bar, and media under `trade/media/`.
+
 ## 2026-11-15 (by hand, chosen by Sam): "Comment or DM" as a rotating gold pill
 - What: in the audit section heading and in step 1, "Comment or DM" is now a gold pill with the word in black. "Comment" and "DM" take turns every 2 seconds and the letters roll up one by one; the pill resizes with the word. In the heading, AUDIT is now white next to the pill.
 - Why: Sam asked for the words to move like the patterns he likes; he picked this style (React Bits "Rotating Text") from 5 live options. His taste is now written down in `.site/taste.md` for the daily routine.

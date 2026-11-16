@@ -1,10 +1,10 @@
 <?php
 // Sam Foundation site auto-deploy (runs from cron on the cPanel host every 10 minutes).
 // Pulls the GitHub repo samfoundation1202/samfoundation-site, and when main has a new commit it copies
-// ONLY whitelisted files (index.html and /sf/ css, js, images, video, fonts) into public_html, with a backup first.
+// ONLY whitelisted files (index.html, /sf/ css, js, images, video, fonts, and /trade/ index.html + media) into public_html, with a backup first.
 // Each deploy sends a Telegram card through the bot's ops desk with "OK" / "Undo". "Undo" restores the backup.
 // Status for the daily routine: https://samfoundation.tech/sf/site-status.json
-// Nothing here can write .php, .htaccess or anything outside index.html and sf/.
+// Nothing here can write .php, .htaccess or anything outside index.html, sf/ and trade/.
 
 error_reporting(E_ALL);
 date_default_timezone_set('UTC');
@@ -19,7 +19,8 @@ $CFG = [
   'site'    => 'https://samfoundation.tech/',
   'archive' => getenv('SITE_ARCHIVE') ?: null, // tests: a local .tar.gz instead of GitHub
 ];
-$ALLOWED = '#^(index\.html|sf/[a-z0-9][a-z0-9._/-]*\.(css|js|svg|png|jpe?g|webp|avif|gif|mp4|webm|woff2?|txt))$#';
+// index.html, sf/ files, and the Trade guides hub (trade/index.html + trade/media/*), added 2026-11-16
+$ALLOWED = '#^(index\.html|trade/index\.html|(sf|trade/media)/[a-z0-9][a-z0-9._/-]*\.(css|js|svg|png|jpe?g|webp|avif|gif|mp4|webm|woff2?|txt))$#';
 $MAX_FILE = 15 * 1024 * 1024;
 
 function logline($m) { global $CFG; @file_put_contents($CFG['state'] . '/deploy.log', gmdate('c') . ' ' . $m . "\n", FILE_APPEND | LOCK_EX); }
@@ -144,6 +145,11 @@ foreach ($files as $rel => $data) {
 if (isset($files['index.html'])) {
   $home = $files['index.html'];
   if (strlen($home) < 20000 || stripos($home, '</html>') === false || stripos($home, '<title>') === false) fail("index.html in $sha failed the sanity check; not deployed");
+}
+
+if (isset($files['trade/index.html'])) {
+  $tp = $files['trade/index.html'];
+  if (strlen($tp) < 5000 || stripos($tp, '</html>') === false || stripos($tp, '<title>') === false) fail("trade/index.html in $sha failed the sanity check; not deployed");
 }
 
 $prev = $state['live'] ?? $state['deployed'];

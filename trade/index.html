@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>First Candle Rule: free guide | Trade with Sam</title>
+<meta name="description" content="The free guides from @tradewithsam1202 reels. CANDLE: the First Candle Rule in 6 steps, one 5-minute candle at 9:30 New York time, a fair value gap break, a retest, an engulfing entry and a fixed 3:1 target.">
+<meta property="og:title" content="The First Candle Rule: free guide">
+<meta property="og:description" content="One candle at 9:30. Two levels. One gap. One entry. 3:1. The 6 steps from the @tradewithsam1202 reel.">
+<meta property="og:image" content="https://samfoundation.tech/trade/media/candle-poster.jpg">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="/sf/sf-tokens.css?v=2">
+<link rel="stylesheet" href="/sf/sf-base.css?v=2">
+<script defer src="/sf/sf-motion.js?v=2"></script>
+<style>
+:root{--bull:#ededed;--bear:#3f3f46;--wick:#a1a1aa;--stop:rgba(239,68,68,.20);--stop-line:#ef4444;--win:rgba(62,207,142,.18);--win-line:#3ecf8e}
+html{scroll-behavior:smooth}
+body{background:var(--sf-bg);color:var(--sf-text);font-family:var(--sf-font);margin:0;overflow-x:hidden}
+a{color:inherit}
+.t-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0}
+.t-logo{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:900;letter-spacing:-.02em;font-size:26px;line-height:1}
+.t-logo b{color:var(--sf-accent)}
+.t-logo small{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--sf-muted);writing-mode:vertical-rl;transform:rotate(180deg)}
+.t-nav a.t-ig{font-size:var(--sf-fs-sm);color:var(--sf-muted);text-decoration:none;border:1px solid var(--sf-line);padding:8px 14px;border-radius:var(--sf-pill);transition:border-color var(--sf-dur-1),color var(--sf-dur-1)}
+.t-nav a.t-ig:hover{color:var(--sf-text);border-color:var(--sf-accent-line)}
+
+/* hero */
+.t-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:24px 0 56px}
+.t-hero h1{font-size:var(--sf-fs-hero);line-height:1.02;letter-spacing:var(--sf-tracking-tight);margin:14px 0 16px}
+.t-hero h1 em{font-style:normal;color:var(--sf-accent)}
+.t-kw{display:inline-flex;align-items:center;gap:8px;background:var(--sf-accent);color:var(--sf-on-accent);font-weight:800;padding:6px 12px;border-radius:var(--sf-pill);font-size:var(--sf-fs-xs);letter-spacing:.08em}
+.t-kw i{width:7px;height:7px;border-radius:50%;background:var(--sf-on-accent);animation:t-blink 1.6s infinite}
+@keyframes t-blink{50%{opacity:.25}}
+.t-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.t-frame{position:relative;border:1.5px solid var(--sf-accent-line);border-radius:28px;overflow:hidden;background:#000;aspect-ratio:600/680;box-shadow:var(--sf-shadow)}
+.t-frame video,.t-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.t-frame figcaption{position:absolute;left:12px;bottom:12px;font-size:var(--sf-fs-xs);background:rgba(0,0,0,.7);border:1px solid var(--sf-line);padding:6px 10px;border-radius:var(--sf-pill);color:var(--sf-muted)}
+.t-frame figcaption b{color:var(--sf-accent)}
+
+/* flow chips */
+.t-flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;padding:0;list-style:none}
+.t-flow li{font-size:var(--sf-fs-xs);padding:7px 12px;border-radius:var(--sf-pill);border:1px solid var(--sf-line);color:var(--sf-muted);transition:background var(--sf-dur-2),color var(--sf-dur-2),border-color var(--sf-dur-2)}
+.t-flow li.on{background:var(--sf-accent-soft);border-color:var(--sf-accent-line);color:var(--sf-text)}
+
+/* guides index */
+.t-guides{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:16px 18px;border:1px solid var(--sf-line);border-radius:var(--sf-radius);background:var(--sf-card)}
+.t-guides span{color:var(--sf-muted);font-size:var(--sf-fs-sm)}
+.t-guides a{text-decoration:none;font-weight:700;font-size:var(--sf-fs-sm);padding:6px 12px;border-radius:var(--sf-pill);border:1px solid var(--sf-accent-line);background:var(--sf-accent-soft);transition:transform var(--sf-dur-1)}
+.t-guides a:hover{transform:translateY(-2px)}
+
+/* steps */
+.t-steps{display:grid;gap:18px;margin-top:32px}
+.t-step{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;padding:24px;border:1px solid var(--sf-line);border-radius:var(--sf-radius-lg);background:var(--sf-card);transition:border-color var(--sf-dur-2)}
+.t-step.is-now{border-color:var(--sf-accent-line)}
+.t-num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--sf-accent);color:var(--sf-on-accent);font-weight:800}
+.t-step h3{font-size:var(--sf-fs-lg);margin:12px 0 8px;letter-spacing:-.01em}
+.t-step p{color:var(--sf-muted);margin:0 0 10px;line-height:var(--sf-lh)}
+.t-step p strong{color:var(--sf-text)}
+.t-tip{font-size:var(--sf-fs-sm);border-left:2px solid var(--sf-accent);padding:4px 0 4px 12px;color:var(--sf-text)}
+.t-chart{position:relative;background:#050506;border:1px solid var(--sf-line);border-radius:var(--sf-radius);padding:8px}
+.t-chart svg{display:block;width:100%;height:auto}
+.t-replay{position:absolute;right:10px;top:10px;font:inherit;font-size:12px;color:var(--sf-muted);background:rgba(255,255,255,.06);border:1px solid var(--sf-line);border-radius:var(--sf-pill);padding:5px 10px;cursor:pointer;transition:color var(--sf-dur-1),transform var(--sf-dur-1)}
+.t-replay:hover{color:var(--sf-text)}
+.t-replay:active{transform:scale(.95)}
+
+/* chart elements */
+.c-grid line{stroke:rgba(255,255,255,.05)}
+.c-lbl{font:600 11px var(--sf-font);fill:var(--sf-muted)}
+.c-lbl.y{fill:var(--sf-accent)}
+.c-lbl.r{fill:var(--stop-line)}
+.c-lbl.g{fill:var(--win-line)}
+.c-tag{fill:#18181b;stroke:var(--sf-line)}
+.c-new{transform-box:fill-box}
+.anim .t-svg:not(.play) .c-new{opacity:0}
+.play .c-new.k{transform-origin:50% 100%;animation:c-grow .45s var(--sf-ease) both}
+.play .c-new.ln{transform-origin:0 50%;animation:c-line .7s var(--sf-ease) both}
+.play .c-new.fd{animation:c-fade .6s var(--sf-ease) both}
+@keyframes c-grow{from{transform:scaleY(0);opacity:0}to{transform:none;opacity:1}}
+@keyframes c-line{from{transform:scaleX(0)}to{transform:none}}
+@keyframes c-fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.c-pulse{transform-box:fill-box;transform-origin:center;animation:c-pulse 1.8s ease-in-out infinite}
+@keyframes c-pulse{50%{opacity:.55}}
+
+/* not a break */
+.t-cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.t-cmp figure{margin:0;padding:14px;border:1px solid var(--sf-line);border-radius:var(--sf-radius);background:var(--sf-card)}
+.t-cmp figcaption{display:flex;align-items:center;gap:8px;font-weight:700;margin-top:10px}
+.t-cmp figcaption small{display:block;font-weight:400;color:var(--sf-muted);font-size:var(--sf-fs-xs)}
+.t-badge{flex:none;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font-size:13px;font-weight:800}
+.t-badge.no{background:rgba(239,68,68,.15);color:var(--stop-line)}
+.t-badge.yes{background:rgba(62,207,142,.15);color:var(--win-line)}
+
+/* checklist */
+.t-check{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start;margin-top:28px}
+.t-meter{padding:24px;border:1px solid var(--sf-line);border-radius:var(--sf-radius-lg);background:var(--sf-card);position:sticky;top:20px}
+.t-meter strong{font-size:56px;line-height:1;display:block;letter-spacing:-.03em}
+.t-bar{height:8px;border-radius:8px;background:rgba(255,255,255,.08);overflow:hidden;margin:14px 0 10px}
+.t-bar i{display:block;height:100%;width:100%;background:var(--sf-accent);transform-origin:0 50%;transform:scaleX(0);transition:transform var(--sf-dur-2) var(--sf-ease)}
+.t-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.t-list label{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--sf-line);border-radius:var(--sf-radius);background:var(--sf-card);cursor:pointer;transition:border-color var(--sf-dur-1),background var(--sf-dur-1),transform var(--sf-dur-1)}
+.t-list label:hover{transform:translateY(-1px);border-color:var(--sf-accent-line)}
+.t-list label:active{transform:scale(.99)}
+.t-list input{position:absolute;opacity:0;pointer-events:none}
+.t-box{flex:none;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--sf-muted);display:grid;place-items:center;transition:background var(--sf-dur-1),border-color var(--sf-dur-1)}
+.t-box svg{width:14px;height:14px;opacity:0;transform:scale(.4);transition:opacity var(--sf-dur-1),transform var(--sf-dur-1)}
+.t-list input:checked+label{background:var(--sf-accent-soft);border-color:var(--sf-accent-line)}
+.t-list input:checked+label .t-box{background:var(--sf-accent);border-color:var(--sf-accent)}
+.t-list input:checked+label .t-box svg{opacity:1;transform:none}
+.t-list input:focus-visible+label{outline:2px solid var(--sf-accent);outline-offset:2px}
+
+/* risk */
+.t-risk{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.t-risk .sf-card{padding:20px}
+.t-risk h3{margin:10px 0 6px;font-size:var(--sf-fs-md)}
+.t-risk p{margin:0;color:var(--sf-muted);font-size:var(--sf-fs-sm);line-height:var(--sf-lh)}
+.t-rr{display:flex;gap:4px;height:46px;align-items:flex-end}
+.t-rr i{flex:1;border-radius:4px;transform-origin:50% 100%}
+.t-rr i.l{background:var(--stop-line);height:33%}
+.t-rr i.w{background:var(--win-line);height:100%}
+.sf-reveal.is-in .t-rr i{animation:c-grow .6s var(--sf-ease) both}
+.t-note{margin-top:24px;font-size:var(--sf-fs-xs);color:var(--sf-muted);line-height:var(--sf-lh);max-width:760px}
+
+.t-end{text-align:center;padding:40px 20px;border:1px solid var(--sf-accent-line);border-radius:var(--sf-radius-lg);background:radial-gradient(600px 200px at 50% 0,var(--sf-accent-soft),transparent)}
+.t-end h2{margin:0 0 10px}
+.t-end p{color:var(--sf-muted);margin:0 auto 22px;max-width:520px}
+.t-foot{padding:32px 0 48px;color:var(--sf-muted);font-size:var(--sf-fs-xs);text-align:center}
+
+@media (max-width:860px){
+  .t-hero,.t-step,.t-check{grid-template-columns:1fr}
+  .t-hero{gap:28px}
+  .t-frame{max-width:420px;width:100%;margin:0 auto}
+  .t-meter{position:static}
+  .t-cmp,.t-risk{grid-template-columns:1fr}
+  .t-step{padding:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .play .c-new,.c-pulse,.t-kw i,.sf-reveal.is-in .t-rr i{animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="sf-glow" aria-hidden="true"></div>
+<div class="sf-wrap">
+
+<nav class="t-nav" aria-label="Trade with Sam">
+  <a class="t-logo" href="/trade/" aria-label="Trade with Sam, free guides"><span><b>T</b>RADE</span><small>WITH SAM</small></a>
+  <a class="t-ig" href="https://www.instagram.com/tradewithsam1202/" rel="noopener" target="_blank">@tradewithsam1202</a>
+</nav>
+
+<header class="t-hero">
+  <div>
+    <span class="t-kw"><i></i>You commented CANDLE</span>
+    <h1>The First <em>Candle</em> Rule</h1>
+    <p class="sf-lead">One 5-minute candle at 9:30 New York time gives you the only two levels you need for the day. Then you wait for one gap, one retest and one entry, with a fixed 3:1 target.</p>
+    <div class="t-cta">
+      <a class="sf-btn" href="#candle">Start the 6 steps</a>
+      <a class="sf-btn sf-btn--ghost" href="https://www.instagram.com/reel/DfsG2sSRpL4/" rel="noopener" target="_blank">Watch the reel</a>
+    </div>
+    <ol class="t-flow" id="flow" aria-label="The setup in short">
+      <li>9:30 candle</li><li>High + low</li><li>1-minute chart</li><li>Break with a gap</li><li>Retest</li><li>Engulfing, 3:1</li>
+    </ol>
+  </div>
+  <figure class="t-frame">
+    <video src="/trade/media/candle-loop.mp4" poster="/trade/media/candle-poster.jpg" muted loop playsinline autoplay preload="metadata" data-loop aria-label="The setup from the reel, sped up: the first candle, its high and low, the break with a gap, the retest and the engulfing entry"></video>
+    <figcaption>From the <b>CANDLE</b> reel, sped up</figcaption>
+  </figure>
+</header>
+
+<div class="t-guides sf-reveal" aria-label="Guides on this page">
+  <span>Free guides from the reels:</span>
+  <a href="#candle">CANDLE: First Candle Rule</a>
+</div>
+
+<section class="sf-section" id="candle" aria-labelledby="candle-h">
+  <span class="sf-eyebrow"><i></i>Guide: CANDLE</span>
+  <h2 class="sf-h2" id="candle-h">The 6 steps, one chart</h2>
+  <p class="sf-lead">Each step adds one thing to the same chart. Tap Replay on any chart to see that step build again.</p>
+  <div class="t-steps" id="steps"></div>
+</section>
+
+<section class="sf-section" aria-labelledby="gap-h" style="padding-top:0">
+  <span class="sf-eyebrow"><i></i>Where most people go wrong</span>
+  <h2 class="sf-h2" id="gap-h">A wick is not a break</h2>
+  <p class="sf-lead">Price touching or poking through your level means nothing on its own. You only care when it breaks through with force and leaves a gap between candle wicks.</p>
+  <div class="t-cmp" id="cmp"></div>
+</section>
+
+<section class="sf-section" aria-labelledby="list-h" style="padding-top:0">
+  <span class="sf-eyebrow"><i></i>Before you click buy or sell</span>
+  <h2 class="sf-h2" id="list-h">The pre-trade checklist</h2>
+  <div class="t-check">
+    <div class="t-meter sf-reveal">
+      <strong><span id="done">0</span>/7</strong>
+      <div class="t-bar" aria-hidden="true"><i id="bar"></i></div>
+      <p class="sf-muted" id="verdict" aria-live="polite">Tick each box as it happens. No 7 out of 7, no trade.</p>
+      <button class="sf-btn sf-btn--ghost" type="button" id="reset" style="margin-top:8px">Clear for tomorrow</button>
+    </div>
+    <ul class="t-list" id="list"></ul>
+  </div>
+</section>
+
+<section class="sf-section" aria-labelledby="risk-h" style="padding-top:0">
+  <span class="sf-eyebrow"><i></i>Rules that keep you in the game</span>
+  <h2 class="sf-h2" id="risk-h">Risk first</h2>
+  <div class="t-risk">
+    <div class="sf-card sf-reveal" style="--i:0">
+      <div class="t-rr" aria-hidden="true"><i class="l"></i><i class="w" style="animation-delay:.15s"></i><i class="w" style="animation-delay:.3s"></i><i class="w" style="animation-delay:.45s"></i></div>
+      <h3>Why 3:1 works</h3>
+      <p>You risk 1 to make 3. Win 1 trade out of 4 and you are already back to even before costs. The fixed target also stops you from moving it.</p>
+    </div>
+    <div class="sf-card sf-reveal" style="--i:1">
+      <div class="t-rr" aria-hidden="true"><i class="w" style="height:30%"></i><i class="w" style="height:30%;animation-delay:.1s"></i><i class="w" style="height:30%;animation-delay:.2s"></i><i class="w" style="height:30%;animation-delay:.3s"></i></div>
+      <h3>Same small risk every time</h3>
+      <p>Decide the amount you lose if the stop is hit before the session, and keep it the same on every trade. Many traders keep it at 1% of the account or less.</p>
+    </div>
+    <div class="sf-card sf-reveal" style="--i:2">
+      <div class="t-rr" aria-hidden="true"><i class="w" style="height:60%"></i><i style="background:rgba(255,255,255,.08);height:60%"></i><i style="background:rgba(255,255,255,.08);height:60%"></i><i style="background:rgba(255,255,255,.08);height:60%"></i></div>
+      <h3>Practice before money</h3>
+      <p>Go back over 20 past sessions with replay or a demo account and mark every setup. Only trade it live once you can find it without doubt.</p>
+    </div>
+  </div>
+  <p class="t-note">Education, not financial advice. Trading stocks, futures and crypto carries a real risk of loss, and you can lose more than you expect. Results from any strategy in the past do not promise future results. Times are New York time (US stock market open at 9:30).</p>
+</section>
+
+<section class="sf-section" style="padding-top:0">
+  <div class="t-end sf-reveal">
+    <h2 class="sf-h2">Want the next guide?</h2>
+    <p>Every reel on @tradewithsam1202 has a keyword. Comment it under the reel and the guide lands on this page.</p>
+    <a class="sf-btn" href="https://www.instagram.com/tradewithsam1202/" rel="noopener" target="_blank">Follow @tradewithsam1202</a>
+  </div>
+</section>
+
+<footer class="t-foot">Trade with Sam, a project by <a href="/">Sam Foundation</a>.</footer>
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var HIGH = 60, LOW = 150, W = 360, H = 330;
+
+  // M1 candles in chart y-coordinates (smaller y = higher price). s = step they appear in.
+  var K = [
+    {o:100,c:112,h:94,l:116,s:3},{o:112,c:126,h:108,l:130,s:3},{o:126,c:118,h:114,l:132,s:3},
+    {o:118,c:134,h:116,l:140,s:3},{o:134,c:142,h:130,l:147,s:3},
+    {o:142,c:196,h:140,l:200,s:4},{o:194,c:204,h:170,l:208,s:4},
+    {o:204,c:188,h:184,l:208,s:5},{o:188,c:164,h:158,l:190,s:5},
+    {o:162,c:194,h:156,l:196,s:6,eng:1},
+    {o:196,c:240,h:192,l:246,s:6,after:1},{o:240,c:300,h:236,l:312,s:6,after:1}
+  ];
+  var X0 = 84, DX = 18, CW = 9;
+  function kx(i){ return X0 + i*DX; }
+
+  function candle(x, w, k, cls, delay){
+    var bull = k.c < k.o, top = Math.min(k.o,k.c), bot = Math.max(k.o,k.c);
+    var fill = bull ? 'var(--bull)' : 'var(--bear)', stroke = bull ? 'var(--bull)' : 'var(--wick)';
+    if (k.eng) stroke = 'var(--sf-accent)';
+    return '<g class="'+cls+'" style="animation-delay:'+delay+'ms">' +
+      '<line x1="'+(x+w/2)+'" x2="'+(x+w/2)+'" y1="'+k.h+'" y2="'+k.l+'" stroke="'+stroke+'" stroke-width="1.2"/>' +
+      '<rect x="'+x+'" y="'+top+'" width="'+w+'" height="'+Math.max(2,bot-top)+'" rx="1.5" fill="'+fill+'" stroke="'+stroke+'" stroke-width="'+(k.eng?1.6:1)+'"/></g>';
+  }
+  function tag(x, y, text, cls, extra){
+    return '<text class="c-lbl '+(cls||'')+' '+(extra||'')+'" x="'+x+'" y="'+y+'">'+text+'</text>';
+  }
+
+  function chart(step){
+    var out = [], d = 0;
+    function cls(s, kind){ return s === step ? 'c-new '+kind : ''; }
+    function nd(){ var v = d; d += 90; return v; }
+    out.push('<g class="c-grid">');
+    for (var gy = 40; gy < H; gy += 40) out.push('<line x1="0" x2="'+W+'" y1="'+gy+'" y2="'+gy+'"/>');
+    out.push('</g>');
+    // step 1: the first 5-minute candle
+    out.push(candle(30, 20, {o:138,c:72,h:HIGH,l:LOW}, cls(1,'k'), nd()));
+    out.push(tag(24, 48, '9:30', 'y', cls(1,'fd')));
+    out.push(tag(14, 176, '5-min', '', cls(1,'fd')));
+    if (step >= 2){
+      out.push('<g class="'+cls(2,'ln')+'" style="animation-delay:'+nd()+'ms"><line x1="24" x2="350" y1="'+HIGH+'" y2="'+HIGH+'" stroke="var(--sf-accent)" stroke-dasharray="4 4"/></g>');
+      out.push('<g class="'+cls(2,'ln')+'" style="animation-delay:'+nd()+'ms"><line x1="24" x2="350" y1="'+LOW+'" y2="'+LOW+'" stroke="var(--sf-accent)" stroke-dasharray="4 4"/></g>');
+      out.push(tag(318, HIGH-6, 'high', 'y', cls(2,'fd')));
+      out.push(tag(326, LOW-5, 'low', 'y', cls(2,'fd')));
+    }
+    if (step >= 3){
+      out.push('<g class="'+cls(3,'fd')+'"><line x1="66" x2="66" y1="20" y2="'+(H-10)+'" stroke="rgba(255,255,255,.18)" stroke-dasharray="3 5"/>'+tag(70, H-14, '1-min chart')+'</g>');
+    }
+    K.forEach(function(k, i){
+      if (k.s > step) return;
+      if (k.after && step === 6) { out.push(candle(kx(i), CW, k, 'c-new k', 1500 + (i-10)*250)); return; }
+      out.push(candle(kx(i), CW, k, cls(k.s,'k'), k.s === step ? nd() : 0));
+    });
+    if (step >= 4){
+      // fair value gap: between the low of candle 4 and the high of candle 6
+      var gx = kx(4), gw = W - 10 - gx;
+      out.push('<rect class="'+cls(4,'fd')+(step===4||step===5?' c-pulse':'')+'" style="animation-delay:'+nd()+'ms" x="'+gx+'" y="147" width="'+gw+'" height="23" fill="rgba(254,199,2,.16)" stroke="var(--sf-accent-line)"/>');
+      if (step < 6) out.push(tag(kx(7)+6, 163, 'gap (FVG)', 'y', cls(4,'fd')));
+    }
+    if (step >= 5){
+      out.push('<g class="'+cls(5,'fd')+'" style="animation-delay:'+nd()+'ms"><path d="M'+(kx(8)+4)+' 230 C'+(kx(8)+4)+' 210 '+(kx(8)+4)+' 200 '+(kx(8)+4)+' 194" stroke="var(--sf-text)" fill="none" marker-end="url(#ar)"/>'+tag(kx(8)-22, 246, 'retest')+'</g>');
+    }
+    if (step >= 6){
+      var ex = kx(9), zw = W - 6 - ex;
+      out.push('<g class="'+(step===6?'c-new fd':'')+'" style="animation-delay:'+nd()+'ms">' +
+        '<rect x="'+ex+'" y="154" width="'+zw+'" height="40" fill="var(--stop)"/>' +
+        '<rect x="'+ex+'" y="194" width="'+zw+'" height="120" fill="var(--win)"/>' +
+        '<line x1="'+ex+'" x2="'+(W-6)+'" y1="194" y2="194" stroke="var(--sf-text)"/>' +
+        tag(ex+zw/2-12, 178, 'stop', 'r') + tag(W-40, 208, 'entry') + tag(W-62, 304, '3R target', 'g') + '</g>');
+      out.push(tag(kx(9)-24, 141, 'engulfing', 'y', step===6?'c-new fd':''));
+    }
+    return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-hidden="true"><defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--sf-text)"/></marker></defs>' + out.join('') + '</svg>';
+  }
+
+  var STEPS = [
+    ['Be at your desk at 9:30 New York time', 'Open the <strong>5-minute chart</strong> right as the US market opens. Wait for the very first candle, the one from <strong>9:30 to 9:35</strong>, to close.', 'This one candle gives you everything you need for the day.'],
+    ['Mark its high and its low', 'When the 9:30 candle closes, draw a line at its <strong>high</strong> and one at its <strong>low</strong>. These are the only two levels you use for the whole day.', 'No other lines, no indicators. Simple is the point.'],
+    ['Drop to the 1-minute chart', 'Switch to the <strong>1-minute chart</strong>. This is where you find your entry. Now just watch price move toward one of your two levels.', 'Do not jump in when price reaches a level. Wait for the next step.'],
+    ['Wait for a break with a gap', 'Price must break through the level with force and leave a <strong>fair value gap</strong>: a space between the wick of one candle and the wick of the candle two places later.', 'A wick through the level, or one close past it, is not enough.'],
+    ['Wait for the retest', 'After the gap forms, wait for price to come back <strong>into the gap</strong>. This one extra confirmation keeps you out of many losing trades.', 'If price never comes back, there is no trade today. That is fine.'],
+    ['Enter on an engulfing candle, target 3:1', 'When a candle in the break direction <strong>engulfs</strong> the candle before it inside the gap, enter. Stop just past the engulfing candle. Target <strong>3 times your risk</strong>, and do not move it.', 'Then you are done for the day. One candle, one trade.']
+  ];
+
+  var stepsEl = document.getElementById('steps');
+  stepsEl.innerHTML = STEPS.map(function(s, i){
+    return '<article class="t-step sf-reveal" data-step="'+(i+1)+'">' +
+      '<div><span class="t-num">'+(i+1)+'</span><h3>'+s[0]+'</h3><p>'+s[1]+'</p><p class="t-tip">'+s[2]+'</p></div>' +
+      '<div class="t-chart"><button class="t-replay" type="button" aria-label="Replay step '+(i+1)+' on the chart">Replay</button><div class="t-svg">'+chart(i+1)+'</div></div></article>';
+  }).join('');
+
+  // the three "is it a break?" pictures
+  function mini(kind){
+    var w = 220, h = 150, lv = 70, o = ['<svg viewBox="0 0 '+w+' '+h+'" role="img" aria-hidden="true"><line x1="0" x2="'+w+'" y1="'+lv+'" y2="'+lv+'" stroke="var(--sf-accent)" stroke-dasharray="4 4"/>'];
+    var ks;
+    if (kind === 'wick') ks = [{o:40,c:52,h:34,l:56},{o:52,c:60,h:48,l:64},{o:60,c:56,h:50,l:96},{o:56,c:44,h:40,l:60},{o:44,c:36,h:30,l:48}];
+    else if (kind === 'close') ks = [{o:40,c:52,h:34,l:56},{o:52,c:62,h:48,l:66},{o:62,c:76,h:58,l:80},{o:76,c:60,h:56,l:80},{o:60,c:48,h:44,l:64}];
+    else ks = [{o:40,c:52,h:34,l:56},{o:52,c:62,h:48,l:66},{o:62,c:112,h:60,l:116},{o:110,c:120,h:88,l:124},{o:120,c:130,h:116,l:136}];
+    ks.forEach(function(k, i){ o.push(candle(40 + i*30, 14, k, 'c-new k', i*140)); });
+    if (kind === 'gap') o.push('<rect class="c-new fd c-pulse" style="animation-delay:800ms" x="70" y="66" width="140" height="22" fill="rgba(254,199,2,.16)" stroke="var(--sf-accent-line)"/>');
+    o.push('</svg>');
+    return o.join('');
+  }
+  document.getElementById('cmp').innerHTML = [
+    ['wick','no','Just a wick','Price pokes through and comes straight back.'],
+    ['close','no','Just a close','One candle closes past the level, then price returns.'],
+    ['gap','yes','A break with a gap','Force through the level, a gap between the wicks. This is the one.']
+  ].map(function(c, i){
+    return '<figure class="t-chart sf-reveal" style="--i:'+i+'" data-mini><div class="t-svg">'+mini(c[0])+'</div><figcaption><span class="t-badge '+c[1]+'">'+(c[1]==='yes'?'&#10003;':'&#10005;')+'</span><span>'+c[2]+'<small>'+c[3]+'</small></span></figcaption></figure>';
+  }).join('');
+
+  // play a chart when it scrolls in; Replay restarts it
+  function play(box){ var s = box.querySelector('.t-svg'); s.classList.remove('play'); void s.offsetWidth; s.classList.add('play'); }
+  var flow = document.querySelectorAll('#flow li');
+  if ('IntersectionObserver' in window && !reduce){
+    document.documentElement.classList.add('anim');
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var box = e.target.matches('[data-mini]') ? e.target : e.target.querySelector('.t-chart');
+        if (!box.dataset.played){ box.dataset.played = 1; play(box); }
+        if (e.target.dataset.step){
+          document.querySelectorAll('.t-step').forEach(function(x){ x.classList.toggle('is-now', x === e.target); });
+        }
+      });
+    }, {threshold: .45});
+    document.querySelectorAll('.t-step,[data-mini]').forEach(function(el){ io.observe(el); });
+    // fast scrolling can jump over an element between two checks: show anything already passed
+    var sweep = function(){
+      document.querySelectorAll('.sf-reveal:not(.is-in)').forEach(function(el){ if (el.getBoundingClientRect().top < innerHeight) el.classList.add('is-in'); });
+      document.querySelectorAll('.t-chart').forEach(function(box){
+        if (!box.dataset.played && box.getBoundingClientRect().top < innerHeight){ box.dataset.played = 1; play(box); }
+      });
+    };
+    addEventListener('scroll', function(){ clearTimeout(sweep.t); sweep.t = setTimeout(sweep, 120); }, {passive: true});
+  } else {
+    document.querySelectorAll('.t-svg').forEach(function(s){ s.classList.remove('play'); });
+  }
+  stepsEl.addEventListener('click', function(e){
+    var b = e.target.closest('.t-replay'); if (!b) return;
+    if (!reduce) play(b.parentNode);
+  });
+
+  // hero chips light up one after another
+  if (!reduce && flow.length){
+    var fi = 0;
+    setInterval(function(){ flow.forEach(function(li, j){ li.classList.toggle('on', j <= fi); }); fi = (fi + 1) % (flow.length + 1); }, 900);
+  } else { flow.forEach(function(li){ li.classList.add('on'); }); }
+
+  // checklist, remembered on this device only
+  var ITEMS = [
+    'I was ready before 9:30 New York time',
+    'The 9:30 to 9:35 candle has closed',
+    'Its high and low are marked, nothing else on the chart',
+    'I am on the 1-minute chart',
+    'Price broke a level and left a gap between wicks',
+    'Price came back into the gap',
+    'An engulfing candle closed; stop and 3:1 target are set'
+  ];
+  var KEY = 'trade-candle-check';
+  var saved = [];
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { saved = []; }
+  var tick = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  document.getElementById('list').innerHTML = ITEMS.map(function(t, i){
+    return '<li><input type="checkbox" id="ck'+i+'"'+(saved.indexOf(i) > -1 ? ' checked' : '')+'><label for="ck'+i+'"><span class="t-box">'+tick+'</span><span>'+t+'</span></label></li>';
+  }).join('');
+  var boxes = document.querySelectorAll('#list input');
+  function update(){
+    var on = []; boxes.forEach(function(b, i){ if (b.checked) on.push(i); });
+    document.getElementById('done').textContent = on.length;
+    document.getElementById('bar').style.transform = 'scaleX(' + (on.length / ITEMS.length) + ')';
+    document.getElementById('verdict').textContent = on.length === ITEMS.length ? 'All 7. This is your one trade for today.' :
+      'Tick each box as it happens. No 7 out of 7, no trade.';
+    try { localStorage.setItem(KEY, JSON.stringify(on)); } catch (e) {}
+  }
+  document.getElementById('list').addEventListener('change', update);
+  document.getElementById('reset').addEventListener('click', function(){ boxes.forEach(function(b){ b.checked = false; }); update(); });
+  update();
+})();
+</script>
+</body>
+</html>
