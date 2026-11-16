@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-16 (daily routine): Reading-progress line under the header
+- What: a 2px yellow line at the bottom of the sticky header fills left to right as the page scrolls (scaleX only, updated once per frame, passive listener). Hidden under reduced motion.
+- Why: a quiet sense of position and polish, like top SaaS pages; no new claims or content.
+- Checked: tests/check.mjs passed (desktop, 375px, reduced motion); progress value verified while scrolling.
+
 ## 2026-11-16 (by hand, asked by Sam): Trade guides hub at /trade/ with the CANDLE guide
 - What: new page `trade/index.html` (samfoundation.tech/trade/), the home for every free guide promised in a @tradewithsam1202 reel caption. Each guide is a section with its keyword as anchor; the first is `#candle`, the First Candle Rule from reel DfsG2sSRpL4. Hero: the reel's chart, cropped and sped up (`trade/media/candle-loop.mp4`, 68 KB, poster jpg). 6 steps, each with its own SVG chart that builds that step (Replay button); "A wick is not a break" with 3 animated mini charts; a 7-box pre-trade checklist with a progress meter (remembered on the device); risk rules and a not-financial-advice note (the reel's income claim is not repeated).
 - Deploy: the host script now also allows `trade/index.html` and `trade/media/*` (copy in `.site/host/deploy.php`); the host file must be uploaded by hand once.

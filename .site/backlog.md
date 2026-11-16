@@ -13,6 +13,8 @@ Sam gives design notes on audit pages on Telegram. Read them with `curl -s https
 For every note whose id is not in `.site/audit-notes-done.json`: apply it to the audit page design in `sf/audit-main.css` and `sf/audit-main.js` (`sf/audit.js` is only the loader that picks the live commit; do not put design there) (the page itself is public_html/audit/index.html, which loads these; it renders `#app` and fires `sf:audit-rendered`, with `window.sfAudit = {audit, track, esc}`). Keep the page readable if the script fails, follow PAGE-PROTOCOL motion rules, never invent prices or offers (use the existing offer codes DIY, DFY, BUILD, OFFER, CLUB, REFER). Then add the id to `.site/audit-notes-done.json`, note it in CHANGES.md, and write `.site/last-change.json` (its title and summary become the Telegram deploy card, so it must describe THIS change). Audit pages must stay at least as alive as Sam approved on 2026-11-12 (see "Audit pages" in PAGE-PROTOCOL.md); `tests/check.mjs` must still pass, including its audit page check. These notes come before backlog ideas. If the list can't be read, say so in CHANGES.md and go on.
 
 ## Open
+- Footer/legal: add a visible "Back to top" link in the footer.
+- Add canonical link and JSON-LD (already listed below): do it as a tiny no-visual change.
 - Bot section heading: the keyword (PRICE / MENU / BOOK) as a rotating gold pill, same style as "Comment or DM" (see .site/taste.md). Keep at most one rotating word per screen height.
 - Cookie banner covers the mobile menu on the first visit: consider keeping the menu above it.
 - "What we do": each of the 4 cards gets its own small animated proof (UI mock or SVG loop), per PAGE-PROTOCOL rule 2.
@@ -31,6 +33,7 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Apple-touch-icon PNG from the SF mark (sf/ file) next to the existing SVG favicon.
 
 ## Done
+- 2026-11-16 Reading-progress line under the header.
 - 2026-11-15 "Comment or DM" in the audit section: gold pill, Comment and DM take turns, letters roll up (by hand, Sam picked style C of 5).
 - 2026-11-15 Cookie banner shortened on phones (buttons in one row, tighter spacing).
 - 2026-11-14 Primary "Message us on Facebook" button at the bottom of the mobile menu.
