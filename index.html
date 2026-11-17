@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sam Foundation — Grow your business with AI, automation, websites and social media</title>
 <meta name="description" content="Sam Foundation grows businesses with AI, automation, websites and social media, backed by 13 years of team experience. Get a free page audit, free AI resources, and six ways to work together.">
+<link rel="canonical" href="https://samfoundation.tech/">
 <meta name="theme-color" content="#0d0908">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://samfoundation.tech/">
@@ -292,6 +293,11 @@ footer .sf-wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-betwe
 footer nav{display:flex;flex-wrap:wrap;gap:16px}
 footer a{color:var(--sf-muted);text-decoration:none}
 footer a:hover{color:var(--sf-text)}
+footer .totop{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 4px;color:var(--sf-text)}
+footer .totop svg{width:14px;height:14px;transition:transform .25s ease}
+footer .totop:hover svg,footer .totop:focus-visible svg{transform:translateY(-3px)}
+footer .totop:focus-visible{outline:2px solid #FEC702;outline-offset:3px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){footer .totop svg{transition:none}footer .totop:hover svg{transform:none}}
 /* ---------- DM bot ---------- */
 .bot{display:grid;grid-template-columns:.95fr 1.05fr;gap:48px;align-items:start}
 @media (max-width:900px){.bot{grid-template-columns:1fr;gap:28px}}
@@ -830,9 +836,11 @@ footer a:hover{color:var(--sf-text)}
       <a href="/terms/">Terms</a>
       <button type="button" class="ck-link" data-cookie-settings>Cookie settings</button>
     </nav>
+    <a class="totop" href="#top" id="totop">Back to top <svg viewBox="0 0 14 14" fill="none" stroke="#FEC702" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 12V2M2.5 6.5L7 2l4.5 4.5"/></svg></a>
     <span>&copy; 2026 Sam Foundation</span>
   </div>
 </footer>
+<script>(function(){var a=document.getElementById("totop");if(!a)return;a.addEventListener("click",function(e){e.preventDefault();var r=matchMedia("(prefers-reduced-motion:reduce)").matches;window.scrollTo({top:0,behavior:r?"auto":"smooth"});var m=document.getElementById("main");if(m)m.focus({preventScroll:true})})})();</script>
 <div class="ck" id="ck" role="dialog" aria-labelledby="ck-t" aria-describedby="ck-d" tabindex="-1">
   <h2 id="ck-t">Your cookie choices</h2>
   <p id="ck-d">We use cookies to run the site and, only if you agree, to measure traffic with Google Analytics. Nothing else is set. You can change your choice any time under “Cookie settings” in the footer. See our <a href="/privacy-policy/">privacy policy</a>.</p>

@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-17 (daily routine): Back to top link in the footer
+- What: footer link "Back to top" with a small yellow arrow (44px tall tap target, visible focus ring, arrow lifts on hover); smooth scroll, instant under reduced motion, focus moves to main content. Also added `<link rel="canonical">` (no visual change).
+- Why: standard on professional long pages; helps phone visitors; canonical helps search results.
+- Checked: tests/check.mjs passed (desktop, 375px, reduced motion); footer screenshot at 375px reviewed.
+
 ## 2026-11-16 (daily routine): Reading-progress line under the header
 - What: a 2px yellow line at the bottom of the sticky header fills left to right as the page scrolls (scaleX only, updated once per frame, passive listener). Hidden under reduced motion.
 - Why: a quiet sense of position and polish, like top SaaS pages; no new claims or content.
