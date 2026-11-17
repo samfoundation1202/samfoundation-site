@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KI, Automatisierung &amp; Reels für Stade und Buxtehude | Sam Foundation</title>
+<meta name="description" content="Sam Foundation hilft Betrieben in Stade, Buxtehude und im Landkreis Stade mit KI: automatische Antworten auf Kommentare und Nachrichten, Reels mit KI und KI-Beratung für Einzelne und Teams. Kostenloser Check Ihrer Seite.">
+<link rel="canonical" href="https://samfoundation.tech/stade/">
+<meta name="theme-color" content="#0d0908">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samfoundation.tech/stade/">
+<meta property="og:title" content="KI für Betriebe in Stade und Buxtehude | Sam Foundation">
+<meta property="og:description" content="Kommentare und Nachrichten automatisch beantworten, Reels mit KI, KI-Beratung. Kostenloser Check Ihrer Seite.">
+<meta property="og:image" content="https://samfoundation.tech/sf/og-image.png">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FEC702'/%3E%3Cstop offset='.5' stop-color='%23FA7E1E'/%3E%3Cstop offset='1' stop-color='%23D62976'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' text-anchor='middle' fill='%231a0f00'%3ESF%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/sf/sf-tokens.css?v=2">
+<link rel="stylesheet" href="/sf/sf-base.css?v=2">
+<script defer src="/sf/sf-motion.js?v=2"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Sam Foundation","url":"https://samfoundation.tech/stade/","email":"sayed@samfoundation.tech","areaServed":[{"@type":"City","name":"Stade"},{"@type":"City","name":"Buxtehude"},{"@type":"AdministrativeArea","name":"Landkreis Stade"},{"@type":"City","name":"Hamburg"}],"knowsLanguage":["de","en"],"description":"KI-Automatisierung für Kommentare und Nachrichten, Reels mit KI und KI-Beratung für Betriebe in Stade und Umgebung."}
+</script>
+<style>
+.top{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(13,9,8,.72);border-bottom:1px solid var(--sf-line)}
+.top .sf-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--sf-text);text-decoration:none;font-weight:800}
+.mark{width:34px;height:34px;border-radius:10px;background:var(--sf-grad);color:var(--sf-on-accent);display:grid;place-items:center;font-size:14px;font-weight:900}
+.top .sf-btn{padding:9px 14px;font-size:var(--sf-fs-sm)}
+.place{display:inline-flex;align-items:center;gap:8px;color:var(--sf-muted);font-size:var(--sf-fs-sm)}
+.place svg{width:16px;height:16px}
+@media (max-width:560px){.place{display:none}.top .sf-btn{padding:8px 12px;font-size:13px;white-space:nowrap}.brand{white-space:nowrap}}
+
+/* Hero */
+.hero{padding:56px 0 24px}
+.hero .sf-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media (max-width:900px){.hero .sf-wrap{grid-template-columns:1fr;gap:36px}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.towns{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.towns .sf-tag{transition:transform var(--sf-dur-1) var(--sf-ease),border-color var(--sf-dur-1)}
+.towns .sf-tag:hover{transform:translateY(-2px);border-color:rgba(254,199,2,.5)}
+
+/* Chat demo (German) */
+.chat{background:var(--sf-surface);border:1px solid var(--sf-line);border-radius:var(--sf-radius-lg);padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.45);max-width:420px;margin:0 auto;width:100%}
+.chat-top{display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid var(--sf-line);margin-bottom:14px;font-weight:700;font-size:var(--sf-fs-sm)}
+.chat-top small{display:block;color:var(--sf-muted);font-weight:500;font-size:12px}
+.chat .mark{width:30px;height:30px;font-size:12px;border-radius:50%}
+.live-dot{margin-left:auto;font-size:11px;font-weight:700;color:var(--sf-ok);display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.08em}
+.live-dot::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sf-ok);animation:sf-ping 2s infinite}
+.bubbles{display:flex;flex-direction:column;gap:10px}
+.bub{max-width:84%;padding:10px 14px;border-radius:18px;font-size:var(--sf-fs-sm);line-height:1.45}
+.bub.me{align-self:flex-end;background:#0a7cff;color:#fff;border-bottom-right-radius:6px}
+.bub.sf{align-self:flex-start;background:rgba(255,255,255,.08);border-bottom-left-radius:6px}
+.cmt{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--sf-line);border-radius:14px;padding:10px 12px;font-size:13px;color:var(--sf-muted)}
+.cmt .av{width:28px;height:28px;border-radius:50%;background:#1877f2;color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.cmt b{color:var(--sf-text)}
+.cmt p{margin:2px 0 0;color:var(--sf-text);font-weight:800;letter-spacing:.08em}
+.slots{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.slots span{padding:5px 10px;border-radius:999px;border:1px solid rgba(254,199,2,.45);font-size:12px;font-weight:700}
+.slots span.pick{background:var(--sf-accent);color:var(--sf-on-accent)}
+.ping{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;border:1px dashed rgba(254,199,2,.4);background:rgba(254,199,2,.05);font-size:13px}
+.ping .ok{width:20px;height:20px;border-radius:50%;background:var(--sf-ok);display:grid;place-items:center;flex:none}
+.ping .ok svg{width:12px;height:12px}
+.sf-js .demo .item{opacity:0;transform:translateY(10px)}
+.sf-js .demo.play .item{animation:bub 450ms var(--sf-ease) forwards;animation-delay:var(--t)}
+.sf-js .demo.play .slots span.pick{animation:pick 600ms var(--sf-ease) both;animation-delay:var(--p)}
+@keyframes bub{to{opacity:1;transform:none}}
+@keyframes pick{from{background:transparent;color:var(--sf-text)}to{background:var(--sf-accent);color:var(--sf-on-accent)}}
+
+/* Services */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+@media (max-width:900px){.svc{grid-template-columns:1fr}}
+.svc .sf-card{display:flex;flex-direction:column;gap:12px;transition:transform var(--sf-dur-1) var(--sf-ease),border-color var(--sf-dur-1)}
+.svc .sf-card:hover{transform:translateY(-4px);border-color:rgba(254,199,2,.45)}
+.svc ul{margin:0;padding-left:18px;color:var(--sf-muted);font-size:var(--sf-fs-sm);line-height:1.6}
+.viz{height:120px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--sf-line);position:relative;overflow:hidden}
+/* viz 1: comments flow into one inbox */
+.v-flow i{position:absolute;left:12px;width:58px;height:16px;border-radius:8px;background:rgba(24,119,242,.55);animation:flow 3.6s var(--sf-ease-in-out) infinite}
+.v-flow i:nth-child(1){top:18px}.v-flow i:nth-child(2){top:52px;animation-delay:1.2s;background:rgba(214,41,118,.6)}.v-flow i:nth-child(3){top:86px;animation-delay:2.4s;background:rgba(37,211,102,.55)}
+.v-flow b{position:absolute;right:14px;top:30px;width:64px;height:60px;border-radius:12px;border:2px solid var(--sf-accent);display:grid;place-items:center;font-size:11px;color:var(--sf-accent);font-weight:800}
+@keyframes flow{0%{transform:translateX(0);opacity:0}15%{opacity:1}70%{transform:translateX(160px);opacity:1}100%{transform:translateX(170px);opacity:0}}
+/* viz 2: reel frame with word-by-word caption */
+.v-reel{display:grid;place-items:center}
+.v-reel .ph{width:62px;height:104px;border-radius:12px;border:2px solid var(--sf-line);background:linear-gradient(180deg,rgba(254,199,2,.18),rgba(214,41,118,.18));position:relative}
+.v-reel .ph::after{content:"";position:absolute;left:8px;right:8px;bottom:14px;height:8px;border-radius:4px;background:#fff;transform-origin:left;animation:cap 2.4s steps(4) infinite}
+.v-reel .ph::before{content:"";position:absolute;top:10px;left:50%;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:rgba(255,255,255,.25);animation:sf-float 3s var(--sf-ease-in-out) infinite}
+@keyframes cap{from{transform:scaleX(.15)}to{transform:scaleX(1)}}
+/* viz 3: people around one idea */
+.v-team{display:flex;align-items:center;justify-content:center;gap:10px}
+.v-team span{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);animation:nod 2.8s var(--sf-ease-in-out) infinite}
+.v-team span:nth-child(2){animation-delay:.3s}.v-team span:nth-child(4){animation-delay:.6s}.v-team span:nth-child(5){animation-delay:.9s}
+.v-team em{width:44px;height:44px;border-radius:12px;background:var(--sf-accent);color:var(--sf-on-accent);display:grid;place-items:center;font-style:normal;font-weight:900;font-size:13px;animation:sf-float 3s var(--sf-ease-in-out) infinite}
+@keyframes nod{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.is-off *{animation-play-state:paused!important}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px;position:relative}
+@media (max-width:900px){.steps{grid-template-columns:1fr}}
+.steps .line{position:absolute;left:0;right:0;top:22px;height:2px;background:var(--sf-line);overflow:hidden}
+.steps .line::after{content:"";position:absolute;inset:0;background:var(--sf-accent);transform:scaleX(0);transform-origin:left;transition:transform 1.6s var(--sf-ease)}
+.steps.is-in .line::after{transform:scaleX(1)}
+@media (max-width:900px){.steps .line{display:none}}
+.step{position:relative;padding-top:56px}
+.step .n{position:absolute;top:0;left:0;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--sf-surface);border:2px solid var(--sf-accent);font-weight:900;color:var(--sf-accent)}
+.step p{color:var(--sf-muted);margin:6px 0 0;font-size:var(--sf-fs-sm);line-height:1.6}
+
+/* Agencies */
+.agency{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+@media (max-width:900px){.agency{grid-template-columns:1fr}}
+.wl{display:grid;gap:10px}
+.wl div{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;border:1px solid var(--sf-line);background:var(--sf-card);font-size:var(--sf-fs-sm)}
+.wl b{color:var(--sf-accent);min-width:110px}
+
+/* CTA */
+.final{text-align:center}
+.final .cta{justify-content:center}
+.mail{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--sf-muted);font-size:var(--sf-fs-sm)}
+.mail a{color:var(--sf-text)}
+.copy{border:1px solid var(--sf-line);background:var(--sf-card);color:var(--sf-text);border-radius:10px;padding:5px 10px;font:inherit;font-size:12px;cursor:pointer;transition:border-color var(--sf-dur-1),transform var(--sf-dur-1)}
+.copy:hover{border-color:rgba(254,199,2,.5)}
+.copy:active{transform:scale(.96)}
+.copy.done{border-color:var(--sf-ok);color:var(--sf-ok)}
+
+footer{border-top:1px solid var(--sf-line);padding:28px 0;margin-top:40px;font-size:var(--sf-fs-sm);color:var(--sf-muted)}
+footer .sf-wrap{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+footer nav{display:flex;gap:16px;flex-wrap:wrap}
+footer a{color:var(--sf-muted);text-decoration:none}
+footer a:hover{color:var(--sf-text)}
+
+@media (prefers-reduced-motion:reduce){
+  .v-flow i,.v-reel .ph::after,.v-reel .ph::before,.v-team span,.v-team em,.live-dot::before{animation:none!important}
+  .v-flow i{transform:translateX(80px)}
+  .steps .line::after{transform:scaleX(1);transition:none}
+}
+</style>
+</head>
+<body id="top">
+<div class="sf-glow" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="sf-wrap">
+    <a class="brand" href="/"><span class="mark">SF</span>Sam Foundation</a>
+    <span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="#FEC702" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Stade &amp; Buxtehude</span>
+    <a class="sf-btn" href="#check">Kostenloser Check</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="sf-wrap">
+      <div>
+        <p class="sf-eyebrow sf-reveal"><i></i>Für Betriebe im Landkreis Stade</p>
+        <h1 class="sf-h1 sf-reveal" style="--i:1">Kein Kommentar und keine Nachricht bleibt mehr <span class="sf-grad-text">unbeantwortet</span>.</h1>
+        <p class="sf-lead sf-reveal" style="--i:2">Wir richten für Ihren Betrieb KI ein, die auf Facebook und Instagram sofort antwortet, Anfragen sortiert und Termine vorschlägt. Dazu Reels, die mit KI entstehen, und KI-Beratung für Sie und Ihr Team. Sie geben nur frei, den Rest erledigt das System.</p>
+        <div class="cta sf-reveal" style="--i:3">
+          <a class="sf-btn" href="#check">Kostenlosen Seiten-Check anfragen</a>
+          <a class="sf-btn sf-btn--ghost" href="#leistungen">Leistungen ansehen</a>
+        </div>
+        <div class="towns sf-reveal" style="--i:4" aria-label="Einsatzgebiet">
+          <span class="sf-tag">Stade</span><span class="sf-tag">Buxtehude</span><span class="sf-tag">Horneburg</span><span class="sf-tag">Jork</span><span class="sf-tag">Altes Land</span><span class="sf-tag">Hamburg</span>
+        </div>
+      </div>
+
+      <div class="sf-reveal" style="--i:2">
+        <div class="chat demo" role="img" aria-label="Beispiel: Jemand kommentiert TERMIN unter einem Beitrag, bekommt sofort eine Nachricht mit freien Zeiten, wählt eine aus, und der Betrieb wird benachrichtigt." data-loop>
+          <div class="chat-top"><span class="mark">SF</span><div>Ihr Betrieb<small>Facebook &amp; Instagram</small></div><span class="live-dot">Live</span></div>
+          <div class="bubbles">
+            <div class="item cmt" style="--t:300ms"><span class="av">J</span><div><b>Julia</b> hat Ihren Beitrag kommentiert<p>TERMIN</p></div></div>
+            <div class="item bub sf" style="--t:1400ms">Hallo Julia, danke für Ihr Interesse! Diese Zeiten sind diese Woche frei:
+              <div class="slots"><span>Di 10:00</span><span class="pick" style="--p:3600ms">Mi 15:30</span><span>Fr 09:00</span></div>
+            </div>
+            <div class="item bub me" style="--t:3200ms">Mittwoch 15:30 passt!</div>
+            <div class="item bub sf" style="--t:4300ms">Perfekt, Mittwoch 15:30 ist für Sie reserviert. Bis dann!</div>
+            <div class="item ping" style="--t:5300ms"><span class="ok"><svg viewBox="0 0 12 12"><path d="M2.5 6.2l2.2 2.2 4.8-4.8" fill="none" stroke="#0d0908" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Neue Anfrage: Julia, Mi 15:30, an Sie weitergeleitet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-section" id="leistungen">
+    <div class="sf-wrap">
+      <p class="sf-eyebrow sf-reveal"><i></i>Leistungen</p>
+      <h2 class="sf-h2 sf-reveal" style="--i:1">Drei Dinge, die KI für Ihren Betrieb übernimmt</h2>
+      <div class="svc">
+        <article class="sf-card sf-reveal" style="--i:1">
+          <div class="viz v-flow" aria-hidden="true" data-loop><i></i><i></i><i></i><b>1 Postfach</b></div>
+          <h3 class="sf-h3">Automatische Antworten</h3>
+          <p class="sf-muted">Kommentare und Nachrichten auf Facebook und Instagram bekommen in Sekunden eine passende Antwort. Anfragen landen sortiert bei Ihnen.</p>
+          <ul><li>Schlüsselwort im Kommentar, Antwort per Nachricht</li><li>Fragen vorab klären, Termine vorschlagen</li><li>Benachrichtigung, wenn ein Mensch gefragt ist</li></ul>
+        </article>
+        <article class="sf-card sf-reveal" style="--i:2">
+          <div class="viz v-reel" aria-hidden="true" data-loop><div class="ph"></div></div>
+          <h3 class="sf-h3">Reels mit KI</h3>
+          <p class="sf-muted">Kurze Videos mit starkem Einstieg, Untertiteln Wort für Wort und KI-Stimme. Aus Ihrem Material oder ganz neu erstellt.</p>
+          <ul><li>Hooks, die zum Stehenbleiben bringen</li><li>Untertitel auf Deutsch und Englisch</li><li>Wenig Aufwand für Sie: kurz freigeben, fertig</li></ul>
+        </article>
+        <article class="sf-card sf-reveal" style="--i:3">
+          <div class="viz v-team" aria-hidden="true" data-loop><span></span><span></span><em>KI</em><span></span><span></span></div>
+          <h3 class="sf-h3">KI-Beratung &amp; Workshops</h3>
+          <p class="sf-muted">Für Inhaber und Teams: Wo spart KI in Ihrem Betrieb Zeit, und wie setzen Sie sie sicher ein? Einzeln oder in der Gruppe, online.</p>
+          <ul><li>1:1-Beratung für Inhaber</li><li>Workshops für Teams</li><li>Konkrete Abläufe statt Theorie</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-section">
+    <div class="sf-wrap">
+      <p class="sf-eyebrow sf-reveal"><i></i>So läuft es ab</p>
+      <h2 class="sf-h2 sf-reveal" style="--i:1">Wenig Termine, schnelle Ergebnisse</h2>
+      <div class="steps sf-reveal" style="--i:2">
+        <div class="line" aria-hidden="true"></div>
+        <div class="step"><span class="n">1</span><h3 class="sf-h3">Kostenloser Check</h3><p>Sie schicken uns den Link zu Ihrer Seite. Wir sehen sie uns an und senden Ihnen eine kurze Sprachnachricht mit der ersten Verbesserung.</p></div>
+        <div class="step"><span class="n">2</span><h3 class="sf-h3">Plan, der passt</h3><p>Wir schlagen nur vor, was zu Ihrem Betrieb passt. Kein Paket, das Sie nicht brauchen.</p></div>
+        <div class="step"><span class="n">3</span><h3 class="sf-h3">Umsetzung</h3><p>Wir richten alles ein. Sie geben Antworten und Videos nur noch frei, meist in wenigen Minuten pro Woche.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-section" id="agenturen">
+    <div class="sf-wrap agency">
+      <div>
+        <p class="sf-eyebrow sf-reveal"><i></i>Für Agenturen in der Region</p>
+        <h2 class="sf-h2 sf-reveal" style="--i:1">Ihre Kunden, Ihr Name, unsere Technik</h2>
+        <p class="sf-lead sf-reveal" style="--i:2">Sie betreuen Social Media oder Websites für Betriebe in Stade, Buxtehude oder Hamburg? Wir bauen die Automatisierung im Hintergrund, unter Ihrem Namen. Sie bleiben der Ansprechpartner.</p>
+      </div>
+      <div class="wl sf-reveal" style="--i:2">
+        <div><b>Sie</b>Kundenkontakt, Strategie, Werbung</div>
+        <div><b>Wir</b>Antwort-Automatisierung, KI-Workflows, Reels</div>
+        <div><b>Ihr Kunde</b>Mehr Anfragen, schnellere Antworten</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sf-section final" id="check">
+    <div class="sf-wrap">
+      <p class="sf-eyebrow sf-reveal" style="justify-content:center"><i></i>Kostenlos und unverbindlich</p>
+      <h2 class="sf-h2 sf-reveal" style="--i:1">Wie gut antwortet Ihre Seite heute?</h2>
+      <p class="sf-lead sf-reveal" style="--i:2;margin-left:auto;margin-right:auto">Schicken Sie uns den Link zu Ihrer Facebook- oder Instagram-Seite. Sie bekommen eine kurze Sprachnachricht mit dem ersten Schritt.</p>
+      <div class="cta sf-reveal" style="--i:3">
+        <a class="sf-btn" href="https://m.me/1322082717660422" target="_blank" rel="noopener">Per Messenger anfragen</a>
+        <a class="sf-btn sf-btn--ghost" href="mailto:sayed@samfoundation.tech?subject=Kostenloser%20Seiten-Check%20(Stade)">Per E-Mail anfragen</a>
+      </div>
+      <p class="mail sf-reveal" style="--i:4">Ansprechpartner: Sayed, <a href="mailto:sayed@samfoundation.tech">sayed@samfoundation.tech</a> <button type="button" class="copy" data-copy="sayed@samfoundation.tech">Kopieren</button></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="sf-wrap">
+    <a class="brand" href="/"><span class="mark">SF</span>Sam Foundation</a>
+    <nav aria-label="Footer">
+      <a href="/">English</a>
+      <a href="/contact/">Kontakt</a>
+      <a href="/privacy-policy/">Datenschutz</a>
+      <a href="/terms/">AGB</a>
+    </nav>
+    <span>&copy; 2026 Sam Foundation</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var d=document.querySelector('.demo');
+  if(d&&document.documentElement.classList.contains('sf-js')){
+    var run=function(){d.classList.remove('play');void d.offsetWidth;d.classList.add('play')};
+    run();setInterval(function(){if(!document.hidden&&!d.classList.contains('is-off'))run()},11000);
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=b.getAttribute('data-copy');
+      var done=function(){b.textContent='Kopiert';b.classList.add('done');setTimeout(function(){b.textContent='Kopieren';b.classList.remove('done')},1800)};
+      if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,done);else done();
+    });
+  });
+});
+</script>
+</body>
+</html>

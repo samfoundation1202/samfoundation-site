@@ -78,3 +78,8 @@ Newest first. One entry per day, written by the daily routine (or by hand). Each
 - Hero headline: line 1 fixed, line 2 types AI agents / DM automation / websites that sell / Reels that hook / one system.
 - Moving strip "Built with the tools your business already uses" (13 real tools, Simple Icons).
 - Bot section: early access form, personal demo at /?demo=ID#bot.
+
+## 2026-11-17 (draft, not deployed): German landing page /stade/
+- What: new `stade/index.html` in German for businesses in Stade, Buxtehude and Landkreis Stade. Hero with a live German Messenger demo (comment TERMIN, the bot offers time slots, booking, the owner gets notified), three service cards with small moving pictures (automatic replies, AI Reels, AI consulting and workshops for individuals and teams), a 3-step timeline that draws in, a section for local agencies (white-label), and a free page check CTA (Messenger + email to sayed@samfoundation.tech with a copy button). LocalBusiness structured data with areaServed. No prices, numbers or testimonials.
+- Why: Sam wants to try finding local clients (people and businesses) in Stade. Competitors there use city landing pages (The Videograph, FUTRIZE); ours is a real page, not a template.
+- Checked: tests/check.mjs (now also covers /stade/) passed at 1280, 375 and 375 reduced motion; mobile header fixed so it fits at 375px.
