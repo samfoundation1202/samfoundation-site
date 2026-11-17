@@ -87,4 +87,4 @@ const { auditCheck } = await import("./audit-check.mjs");
 problems.push(...(await auditCheck()));
 
 if (problems.length) { console.log("CHECK FAILED\n- " + problems.join("\n- ")); process.exit(1); }
-console.log("CHECK PASSED (home page, /trade/ and audit page: desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");
+console.log("CHECK PASSED (home page, /trade/, /stade/ and audit page: desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");

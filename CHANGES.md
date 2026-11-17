@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+
+## 2026-11-17 (by hand): German landing page /stade/ goes live
+- What: the host deploy now also allows stade/index.html and stade/media/* (same rules as trade/), so samfoundation.tech/stade/ is served. The page itself came from the draft branch claude/stade-landing-page (merged in 17f9b41, approved by Sam on Telegram).
+- Why: Sam asked for /stade/ to be live now; two agency emails link to it.
+- Checked: tests/check.mjs passed for /stade/ (desktop 1280, mobile 375, reduced motion).
 ## 2026-11-17 (daily routine): Back to top link in the footer
 - What: footer link "Back to top" with a small yellow arrow (44px tall tap target, visible focus ring, arrow lifts on hover); smooth scroll, instant under reduced motion, focus moves to main content. Also added `<link rel="canonical">` (no visual change).
 - Why: standard on professional long pages; helps phone visitors; canonical helps search results.
