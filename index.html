@@ -422,7 +422,7 @@ footer .totop:focus-visible{outline:2px solid #FEC702;outline-offset:3px;border-
 @keyframes cdm-out{from{transform:none}to{transform:translateY(-120%)}}
 .steps .cdm,.steps .cdm span{font-size:inherit;color:#0b0b0c}
 .steps .cdm{vertical-align:-.15em;margin-right:.1em}
-@media (prefers-reduced-motion:reduce){.cdm{display:none}.swap-txt{position:static;width:auto;height:auto;overflow:visible;clip:auto}}
+@media (prefers-reduced-motion:reduce){.cdm:not([data-words]),.cdm-vis{display:none}.swap-txt{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal}}
 </style>
 </head>
 <body>
@@ -676,7 +676,7 @@ footer .totop:focus-visible{outline:2px solid #FEC702;outline-offset:3px;border-
       <div class="bot">
         <div class="bot-copy">
           <span class="sf-tag sf-reveal">Comment-to-DM bot</span>
-          <h2 class="sf-h2 sf-reveal" style="--i:1">Turn every comment into a <span class="sf-grad-text">conversation</span>.</h2>
+          <h2 class="sf-h2 sf-reveal" style="--i:1"><span class="swap-txt">PRICE, MENU or BOOK comments become conversations.</span><span class="cdm-vis" aria-hidden="true"><span class="cdm" data-words="PRICE,MENU,BOOK">PRICE</span> comments<br>become <span class="sf-grad-text">conversations</span>.</span></h2>
           <p class="sf-lead sf-reveal" style="--i:2">Someone comments a keyword on your post. In seconds they get a private message with what you promised, a reply under their comment, and one friendly follow-up. Try it here.</p>
           <ul class="bot-points">
             <li class="sf-reveal" style="--i:3"><i>1</i><span><b>You pick the keywords.</b> PRICE, MENU, BOOK: one word per offer.</span></li>
@@ -1150,9 +1150,8 @@ document.addEventListener('DOMContentLoaded',function(){
 /* "Comment or DM" pills: each word stays 2s, then the letters roll out and the next word rolls in. Pauses while the tab is hidden. */
 (function(){
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var W=["Comment","DM"];
   document.querySelectorAll(".cdm").forEach(function(el){
-    var i=0;
+    var i=0,W=el.dataset.words?el.dataset.words.split(","):["Comment","DM"];
     function show(){el.classList.remove("out");el.innerHTML=W[i].split("").map(function(c,k){return '<span style="animation-delay:'+(k*0.03)+'s">'+c+'</span>'}).join("");
       setTimeout(next,2000)}
     function next(){if(document.hidden){setTimeout(next,1000);return}el.classList.add("out");setTimeout(function(){i=(i+1)%W.length;show()},320)}

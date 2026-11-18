@@ -13,7 +13,6 @@ Sam gives design notes on audit pages on Telegram. Read them with `curl -s https
 For every note whose id is not in `.site/audit-notes-done.json`: apply it to the audit page design in `sf/audit-main.css` and `sf/audit-main.js` (`sf/audit.js` is only the loader that picks the live commit; do not put design there) (the page itself is public_html/audit/index.html, which loads these; it renders `#app` and fires `sf:audit-rendered`, with `window.sfAudit = {audit, track, esc}`). Keep the page readable if the script fails, follow PAGE-PROTOCOL motion rules, never invent prices or offers (use the existing offer codes DIY, DFY, BUILD, OFFER, CLUB, REFER). Then add the id to `.site/audit-notes-done.json`, note it in CHANGES.md, and write `.site/last-change.json` (its title and summary become the Telegram deploy card, so it must describe THIS change). Audit pages must stay at least as alive as Sam approved on 2026-11-12 (see "Audit pages" in PAGE-PROTOCOL.md); `tests/check.mjs` must still pass, including its audit page check. These notes come before backlog ideas. If the list can't be read, say so in CHANGES.md and go on.
 
 ## Open
-- Bot section heading: the keyword (PRICE / MENU / BOOK) as a rotating gold pill, same style as "Comment or DM" (see .site/taste.md). Keep at most one rotating word per screen height.
 - Cookie banner covers the mobile menu on the first visit: consider keeping the menu above it.
 - "What we do": each of the 4 cards gets its own small animated proof (UI mock or SVG loop), per PAGE-PROTOCOL rule 2.
 - Free audit section: a short, real example voice-note player (waveform + transcript) instead of text only.
@@ -26,11 +25,13 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Favicon set and apple-touch-icon from the SF mark.
 - Typography rhythm: consistent section spacing and heading sizes across all sections.
 - Cookie banner: add a link in the footer legal text to a cookie policy once that page exists.
+- Mobile: let the rotating pill keep a fixed min-width per word set so line 1 never shifts.
 - Tools strip: pause on hover/focus so it can be read.
 - Add JSON-LD Organization data (only facts on the page) for search results.
 - Apple-touch-icon PNG from the SF mark (sf/ file) next to the existing SVG favicon.
 
 ## Done
+- 2026-11-18 Bot heading: keyword (PRICE/MENU/BOOK) as rotating gold pill.
 - 2026-11-17 Footer "Back to top" link + canonical link.
 - 2026-11-16 Reading-progress line under the header.
 - 2026-11-15 "Comment or DM" in the audit section: gold pill, Comment and DM take turns, letters roll up (by hand, Sam picked style C of 5).

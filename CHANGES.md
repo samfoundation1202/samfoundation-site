@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-18 (daily routine): Bot heading with a rotating keyword pill
+- What: the DM bot heading is now "[PRICE] comments become conversations." The gold pill rolls through PRICE, MENU, BOOK (same component as "Comment or DM", now reads its words from `data-words`). Screen readers and reduced motion get the plain sentence "PRICE, MENU or BOOK comments become conversations."
+- Why: motion on the words that lead to action, using only keywords already on the page; at most one rotating word per screen height.
+- Checked: tests/check.mjs passed (desktop, 375px, reduced motion); heading screenshots at 1280 and 375 reviewed, no horizontal scroll.
+
 ## 2026-11-17 (by hand): German landing page /stade/ goes live
 - What: the host deploy now also allows stade/index.html and stade/media/* (same rules as trade/), so samfoundation.tech/stade/ is served. The page itself came from the draft branch claude/stade-landing-page (merged in 17f9b41, approved by Sam on Telegram).
 - Why: Sam asked for /stade/ to be live now; two agency emails link to it.
