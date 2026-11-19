@@ -19,7 +19,7 @@ const OFFER_TEXT = {
   BUILD: ["Build it together", "We set up the system with you."], OFFER: ["Make us an offer", "Tell us what you'd propose."],
   CLUB: ["Join the Sam Foundation Club", "A monthly membership."], REFER: ["Refer a business, earn a share", "Introduce them to us."]
 };
-const API = "https://samfoundation-dm-bot.onrender.com/api/public/audits/test-fixture";
+const API = "https://bot.samfoundation.tech/api/public/audits/test-fixture";
 const fixture = {
   handle: "testpage", name: "Test Page", pageUrl: "https://www.facebook.com/testpage", platform: "facebook",
   firstFix: "End each post with one simple question.", script: "This is a test voice note script.",

@@ -15,7 +15,7 @@ $CFG = [
   'branch'  => 'main',
   'root'    => getenv('SITE_ROOT') ?: $HOME . '/public_html',
   'state'   => getenv('SITE_STATE') ?: __DIR__,
-  'ops_url' => getenv('OPS_URL') ?: 'https://samfoundation-dm-bot.onrender.com',
+  'ops_url' => getenv('OPS_URL') ?: 'https://bot.samfoundation.tech',
   'site'    => 'https://samfoundation.tech/',
   'archive' => getenv('SITE_ARCHIVE') ?: null, // tests: a local .tar.gz instead of GitHub
 ];

@@ -995,7 +995,7 @@ document.addEventListener('DOMContentLoaded',function(){
   var demoId=null; try{demoId=new URLSearchParams(location.search).get('demo')}catch(e){}
   setPlan('growth');
   if(demoId&&/^[A-Za-z0-9_-]{4,40}$/.test(demoId)){
-    var API=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.port==='8767'?'':'https://samfoundation-dm-bot.onrender.com';
+    var API=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)&&location.port==='8767'?'':'https://bot.samfoundation.tech';
     fetch(API+'/api/public/bot-demo/'+encodeURIComponent(demoId)).then(function(r){return r.ok?r.json():null}).then(function(d){if(d&&d.kit&&d.kit.keywords&&d.kit.keywords.length)applyDemo(d);start()}).catch(start);
   } else start();
 })();
@@ -1031,7 +1031,7 @@ document.addEventListener('DOMContentLoaded',function(){
 </div>
 <script>
 (function(){
-  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && location.port === "8767" ? "" : "https://samfoundation-dm-bot.onrender.com";
+  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && location.port === "8767" ? "" : "https://bot.samfoundation.tech";
   var ea = document.getElementById("ea"), form = document.getElementById("eaForm"), done = document.getElementById("eaDone");
   var err = document.getElementById("eaErr"), send = document.getElementById("eaSend"), last = null;
   function track(n, p){ try { if (window.gtag) gtag("event", n, p || {}); } catch (e) {} }
