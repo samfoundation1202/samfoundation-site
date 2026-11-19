@@ -6,6 +6,7 @@ Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of
 Read `.site/taste.md` before you pick. Sam likes living, premium details he finds on other sites (rotating words, moving strips, pills that resize with their word), adapted to our brand and kept honest. When two ideas are equally useful, prefer the one in that spirit.
 
 ## Needs Sam
+- URGENT 2026-11-19: samfoundation.tech answers 302 -> /cgi-sys/suspendedpage.cgi (hosting looks suspended). /sf/site-status.json is unreachable, so deploys cannot be verified. The daily routine pushed nothing today. Please check the hosting account.
 - Privacy policy page (/privacy-policy/, not in this repo) should mention Google Analytics cookies _ga and _ga_2Q1PRBX503 and the cookie banner; a dedicated cookie policy page could be added there. Not deployable from this repo.
 
 ## Every run, before picking an idea: audit page design notes from Sam
