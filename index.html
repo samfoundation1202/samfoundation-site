@@ -187,6 +187,12 @@ section[id]{scroll-margin-top:72px}
 .proof div>span{color:var(--sf-muted);font-size:var(--sf-fs-sm)}
 @media (max-width:640px){.proof{grid-template-columns:repeat(2,1fr);row-gap:28px}}
 
+/* Card spotlight: a soft yellow glow follows the pointer over resource and offer cards (opacity only; mouse devices; off for reduced motion) */
+.res>.spot,.offer>.spot{position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity var(--sf-dur-2) var(--sf-ease);background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(254,199,2,.13),transparent 70%)}
+.res{position:relative;overflow:hidden}
+.res:hover>.spot,.offer:hover>.spot{opacity:1}
+@media (hover:none),(prefers-reduced-motion:reduce){.res>.spot,.offer>.spot{display:none}}
+
 /* Audit */
 .audit .cta{display:flex;flex-wrap:wrap;gap:12px}
 .audit{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
@@ -1156,6 +1162,20 @@ document.addEventListener('DOMContentLoaded',function(){
       setTimeout(next,2000)}
     function next(){if(document.hidden){setTimeout(next,1000);return}el.classList.add("out");setTimeout(function(){i=(i+1)%W.length;show()},320)}
     show();
+  });
+})();
+</script>
+<script>
+/* Card spotlight: moves a glow to the pointer position on resource and offer cards */
+(function(){
+  if(!window.matchMedia||!matchMedia('(hover:hover)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  document.querySelectorAll('.res,.offer').forEach(function(c){
+    var sp=document.createElement('i');sp.className='spot';sp.setAttribute('aria-hidden','true');c.insertBefore(sp,c.firstChild);
+    var raf=0,x=0,y=0;
+    c.addEventListener('pointermove',function(e){
+      var r=c.getBoundingClientRect();x=e.clientX-r.left;y=e.clientY-r.top;
+      if(!raf)raf=requestAnimationFrame(function(){raf=0;sp.style.setProperty('--mx',x+'px');sp.style.setProperty('--my',y+'px')});
+    },{passive:true});
   });
 })();
 </script>

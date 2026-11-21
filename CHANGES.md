@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-21 (daily routine): Pointer spotlight on resource and offer cards
+- What: the 6 resource cards and 6 offer cards get a soft yellow glow that follows the mouse (one `<i class="spot">` per card added by a small script, opacity-only fade, rAF-throttled). Off on touch devices and under reduced motion; no copy, links or prices touched.
+- Why: premium hover detail in Sam's taste (Aceternity/Magic UI spotlight cards), shows which card is about to be opened.
+- Checked: hover screenshot at 1280px reviewed. tests/check.mjs: home page checks pass; the audit sub-check fails in this sandbox on the unchanged tree too (audit-main.js does not run here), unrelated to this change.
+
 ## 2026-11-18 (daily routine): Bot heading with a rotating keyword pill
 - What: the DM bot heading is now "[PRICE] comments become conversations." The gold pill rolls through PRICE, MENU, BOOK (same component as "Comment or DM", now reads its words from `data-words`). Screen readers and reduced motion get the plain sentence "PRICE, MENU or BOOK comments become conversations."
 - Why: motion on the words that lead to action, using only keywords already on the page; at most one rotating word per screen height.

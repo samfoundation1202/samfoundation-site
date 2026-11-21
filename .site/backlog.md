@@ -6,7 +6,6 @@ Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of
 Read `.site/taste.md` before you pick. Sam likes living, premium details he finds on other sites (rotating words, moving strips, pills that resize with their word), adapted to our brand and kept honest. When two ideas are equally useful, prefer the one in that spirit.
 
 ## Needs Sam
-- URGENT 2026-11-19: samfoundation.tech answers 302 -> /cgi-sys/suspendedpage.cgi (hosting looks suspended). /sf/site-status.json is unreachable, so deploys cannot be verified. The daily routine pushed nothing today. Please check the hosting account.
 - Privacy policy page (/privacy-policy/, not in this repo) should mention Google Analytics cookies _ga and _ga_2Q1PRBX503 and the cookie banner; a dedicated cookie policy page could be added there. Not deployable from this repo.
 
 ## Every run, before picking an idea: audit page design notes from Sam
@@ -27,11 +26,13 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Typography rhythm: consistent section spacing and heading sizes across all sections.
 - Cookie banner: add a link in the footer legal text to a cookie policy once that page exists.
 - Mobile: let the rotating pill keep a fixed min-width per word set so line 1 never shifts.
-- Tools strip: pause on hover/focus so it can be read.
+- Tools strip: also pause on keyboard focus (hover pause already exists).
+- Hero/section headings: tune text-wrap:balance on headlines for cleaner line breaks.
 - Add JSON-LD Organization data (only facts on the page) for search results.
 - Apple-touch-icon PNG from the SF mark (sf/ file) next to the existing SVG favicon.
 
 ## Done
+- 2026-11-21 Pointer spotlight glow on resource and offer cards (hosting is back, 200 again).
 - 2026-11-18 Bot heading: keyword (PRICE/MENU/BOOK) as rotating gold pill.
 - 2026-11-17 Footer "Back to top" link + canonical link.
 - 2026-11-16 Reading-progress line under the header.
