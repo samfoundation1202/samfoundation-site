@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-21 (by hand, approved by Sam): "Our work" projects section
+- What: new section #projects before "What we do" (nav link "Projects"): a "Working on now" strip that rolls through 5 current jobs, count-ups (3 client websites, 2 sites under care, 1 local landing page, 2 own AI systems), 4 live project cards with a slowly scrolling screenshot (sf/work/*.jpg), status, chips and Live demo / Open the page buttons, and 4 ongoing-work cards with a pulse bar. Client names in the copy are anonymised. Animations pause off-screen and stop under reduced motion.
+- Why: Sam wants the site to prove we have worked and are working, to win bigger paid projects (case-study list in kb projects/services-shop.md).
+- Checked: tests/check.mjs home, /trade/, /stade/ pass (desktop 1280, mobile 375, reduced motion); desktop and mobile screenshots reviewed by Sam. The audit sub-check fails on the live audit page, unrelated to this change.
+
 ## 2026-11-21 (daily routine): Pointer spotlight on resource and offer cards
 - What: the 6 resource cards and 6 offer cards get a soft yellow glow that follows the mouse (one `<i class="spot">` per card added by a small script, opacity-only fade, rAF-throttled). Off on touch devices and under reduced motion; no copy, links or prices touched.
 - Why: premium hover detail in Sam's taste (Aceternity/Magic UI spotlight cards), shows which card is about to be opened.
