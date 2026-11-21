@@ -1,10 +1,10 @@
 <?php
 // Sam Foundation site auto-deploy (runs from cron on the cPanel host every 10 minutes).
 // Pulls the GitHub repo samfoundation1202/samfoundation-site, and when main has a new commit it copies
-// ONLY whitelisted files (index.html, /sf/ css, js, images, video, fonts, and /trade/ and stade/ index.html + media) into public_html, with a backup first.
+// ONLY whitelisted files (index.html, /sf/ css, js, images, video, fonts, /trade/ and stade/ index.html + media, and services/**/index.html) into public_html, with a backup first.
 // Each deploy sends a Telegram card through the bot's ops desk with "OK" / "Undo". "Undo" restores the backup.
 // Status for the daily routine: https://samfoundation.tech/sf/site-status.json
-// Nothing here can write .php, .htaccess or anything outside index.html, sf/, trade/ and stade/.
+// Nothing here can write .php, .htaccess or anything outside index.html, sf/, trade/, stade/ and services/.
 
 error_reporting(E_ALL);
 date_default_timezone_set('UTC');
@@ -19,8 +19,8 @@ $CFG = [
   'site'    => 'https://samfoundation.tech/',
   'archive' => getenv('SITE_ARCHIVE') ?: null, // tests: a local .tar.gz instead of GitHub
 ];
-// index.html, sf/ files, the Trade guides hub (trade/index.html + trade/media/*, 2026-11-16) and the Stade page (stade/index.html + stade/media/*, 2026-11-17)
-$ALLOWED = '#^(index\.html|trade/index\.html|stade/index\.html|(sf|trade/media|stade/media)/[a-z0-9][a-z0-9._/-]*\.(css|js|svg|png|jpe?g|webp|avif|gif|mp4|webm|woff2?|txt))$#';
+// index.html, sf/ files, the Trade guides hub (trade/index.html + trade/media/*, 2026-11-16) the Stade page (stade/index.html + stade/media/*, 2026-11-17) and the shop pages (services/**/index.html, 2026-11-21)
+$ALLOWED = '#^(index\.html|trade/index\.html|stade/index\.html|services/([a-z0-9-]+/)*index\.html|(sf|trade/media|stade/media)/[a-z0-9][a-z0-9._/-]*\.(css|js|svg|png|jpe?g|webp|avif|gif|mp4|webm|woff2?|txt))$#';
 $MAX_FILE = 15 * 1024 * 1024;
 
 function logline($m) { global $CFG; @file_put_contents($CFG['state'] . '/deploy.log', gmdate('c') . ' ' . $m . "\n", FILE_APPEND | LOCK_EX); }
@@ -150,6 +150,9 @@ if (isset($files['index.html'])) {
 if (isset($files['stade/index.html'])) {
   $sp = $files['stade/index.html'];
   if (strlen($sp) < 5000 || stripos($sp, '</html>') === false || stripos($sp, '<title>') === false) fail("stade/index.html in $sha failed the sanity check; not deployed");
+}
+foreach ($files as $rel => $data) {
+  if (strpos($rel, 'services/') === 0 && substr($rel, -10) === 'index.html' && (strlen($data) < 5000 || stripos($data, '</html>') === false || stripos($data, '<title>') === false)) fail("$rel in $sha failed the sanity check; not deployed");
 }
 if (isset($files['trade/index.html'])) {
   $tp = $files['trade/index.html'];

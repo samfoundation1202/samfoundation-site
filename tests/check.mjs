@@ -26,7 +26,7 @@ const BASE = "http://127.0.0.1:8811/";
 const problems = [];
 const browser = await chromium.launch({executablePath:process.env.PW_EXE||undefined});
 // Pages in this repo: the home page and the Trade guides hub (/trade/)
-for (const PAGE of ["", "trade/", "stade/"]) {
+for (const PAGE of ["", "trade/", "stade/", "services/websites/", "services/websites/event-landing-page/", "services/websites/coaching-brand-site/", "services/websites/online-shop/"]) {
 for (const [label0, viewport, reduced] of [["desktop", { width: 1280, height: 800 }, false], ["mobile", { width: 375, height: 812 }, false], ["mobile-reduced", { width: 375, height: 812 }, true]]) {
   const label = (PAGE ? PAGE.replace(/\/$/, "") + "-" : "") + label0;
   const ctx = await browser.newContext({ viewport, reducedMotion: reduced ? "reduce" : "no-preference", isMobile: viewport.width < 768, hasTouch: viewport.width < 768 });
@@ -87,4 +87,4 @@ const { auditCheck } = await import("./audit-check.mjs");
 problems.push(...(await auditCheck()));
 
 if (problems.length) { console.log("CHECK FAILED\n- " + problems.join("\n- ")); process.exit(1); }
-console.log("CHECK PASSED (home page, /trade/, /stade/ and audit page: desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");
+console.log("CHECK PASSED (home page, /trade/, /stade/, /services/websites/ + 3 product pages and audit page: desktop 1280, mobile 375, mobile reduced motion). Screenshots in tests/out/.");
