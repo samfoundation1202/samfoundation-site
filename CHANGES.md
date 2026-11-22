@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-22 (by hand, approved by Sam): /Hooks redesign
+- What: calm Sam Foundation look (yellow accent, gradient only on the SF mark). Hero with a looping muted hook reel in a phone frame (sf/work/p/hooks-hero-v1.mp4, 0.9 MB, poster .jpg), a hook that types itself and changes every few seconds, count-ups (51 hooks, 4 types, 437K+ views on hook #1). New "How to use a hook in 3 steps" with moving demos and a line that fills. Sticky filter bar with counts per type and search. New cards: number, type, the hook as a quote, "Watch the example" row that plays the reel inside the card, Copy script / Open on Instagram. Header links: The hooks, Services, Club, Get the PDF. All logic (filters, search, copy, videos, email form, consent, tracking) unchanged.
+- Why: Sam asked for a beautiful design of the Hooks page (PAGE-PROTOCOL.md: living hero, motion on every screen height).
+- Checked: desktop 1280 and mobile 375 screenshots, no horizontal scroll at 375, filter (Negative = 8 cards), video embed opens, no console errors; reduced motion shows final states.
+
 ## 2026-11-22 (by hand, approved by Sam): Consent checkbox on the /Hooks email form
 - What: an unchecked checkbox "Yes, also send me tips and the monthly testimonial campaign (max. 1 email per week). Unsubscribe anytime." under the email field; the lead sent to the bot carries marketing:true|false.
 - Why: German law needs consent for marketing emails; only people who tick it get campaign emails.
