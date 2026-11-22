@@ -56,6 +56,22 @@
   function save(c) { store(KEY, JSON.stringify(c)); }
   var cart = load();
 
+  /* GA4 + campaign source: utm_* from the landing URL (any samfoundation.tech page) are kept 30 days and go into the checkout */
+  function ga(name, params) { try { if (window.gtag) window.gtag("event", name, params || {}); } catch (e) {} }
+  function utm() {
+    try {
+      var q = new URLSearchParams(location.search), o = {};
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) { if (q.get(k)) o[k] = q.get(k).slice(0, 100); });
+      if (Object.keys(o).length) { o.landing = location.pathname; o.at = Date.now(); localStorage.setItem("sf_utm", JSON.stringify(o)); }
+      var s = JSON.parse(localStorage.getItem("sf_utm") || "{}");
+      return Date.now() - (s.at || 0) < 30 * 864e5 ? s : {};
+    } catch (e) { return {}; }
+  }
+  var UTM = utm();
+  function gaItems(ids) { return ids.filter(function (id) { return CATALOG[id]; }).map(function (id) { return { item_id: id, item_name: CATALOG[id].en, price: CATALOG[id].p }; }); }
+  // first payment: monthly items with free days are not charged at checkout
+  function firstValue(ids) { return ids.reduce(function (s, id) { var c = CATALOG[id]; return s + (c && !(c.m && c.trial) ? c.p : 0); }, 0); }
+
   var bg = document.createElement("div"); bg.className = "drawer-bg";
   var dr = document.createElement("aside"); dr.className = "drawer"; dr.setAttribute("role", "dialog"); dr.setAttribute("aria-modal", "true"); dr.setAttribute("aria-labelledby", "cart-t"); dr.setAttribute("aria-hidden", "true"); dr.inert = true;
   dr.innerHTML = '<header><h2 id="cart-t"></h2><button class="x" type="button" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>' +
@@ -114,6 +130,7 @@
       if (clash && cart.some(function (x) { return x.split("-")[0] === clash; })) { say(t("Please check out the DM bot and social media one after the other.", "Bitte DM-Bot und Social Media nacheinander bezahlen.")); return; }
       cart = cart.filter(function (x) { return x.split("-")[0] !== prod; });
       cart.push(id); save(cart);
+      ga("add_to_cart", { currency: "EUR", value: CATALOG[id].p, items: gaItems([id]) });
     }
     badge(true); render();
     say(t("Added: ", "Hinzugefügt: ") + CATALOG[id][lang()]);
@@ -129,7 +146,8 @@
   dr.querySelector("[data-go]").addEventListener("click", function () {
     var go = this; if (!cart.length) return;
     go.disabled = true; go.textContent = t("Opening checkout…", "Kasse wird geöffnet…");
-    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: cart, lang: lang(), back: location.href.split("#")[0] }) })
+    ga("begin_checkout", { currency: "EUR", value: firstValue(cart), items: gaItems(cart) });
+    fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ items: cart, lang: lang(), back: location.href.split("#")[0], utm: UTM }) })
       .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) { if (res.ok && res.j.url) { location.href = res.j.url; } else { throw new Error(res.j && res.j.error || "checkout"); } })
       .catch(function () {
@@ -187,6 +205,8 @@
   if (q.get("paid") === "1" && q.get("sid")) {
     fetch(API.replace("/checkout", "/order/") + encodeURIComponent(q.get("sid"))).then(function (r) { return r.json(); }).then(function (j) {
       if (j.paid) { cart = []; save(cart); badge(); render();
+        var sid = q.get("sid"), seen = "sf_purchase_" + sid;
+        try { if (!localStorage.getItem(seen)) { localStorage.setItem(seen, "1"); ga("purchase", { transaction_id: sid, currency: "EUR", value: firstValue(j.items || []), items: gaItems(j.items || []) }); } } catch (e) {}
         // DM bot orders: the next step (connect the page) is a page on the bot
         if (j.next) { say(t("Thank you! Payment received. One step left: connect your page.", "Danke! Zahlung erhalten. Ein Schritt fehlt: Seite verbinden.")); setTimeout(function () { location.href = j.next; }, 1800); }
         else say(t("Thank you! Payment received. We email you the next steps.", "Danke! Zahlung erhalten. Wir schicken dir die nächsten Schritte per E-Mail.")); }

@@ -7,7 +7,7 @@ import html, os, json
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEMO = "https://portfolio.samfoundation.tech/"
-V = "2"  # raise when sf/shop.css or sf/shop.js change (host caches CSS/JS for a year)
+V = "3"  # raise when sf/shop.css or sf/shop.js change (host caches CSS/JS for a year)
 
 def L(en, de, tag="span"):
     return f'<{tag} class="l-en">{en}</{tag}><{tag} class="l-de" lang="de">{de}</{tag}>'
@@ -199,6 +199,8 @@ def head(title, desc, title_de, desc_de, path):
 <link rel="stylesheet" href="/sf/shop.css?v={V}">
 <script defer src="/sf/sf-motion.js?v=2"></script>
 <script defer src="/sf/shop.js?v={V}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2Q1PRBX503"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-2Q1PRBX503');</script>
 </head>
 <body>
 <header class="top"><div class="sf-wrap">
@@ -782,6 +784,12 @@ def services_hub():
   <div class="products four">
 {chr(10).join(cards)}
   </div>
+</div></section>""")
+    o.append(f"""<section class="sf-section" id="proof"><div class="sf-wrap">
+  <span class="sf-tag sf-reveal">{L('What clients say','Was Kunden sagen')}</span>
+  <h2 class="sf-h2 sf-reveal">{L('Real words from people we worked with.','Echte Stimmen von Menschen, mit denen wir gearbeitet haben.')}</h2>
+  <div class="senja-embed sf-reveal" data-id="8b71edbc-ddbd-4473-aba5-0b534feeb3e5" data-mode="shadow" data-lazyload="false" style="display:block;width:100%;margin-top:18px"></div>
+  <script src="https://widget.senja.io/widget/8b71edbc-ddbd-4473-aba5-0b534feeb3e5/platform.js" async></script>
 </div></section>""")
     o.append(foot())
     return "\n".join(o)
