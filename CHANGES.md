@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-22 (by hand, approved by Sam): Part 2 services shop: social media, DM bot, AI follow-up agent
+- What: /services/ hub (4 services) and 3 new service pages in EN + DE: /services/social-media/ (reel in a phone frame, 3 of our reels, Start 490 / Business 990 / Premium 1,890 EUR per month), /services/dm-automation/ (comment-to-DM simulation, demo links, Starter 9 / Growth 19 / Pro 49 EUR per month with 7 free days, setup 79 EUR add-on), /services/ai-follow-up/ (agent flow animation, interactive demo with sample leads, Start 990 / Business 1,990 / Premium 3,490 EUR one-time) plus /services/ai-follow-up/demo/. Cart shows monthly items as "/ month" and one-time + monthly totals; DM bot plan and social media cannot share one checkout. Header nav "Services"; home panels 01, 02, 04 link to the pages; home DM bot prices now in EUR with a § 19 UStG note and a buy-online link.
+- Why: Part 2 of Sam's services shop (kb projects/services-shop.md); prices approved by Sam 2026-11-22.
+- Checked: tests/check.mjs passes for every page incl. the 5 new ones (desktop 1280, mobile 375, reduced motion; the audit sub-check fails on the live audit page, unrelated); cart, add-on and tier picker tested in the browser; Stripe test sessions created for one-time, subscription, trial and mixed carts.
+
 ## 2026-11-22 (daily routine): Balanced headline line breaks
 - What: `text-wrap:balance` on `.sf-h1`/`.sf-h2` (page-local CSS in index.html). No copy, links or prices touched.
 - Why: avoids orphan words on the last line of headings, cleaner typography on phones.

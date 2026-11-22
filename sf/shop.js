@@ -12,8 +12,26 @@
     "coaching-premium":  { p: 5990, en: "Coaching brand site · Premium",  de: "Coaching-Markenwebsite · Premium",  days: 10 },
     "shop-start":    { p: 2990, en: "Online shop · Start",    de: "Onlineshop · Start",    days: 7 },
     "shop-business": { p: 4990, en: "Online shop · Business", de: "Onlineshop · Business", days: 10 },
-    "shop-premium":  { p: 7490, en: "Online shop · Premium",  de: "Onlineshop · Premium",  days: 14 }
+    "shop-premium":  { p: 7490, en: "Online shop · Premium",  de: "Onlineshop · Premium",  days: 14 },
+    "social-start":    { p: 490,  m: 1, en: "Social media · Start",    de: "Social Media · Start" },
+    "social-business": { p: 990,  m: 1, en: "Social media · Business", de: "Social Media · Business" },
+    "social-premium":  { p: 1890, m: 1, en: "Social media · Premium",  de: "Social Media · Premium" },
+    "dmbot-starter": { p: 9,  m: 1, trial: 7, en: "Comment-to-DM bot · Starter", de: "Kommentar-zu-DM-Bot · Starter" },
+    "dmbot-growth":  { p: 19, m: 1, trial: 7, en: "Comment-to-DM bot · Growth",  de: "Kommentar-zu-DM-Bot · Growth" },
+    "dmbot-pro":     { p: 49, m: 1, trial: 7, en: "Comment-to-DM bot · Pro",     de: "Kommentar-zu-DM-Bot · Pro" },
+    "dmsetup-once":  { p: 79, en: "Comment-to-DM bot · Setup", de: "Kommentar-zu-DM-Bot · Einrichtung", days: 3, setup: 1 },
+    "agent-start":    { p: 990,  en: "AI follow-up agent · Start",    de: "KI-Follow-up-Agent · Start",    days: 5 },
+    "agent-business": { p: 1990, en: "AI follow-up agent · Business", de: "KI-Follow-up-Agent · Business", days: 7 },
+    "agent-premium":  { p: 3490, en: "AI follow-up agent · Premium",  de: "KI-Follow-up-Agent · Premium",  days: 10 }
   };
+  function note(it) {
+    if (it.setup) return t("Ready in 3 working days after your page is connected", "Fertig in 3 Werktagen nach Verbindung deiner Seite");
+    if (it.trial) return t(it.trial + " days free from go-live, then monthly. Cancel anytime.", it.trial + " Tage kostenlos ab Go-live, dann monatlich. Jederzeit kündbar.");
+    if (it.m) return t("Monthly · first reels 7 days after your clips arrive", "Monatlich · erste Reels 7 Tage nach Eingang deiner Clips");
+    return t("Live in " + it.days + " days after your content arrives", "Live in " + it.days + " Tagen nach Eingang deiner Inhalte");
+  }
+  function short(it) { return it.trial ? t(it.trial + " days free, then monthly", it.trial + " Tage kostenlos, dann monatlich") : it.m ? t("Monthly, cancel anytime", "Monatlich, jederzeit kündbar") : t("Live in " + it.days + " days", "Live in " + it.days + " Tagen"); }
+  function per(it) { return it.m ? t(" / month", " / Monat") : ""; }
   var KEY = "sf_cart", LKEY = "sf_lang";
   var root = document.documentElement;
   var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -48,23 +66,26 @@
 
   function render() {
     dr.querySelector("#cart-t").innerHTML = t("Your cart", "Dein Warenkorb") + '<span class="test-badge">' + t("Test mode", "Testmodus") + "</span>";
-    var box = dr.querySelector(".items"), sum = 0; box.innerHTML = "";
-    if (!cart.length) box.innerHTML = '<p class="empty">' + t("Your cart is empty. Pick a website package to start.", "Dein Warenkorb ist leer. Wähle ein Website-Paket.") + "</p>";
+    var box = dr.querySelector(".items"), sum = 0, mon = 0; box.innerHTML = "";
+    if (!cart.length) box.innerHTML = '<p class="empty">' + t("Your cart is empty. Pick a package to start.", "Dein Warenkorb ist leer. Wähle ein Paket.") + "</p>";
     cart.forEach(function (id, i) {
-      var it = CATALOG[id]; sum += it.p;
+      var it = CATALOG[id]; if (it.m) mon += it.p; else sum += it.p;
       var d = document.createElement("div"); d.className = "item";
       d.innerHTML = "<b></b><span class=ip></span><small></small><button class=rm type=button></button>";
       d.querySelector("b").textContent = it[lang()];
-      d.querySelector(".ip").textContent = eur(it.p);
-      d.querySelector("small").textContent = t("Live in " + it.days + " days after your content arrives", "Live in " + it.days + " Tagen nach Eingang deiner Inhalte");
+      d.querySelector(".ip").textContent = eur(it.p) + per(it);
+      d.querySelector("small").textContent = note(it);
       var rm = d.querySelector(".rm"); rm.textContent = t("Remove", "Entfernen");
       rm.addEventListener("click", function () { cart.splice(i, 1); save(cart); render(); badge(); });
       box.appendChild(d);
     });
-    dr.querySelector(".total span").textContent = t("Total (one-time)", "Summe (einmalig)");
-    dr.querySelector(".total b").textContent = eur(sum);
+    var parts = [];
+    if (sum || !mon) parts.push(eur(sum) + (mon ? t(" one-time", " einmalig") : ""));
+    if (mon) parts.push(eur(mon) + per({ m: 1 }));
+    dr.querySelector(".total span").textContent = mon ? t("Total", "Summe") : t("Total (one-time)", "Summe (einmalig)");
+    dr.querySelector(".total b").textContent = parts.join(" + ");
     var go = dr.querySelector("[data-go]"); go.textContent = t("Go to secure checkout", "Zur sicheren Kasse"); go.disabled = !cart.length;
-    dr.querySelector("[data-n1]").textContent = t("Final price: no VAT is charged (small business, § 19 UStG). Payment by Stripe. The delivery clock starts when your content is complete.", "Endpreis: Gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Zahlung über Stripe. Die Lieferzeit beginnt, sobald deine Inhalte vollständig sind.");
+    dr.querySelector("[data-n1]").textContent = t("Final prices: no VAT is charged (small business, § 19 UStG). Payment by Stripe." + (mon ? " Monthly items renew each month until you cancel." : " The delivery clock starts when your content is complete."), "Endpreise: Gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Zahlung über Stripe." + (mon ? " Monatliche Posten verlängern sich jeden Monat, bis du kündigst." : " Die Lieferzeit beginnt, sobald deine Inhalte vollständig sind."));
     dr.querySelector("[data-n2]").textContent = t("Test mode: no real money is taken yet.", "Testmodus: Es wird noch kein echtes Geld abgebucht.");
     dr.querySelector(".x").setAttribute("aria-label", t("Close cart", "Warenkorb schließen"));
   }
@@ -88,6 +109,9 @@
     if (cart.indexOf(id) === -1) {
       // one tier per product: replace another tier of the same product
       var prod = id.split("-")[0];
+      // the bot plan starts with free days, social media is charged now: Stripe needs them in two checkouts
+      var clash = { dmbot: "social", social: "dmbot" }[prod];
+      if (clash && cart.some(function (x) { return x.split("-")[0] === clash; })) { say(t("Please check out the DM bot and social media one after the other.", "Bitte DM-Bot und Social Media nacheinander bezahlen.")); return; }
       cart = cart.filter(function (x) { return x.split("-")[0] !== prod; });
       cart.push(id); save(cart);
     }
@@ -126,8 +150,9 @@
   function syncTier() {
     var id = currentTier(); if (!id) return; var it = CATALOG[id];
     document.querySelectorAll("[data-sel-price]").forEach(function (e) { animateTo(e, it.p); });
+    document.querySelectorAll("[data-sel-per]").forEach(function (e) { e.textContent = per(it); });
     document.querySelectorAll("[data-sel-name]").forEach(function (e) { e.textContent = it[lang()]; });
-    document.querySelectorAll("[data-sel-days]").forEach(function (e) { e.textContent = t("Live in " + it.days + " days", "Live in " + it.days + " Tagen"); });
+    document.querySelectorAll("[data-sel-days]").forEach(function (e) { e.textContent = short(it); });
   }
   tiers.forEach(function (b, i) {
     b.addEventListener("click", function () { tiers.forEach(function (x) { x.setAttribute("aria-checked", String(x === b)); x.tabIndex = x === b ? 0 : -1; }); syncTier(); });

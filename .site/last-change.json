@@ -1,1 +1,4 @@
-{"title": "Headlines wrap in balanced lines", "summary": "Section headlines now break into evenly sized lines instead of leaving one short word alone on the last line. It makes the page look more polished, especially on phones. Look at any section heading, e.g. 'Take what you need. It's free.'"}
+{
+ "title": "Services shop part 2: social media, DM bot and AI follow-up agent",
+ "summary": "samfoundation.tech/services/ now lists 4 services. New pages for social media (monthly reels packages), the comment-to-DM bot (monthly plans with 7 free days and a setup add-on) and an AI follow-up agent (one-time, with an interactive demo), each with prices, demo and Add to cart. Checkout runs in Stripe test mode, so no real money is taken yet."
+}
