@@ -785,12 +785,6 @@ def services_hub():
 {chr(10).join(cards)}
   </div>
 </div></section>""")
-    o.append(f"""<section class="sf-section" id="proof"><div class="sf-wrap">
-  <span class="sf-tag sf-reveal">{L('What clients say','Was Kunden sagen')}</span>
-  <h2 class="sf-h2 sf-reveal">{L('Real words from people we worked with.','Echte Stimmen von Menschen, mit denen wir gearbeitet haben.')}</h2>
-  <div class="senja-embed sf-reveal" data-id="8b71edbc-ddbd-4473-aba5-0b534feeb3e5" data-mode="shadow" data-lazyload="false" style="display:block;width:100%;margin-top:18px"></div>
-  <script src="https://widget.senja.io/widget/8b71edbc-ddbd-4473-aba5-0b534feeb3e5/platform.js" async></script>
-</div></section>""")
     o.append(foot())
     return "\n".join(o)
 

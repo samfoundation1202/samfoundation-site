@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-22 (by hand): Test testimonials removed from /Hooks and /services/
+- What: the Senja widget (8 testimonials) is removed from /Hooks (page and email success state) and /services/. The "Share your experience" link stays.
+- Why: all 8 were test entries written by Sam; showing them as client reviews is not allowed. Real ones come from the testimonial campaign.
+- Checked: no senja-embed or widget script left on both pages; success state markup intact.
+
 ## 2026-11-22 (by hand, approved by Sam): Sales path on /Hooks, testimonials, GA4 on the shop
 - What: /Hooks is now in the repo (Hooks/index.html, copied from the live file) and in the deploy whitelist. New "Hooks get the views" block after the grid with 3 cards (Comment-to-DM bot -> /services/dm-automation/, Club -> /club/, free audit -> /#audit) plus a link to /services/, and the same 3 links in the email success state; every click fires hooks_product_click {product, place}. The Senja testimonials (8 reviews) are now visible on the page above the filters and on /services/. GA4 G-2Q1PRBX503 on all /services/ pages; the cart fires add_to_cart, begin_checkout and purchase (once per order, value = first payment). utm_* from any landing URL are kept 30 days and go into the Stripe checkout metadata. The Hooks email form also sends the lead to the bot (fire-and-forget, never blocks the PDF send).
 - Why: Sam's sales path for /Hooks (sam-hooks-autopilot CURRENT.md OPEN [site] 2026-11-22).
