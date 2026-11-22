@@ -26,7 +26,7 @@
   };
   function note(it) {
     if (it.setup) return t("Ready in 3 working days after your page is connected", "Fertig in 3 Werktagen nach Verbindung deiner Seite");
-    if (it.trial) return t(it.trial + " days free from go-live, then monthly. Cancel anytime.", it.trial + " Tage kostenlos ab Go-live, dann monatlich. Jederzeit kündbar.");
+    if (it.trial) return t(it.trial + " days free from the day your page is connected, then monthly. Cancel anytime.", it.trial + " Tage kostenlos ab dem Tag, an dem deine Seite verbunden ist, dann monatlich. Jederzeit kündbar.");
     if (it.m) return t("Monthly · first reels 7 days after your clips arrive", "Monatlich · erste Reels 7 Tage nach Eingang deiner Clips");
     return t("Live in " + it.days + " days after your content arrives", "Live in " + it.days + " Tagen nach Eingang deiner Inhalte");
   }
@@ -186,7 +186,10 @@
   var q = new URLSearchParams(location.search);
   if (q.get("paid") === "1" && q.get("sid")) {
     fetch(API.replace("/checkout", "/order/") + encodeURIComponent(q.get("sid"))).then(function (r) { return r.json(); }).then(function (j) {
-      if (j.paid) { cart = []; save(cart); badge(); render(); say(t("Thank you! Payment received. We email you the next steps.", "Danke! Zahlung erhalten. Wir schicken dir die nächsten Schritte per E-Mail.")); }
+      if (j.paid) { cart = []; save(cart); badge(); render();
+        // DM bot orders: the next step (connect the page) is a page on the bot
+        if (j.next) { say(t("Thank you! Payment received. One step left: connect your page.", "Danke! Zahlung erhalten. Ein Schritt fehlt: Seite verbinden.")); setTimeout(function () { location.href = j.next; }, 1800); }
+        else say(t("Thank you! Payment received. We email you the next steps.", "Danke! Zahlung erhalten. Wir schicken dir die nächsten Schritte per E-Mail.")); }
       else say(t("We could not confirm the payment yet. If you paid, we will email you.", "Wir konnten die Zahlung noch nicht bestätigen. Wenn du bezahlt hast, melden wir uns per E-Mail."));
     }).catch(function () {});
     if (history.replaceState) history.replaceState(null, "", location.pathname + location.hash);

@@ -469,7 +469,7 @@ SERVICES = [
         "h1": ("Every comment answered <em>in seconds</em>.", "Jeder Kommentar beantwortet, <em>in Sekunden</em>."),
         "lead": ("Someone comments PRICE, MENU or BOOK under your post. The bot sends them a private message with what you promised, replies under the comment and follows up once. Our own page runs on it.",
                  "Jemand kommentiert PREIS, MENÜ oder TERMIN unter deinem Beitrag. Der Bot schickt eine private Nachricht mit dem Versprochenen, antwortet unter dem Kommentar und hakt einmal nach. Unsere eigene Seite läuft damit."),
-        "promise": ("<b>7 days free</b> – from the day your bot goes live", "<b>7 Tage kostenlos</b> – ab dem Tag, an dem dein Bot live ist"),
+        "promise": ("<b>7 days free</b> – from the day your page is connected", "<b>7 Tage kostenlos</b> – ab dem Tag, an dem deine Seite verbunden ist"),
         "demo": "/#bot", "demo_label": ("Try the demo", "Demo testen"),
         "hero": "chat",
         "tiers": [("starter", 9, ("1 page", "1 Seite")), ("growth", 19, ("Facebook + Instagram", "Facebook + Instagram")), ("pro", 49, ("Up to 3 pages", "Bis zu 3 Seiten"))],
