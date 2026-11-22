@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-22 (by hand, approved by Sam): Consent checkbox on the /Hooks email form
+- What: an unchecked checkbox "Yes, also send me tips and the monthly testimonial campaign (max. 1 email per week). Unsubscribe anytime." under the email field; the lead sent to the bot carries marketing:true|false.
+- Why: German law needs consent for marketing emails; only people who tick it get campaign emails.
+- Checked: unchecked by default; bot payload has marketing:false without the tick and marketing:true with it; PDF send unchanged.
+
 ## 2026-11-22 (by hand): Test testimonials removed from /Hooks and /services/
 - What: the Senja widget (8 testimonials) is removed from /Hooks (page and email success state) and /services/. The "Share your experience" link stays.
 - Why: all 8 were test entries written by Sam; showing them as client reviews is not allowed. Real ones come from the testimonial campaign.
