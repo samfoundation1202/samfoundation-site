@@ -6,6 +6,7 @@ Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of
 Read `.site/taste.md` before you pick. Sam likes living, premium details he finds on other sites (rotating words, moving strips, pills that resize with their word), adapted to our brand and kept honest. When two ideas are equally useful, prefer the one in that spirit.
 
 ## Needs Sam
+- The DM bot service (samfoundation-dm-bot.onrender.com) says 'suspended by its owner'; audit design notes cannot be read until it is back.
 - Privacy policy page (/privacy-policy/, not in this repo) should mention Google Analytics cookies _ga and _ga_2Q1PRBX503 and the cookie banner; a dedicated cookie policy page could be added there. Not deployable from this repo.
 
 ## Every run, before picking an idea: audit page design notes from Sam
@@ -32,6 +33,7 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Apple-touch-icon PNG from the SF mark (sf/ file) next to the existing SVG favicon.
 
 ## Done
+- 2026-11-22 Balanced headline line breaks (text-wrap:balance).
 - 2026-11-21 Pointer spotlight glow on resource and offer cards (hosting is back, 200 again).
 - 2026-11-18 Bot heading: keyword (PRICE/MENU/BOOK) as rotating gold pill.
 - 2026-11-17 Footer "Back to top" link + canonical link.
