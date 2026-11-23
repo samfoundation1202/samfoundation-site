@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-23 — Organization data for search engines
+- What: JSON-LD Organization block (name, url, logo, description, Facebook page) in the home page head. Facts already on the page only.
+- Why: search results and link previews can identify the business; no visual change.
+- Checked: check.mjs home checks had no failures; its only 12 failures are audit-page checks that fail identically on the unchanged main in this sandbox (audit data unreachable), so pushed to branch claude/daily-2026-11-23, not main.
+
 
 ## 2026-11-22 (by hand, approved by Sam): /Hooks redesign
 - What: calm Sam Foundation look (yellow accent, gradient only on the SF mark). Hero with a looping muted hook reel in a phone frame (sf/work/p/hooks-hero-v1.mp4, 0.9 MB, poster .jpg), a hook that types itself and changes every few seconds, count-ups (51 hooks, 4 types, 437K+ views on hook #1). New "How to use a hook in 3 steps" with moving demos and a line that fills. Sticky filter bar with counts per type and search. New cards: number, type, the hook as a quote, "Watch the example" row that plays the reel inside the card, Copy script / Open on Instagram. Header links: The hooks, Services, Club, Get the PDF. All logic (filters, search, copy, videos, email form, consent, tracking) unchanged.

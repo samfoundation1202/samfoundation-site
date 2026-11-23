@@ -29,10 +29,10 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Mobile: let the rotating pill keep a fixed min-width per word set so line 1 never shifts.
 - Tools strip: also pause on keyboard focus (hover pause already exists).
 - Hero/section headings: tune text-wrap:balance on headlines for cleaner line breaks.
-- Add JSON-LD Organization data (only facts on the page) for search results.
 - Apple-touch-icon PNG from the SF mark (sf/ file) next to the existing SVG favicon.
 
 ## Done
+- 2026-11-23 JSON-LD Organization data in the home page head (pushed to branch, see CHANGES).
 - 2026-11-22 Balanced headline line breaks (text-wrap:balance).
 - 2026-11-21 Pointer spotlight glow on resource and offer cards (hosting is back, 200 again).
 - 2026-11-18 Bot heading: keyword (PRICE/MENU/BOOK) as rotating gold pill.
