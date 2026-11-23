@@ -241,6 +241,23 @@ h1{font-size:clamp(38px,5.4vw,66px);margin:18px 0 16px}
 @media(max-width:950px){.hero-inner{grid-template-columns:1fr;gap:34px}.stage{width:min(260px,70vw)}.float{left:-30%}.steps{grid-template-columns:minmax(0,1fr)}.demo{flex-wrap:wrap;height:auto;min-height:64px;padding:10px 12px}.steps:before,.steps:after{display:none}}
 @media(max-width:640px){.hnav a{display:none}.hero-inner{padding-top:22px;gap:40px}.stage{order:-1;width:150px;justify-self:start;margin-left:4px}.phone{border-radius:26px;padding:6px}.phone video,.phone img{border-radius:21px}.float{left:118px;right:auto;bottom:18%;width:calc(100vw - 170px);padding:10px 12px}.float .t{font-size:13px;min-height:5.4em}.chip{left:118px;right:auto;top:8%;font-size:11px;white-space:nowrap}h1{margin-top:12px}.stats{gap:20px}.controls{top:57px}.filters{overflow-x:auto;max-width:100%;min-width:0;flex:1 1 100%;flex-wrap:nowrap;scrollbar-width:none}.controls>*{min-width:0}.count{width:100%}.filter{white-space:nowrap}.grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.float,.chip,.play:after,.demo *,.card{animation:none!important}.float .t:after{display:none}.step{opacity:1;transform:none;transition:none}.steps:after{transform:scaleX(1);transition:none}}
+.consent{margin:12px 0 12px;padding:12px;border:1px solid rgba(254,199,1,.45);border-radius:12px;background:rgba(254,199,1,.06);font-size:11.5px;color:#a9a9ad;gap:11px}
+.consent b{display:block;color:#fff;font-size:14px;margin-bottom:3px}
+.consent input{width:20px;height:20px;margin-top:1px}
+.win{display:block;margin-top:16px;padding:16px;border-radius:14px;background:#FEC701;color:#000;text-decoration:none;animation:winGlow 2.6s ease-in-out infinite}
+.win-k{display:block;font-weight:900;font-size:17px;letter-spacing:-.01em}
+.win-t{display:block;font-size:12px;line-height:1.5;margin:5px 0 10px;color:#2b2400}
+.win-b{display:inline-block;background:#000;color:#FEC701;font-weight:800;font-size:12px;padding:9px 14px;border-radius:999px}
+@keyframes winGlow{0%,100%{box-shadow:0 0 0 0 rgba(254,199,1,.0)}50%{box-shadow:0 0 0 6px rgba(254,199,1,.16)}}
+.weekly{margin-top:10px;padding:14px;border-radius:14px;border:1px solid rgba(254,199,1,.5);background:#16140c}
+.weekly-t{font-weight:800;font-size:15px;color:#fff;margin-bottom:9px}
+.weekly-b{width:100%;height:42px;border:0;border-radius:10px;background:#fff;color:#000;font-weight:800;font-size:13px;cursor:pointer}
+.weekly-b:disabled{opacity:.7;cursor:default}
+.modal .weekly-s{font-size:10.5px;line-height:1.5;color:#8a8a8f;margin:8px 0 0}
+.success .mini-next{margin-top:14px;gap:6px}
+.success .mini-next a{padding:8px 10px;font-size:11px;opacity:.85}
+.back-link{display:block;margin:12px auto 0;background:none;border:0;color:#7d7d82;font-size:11px;text-decoration:underline;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.win{animation:none}}
 </style>
 
 
@@ -362,7 +379,7 @@ h1{font-size:clamp(38px,5.4vw,66px);margin:18px 0 16px}
       <p>51 hooks + scripts + links. Enter your email and we’ll send the PDF straight to your inbox.</p>
       <form onsubmit="submitEmail(event)">
         <input id="leadEmail" class="input" type="email" placeholder="your@email.com" autocomplete="email" required>
-        <label class="consent"><input id="leadConsent" type="checkbox"> <span>Yes, also send me tips and the monthly testimonial campaign (max. 1 email per week). Unsubscribe anytime.</span></label>
+        <label class="consent"><input id="leadConsent" type="checkbox"> <span><b>Yes, send me 1 new hook every week</b>Sam Foundation may email me tips, offers and a request for a testimonial (max. 1 email per week). I can unsubscribe at any time with the link in every email.</span></label>
         <button id="sendPdfBtn" class="send" type="submit">Send me the 51 Hooks</button>
         <p id="errorMsg" class="error"></p>
       </form>
@@ -371,13 +388,22 @@ h1{font-size:clamp(38px,5.4vw,66px);margin:18px 0 16px}
       <div class="mono" style="font-size:9px;color:#FEC701;letter-spacing:.08em;margin-bottom:8px">DELIVERY CONFIRMED</div>
       <h2>Your 51 Hooks are on their way 🚀</h2>
       <p>We’ve sent the full 51 Hooks + scripts to your inbox.</p>
-            <div class="mini-next">
+            <a class="win" href="https://senja.io/p/sam-foundation/r/L5G048" target="_blank" rel="noopener" onclick="trackFunnelEvent('hooks_testimonial_click')">
+        <span class="win-k">Your video can get you 14 days of the Club free</span>
+        <span class="win-t">Tried a hook? Send a 60-second video about it. The best 3 videos each month get 14 days of Club Level 1.</span>
+        <span class="win-b">Record my video &rarr;</span>
+      </a>
+      <div class="weekly" id="weeklyBox">
+        <div class="weekly-t">Want 1 new hook every week?</div>
+        <button type="button" class="weekly-b" id="weeklyBtn">Yes, email me weekly hooks</button>
+        <p class="weekly-s" id="weeklySmall">Tips, offers and a request for a testimonial from Sam Foundation, max. 1 email per week. Unsubscribe any time with the link in every email.</p>
+      </div>
+      <div class="mini-next">
         <a href="/services/dm-automation/" data-product="dm_bot">Let a bot DM everyone who comments <span>from €9/mo →</span></a>
         <a href="/club/" data-product="club">New hooks every week in the Club <span>→</span></a>
         <a href="/#audit" data-product="audit">Free 60-second page audit <span>→</span></a>
       </div>
-      <a class="senja" href="https://senja.io/p/sam-foundation/r/L5G048" target="_blank" rel="noopener" onclick="trackFunnelEvent('hooks_testimonial_click')">Share your experience →</a>
-      <button class="back" onclick="closeEmailModal()">Back to the hooks</button>
+      <button class="back-link" onclick="closeEmailModal()">Back to the hooks</button>
     </div>
   </div>
 </div>
@@ -580,6 +606,18 @@ document.addEventListener("click",e=>{const a=e.target.closest("[data-product]")
   // hero loop only plays while visible
   const v=document.querySelector(".phone video");if(v){if(RM){v.removeAttribute("autoplay");v.pause()}else if("IntersectionObserver" in window)new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?v.play().catch(()=>{}):v.pause())).observe(v)}
 })();
+let hooksEmail="";
+// Said no in the form, yes after the PDF: the bot accepts this only for a lead from the last 2 hours.
+document.getElementById("weeklyBtn").addEventListener("click",async()=>{
+  const b=document.getElementById("weeklyBtn");if(!hooksEmail)return;b.disabled=true;b.textContent="Saving…";
+  try{
+    const r=await fetch("https://bot.samfoundation.tech/api/public/hooks-lead",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email:hooksEmail,marketing:true,utm_source:UTM.utm_source||"",utm_medium:UTM.utm_medium||"",utm_campaign:UTM.utm_campaign||"",ref:document.referrer,website:""})});
+    if(!r.ok)throw 0;
+    trackFunnelEvent("hooks_weekly_optin",{place:"success"});
+    b.textContent="Done. 1 hook a week is on its way.";
+  }catch(e){b.disabled=false;b.textContent="Try again: email me weekly hooks"}
+});
 async function submitEmail(event){
   event.preventDefault();
   const input=document.getElementById("leadEmail"),btn=document.getElementById("sendPdfBtn"),err=document.getElementById("errorMsg");
@@ -592,6 +630,8 @@ async function submitEmail(event){
     // STEP 3 — the email delivery request actually succeeded.
     trackFunnelEvent("hooks_email_submitted", {delivery: "success"});
     sendLeadToBot(email);
+    hooksEmail=email;
+    if(document.getElementById("leadConsent").checked)document.getElementById("weeklyBox").style.display="none";
 
     document.getElementById("emailState").style.display="none";
     document.getElementById("successState").style.display="block";
@@ -641,5 +681,6 @@ Additional engagement:
 No email address is sent to GA4.
 -->
 
+<footer style="border-top:1px solid #2a2320;padding:24px 16px;text-align:center;font-size:13px;color:#9a9188"><a href="/" style="color:inherit">Sam Foundation</a> · <a href="/privacy-policy/" style="color:inherit">Privacy</a> · <a href="/terms/" style="color:inherit">Terms</a> · <a href="/imprint/" style="color:inherit">Imprint</a></footer>
 </body>
 </html>

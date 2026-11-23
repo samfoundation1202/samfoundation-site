@@ -220,7 +220,7 @@ def foot():
     return f"""</main>
 <footer class="foot"><div class="sf-wrap">
   <div>© 2026 Sam Foundation · {L('Websites, automation and AI for growing businesses','Websites, Automatisierung und KI für wachsende Unternehmen')}</div>
-  <div><a href="/contact/">{L('Contact','Kontakt')}</a><a href="/privacy-policy/">{L('Privacy','Datenschutz')}</a><a href="/terms/">{L('Terms','AGB')}</a></div>
+  <div><a href="/contact/">{L('Contact','Kontakt')}</a><a href="/privacy-policy/">{L('Privacy','Datenschutz')}</a><a href="/terms/">{L('Terms','AGB')}</a><a href="/impressum/">{L('Imprint','Impressum')}</a></div>
 </div></footer>
 </body>
 </html>
