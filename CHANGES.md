@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-24 (daily routine): Apple touch icon
+- What: new sf/apple-touch-icon.png (180x180, the SF mark from the existing favicon) and one `<link rel="apple-touch-icon">` in index.html. No visible page change.
+- Why: iOS home-screen and bookmark tiles showed a blank or screenshot icon; now they show the brand mark.
+- Checked: tests/check.mjs: all home/trade/stade/services pages pass; only the audit sub-checks fail (audit-main.js does not run in this sandbox, same as on the unchanged tree). Icon image viewed.
+
 ## 2026-11-23 (by hand, approved by Sam): Impressum, privacy policy, Hooks thank-you screen
 - What: /impressum/ (DE, binding) and /imprint/ (EN) with §5 DDG details from Sam (name, postal address, sayed@, §19 UStG, no VAT ID, no phone, no Steuernummer), noindex so the address does not show in search. Footer link on home, services (build-services.py), stade, trade, Hooks (new small footer) and the Club pages (uploaded by hand, not in git). /privacy-policy/ is now a static page built by .site/build-legal.py: controller Sayed Mosavi + sayed@ (address only on the Impressum), Hostinger server, Zoho EU email, Senja, Telegram, Google Calendar/Meet; Render, Neon and ElevenLabs removed; new sections Hooks emails and legal bases (GDPR Art. 6(1)(a)(b)(c)(f)), right to complain (LfD Niedersachsen). deploy.php allows impressum/, imprint/, privacy-policy/ (server backup deploy.php.before-legal-202611231013). /Hooks: consent box bigger (yellow frame, bold "Yes, send me 1 new hook every week", still unticked); thank-you screen: big yellow testimonial card (best 3 videos a month get 14 days of Club Level 1), a "Yes, email me weekly hooks" button only for people who did not tick the box (bot accepts it within 2 hours of signing up, never after unsubscribe), smaller product links, "Back to the hooks" as a small link.
 - Why: legal fixes Sam approved (Impressum, privacy policy, consent label); Sam asked that testimonial and weekly emails stand out on the Hooks thank-you screen.

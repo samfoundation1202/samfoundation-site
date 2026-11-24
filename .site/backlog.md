@@ -14,6 +14,8 @@ Sam gives design notes on audit pages on Telegram. Read them with `curl -s https
 For every note whose id is not in `.site/audit-notes-done.json`: apply it to the audit page design in `sf/audit-main.css` and `sf/audit-main.js` (`sf/audit.js` is only the loader that picks the live commit; do not put design there) (the page itself is public_html/audit/index.html, which loads these; it renders `#app` and fires `sf:audit-rendered`, with `window.sfAudit = {audit, track, esc}`). Keep the page readable if the script fails, follow PAGE-PROTOCOL motion rules, never invent prices or offers (use the existing offer codes DIY, DFY, BUILD, OFFER, CLUB, REFER). Then add the id to `.site/audit-notes-done.json`, note it in CHANGES.md, and write `.site/last-change.json` (its title and summary become the Telegram deploy card, so it must describe THIS change). Audit pages must stay at least as alive as Sam approved on 2026-11-12 (see "Audit pages" in PAGE-PROTOCOL.md); `tests/check.mjs` must still pass, including its audit page check. These notes come before backlog ideas. If the list can't be read, say so in CHANGES.md and go on.
 
 ## Open
+- Add a web app manifest (name, theme colour, icon) so Android shows the brand when saved to the home screen.
+- Check the home page image weights and add width/height to any image still missing them (layout shift).
 - Cookie banner covers the mobile menu on the first visit: consider keeping the menu above it.
 - "What we do": each of the 4 cards gets its own small animated proof (UI mock or SVG loop), per PAGE-PROTOCOL rule 2.
 - Free audit section: a short, real example voice-note player (waveform + transcript) instead of text only.
@@ -30,9 +32,9 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Tools strip: also pause on keyboard focus (hover pause already exists).
 - Hero/section headings: tune text-wrap:balance on headlines for cleaner line breaks.
 - Add JSON-LD Organization data (only facts on the page) for search results.
-- Apple-touch-icon PNG from the SF mark (sf/ file) next to the existing SVG favicon.
 
 ## Done
+- 2026-11-24 Apple-touch-icon PNG from the SF mark (sf/apple-touch-icon.png).
 - 2026-11-22 Balanced headline line breaks (text-wrap:balance).
 - 2026-11-21 Pointer spotlight glow on resource and offer cards (hosting is back, 200 again).
 - 2026-11-18 Bot heading: keyword (PRICE/MENU/BOOK) as rotating gold pill.

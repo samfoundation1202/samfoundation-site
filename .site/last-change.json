@@ -1,4 +1,1 @@
-{
- "title": "Impressum, new privacy policy and a clearer Hooks thank-you screen",
- "summary": "New Impressum at samfoundation.tech/impressum/ (English /imprint/), linked in the footer of every page. The privacy policy is now our own page with the real controller, our server and email providers, the Hooks emails and the legal bases. On /Hooks the email checkbox is bigger, and after sending the PDF a big card invites a video testimonial (best 3 a month get 14 days of the Club) and people who did not tick the box can still say yes to 1 hook per week."
-}
+{"title": "Home-screen icon: the SF mark when the site is saved on a phone", "summary": "Added an apple-touch-icon (the SF mark, 180x180) so iPhones and iPads show the Sam Foundation logo, not a blank tile, when the site is added to the home screen or bookmarked. Nothing changes on the page itself. It is a small trust detail for phone visitors."}
