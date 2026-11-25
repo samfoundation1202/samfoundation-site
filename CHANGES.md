@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-25 (by hand, SEO week day 1): Sitemap, robots.txt, brand data for Google
+- What: new /sitemap.xml with the 15 real static pages (home, services and sub-pages, Hooks, Club, Stade, Trade, privacy policy) and a new /robots.txt that points to it (before, both came from the old WordPress and listed 130 old WordPress URLs and none of the new pages). Home JSON-LD is now Organization + WebSite with the brand spellings "Sam Foundation", "SamFoundation", "samfoundation", the Facebook page, Instagram and Threads @samfoudation and TikTok @samfoundation1202; og:site_name on home and Hooks. /Hooks gets a real title, description, canonical and share tags; /trade gets a canonical. deploy.php allows robots.txt and sitemap.xml.
+- Why: Google has only 3 pages of the site indexed, no sitemap was ever submitted in Search Console, and a search for "samfoundation" shows US nonprofits with the same name, not us (SEO week, kb/projects/seo.md).
+- Checked: sitemap.xml parses as XML; every sitemap URL answers 200; JSON-LD parses; no visible change on any page.
+
 ## 2026-11-25 (daily routine): Organization data for search
 - What: one JSON-LD Organization block in the head of index.html (name, url, logo, image, description, Facebook page). Only facts already on the page.
 - Why: lets Google show the right name and logo; no visual change, no risk to layout.

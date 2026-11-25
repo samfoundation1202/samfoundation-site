@@ -1,1 +1,4 @@
-{"title": "Search engines now know who we are (company data for Google)", "summary": "Added structured Organization data (name, logo, description, Facebook page) to the home page head. It uses only facts already on the page. Nothing changes visually; it helps Google show the right name and logo in search results."}
+{
+ "title": "Search engines: sitemap, robots.txt and brand data",
+ "summary": "Google now gets a sitemap with our 15 real pages and a robots.txt that points to it, instead of the old WordPress list. The home page tells Google that Sam Foundation, SamFoundation and samfoundation.tech are one brand, with our Facebook, Instagram, Threads and TikTok. /Hooks gets a proper title and description for search results. Nothing changes on the pages you see."
+}

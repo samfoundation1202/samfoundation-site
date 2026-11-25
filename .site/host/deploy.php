@@ -20,7 +20,7 @@ $CFG = [
   'archive' => getenv('SITE_ARCHIVE') ?: null, // tests: a local .tar.gz instead of GitHub
 ];
 // index.html, sf/ files, the Trade guides hub (trade/index.html + trade/media/*, 2026-11-16) the Stade page (stade/index.html + stade/media/*, 2026-11-17) and the shop pages (services/**/index.html, 2026-11-21) and the 51 Hooks page (Hooks/index.html, 2026-11-22)
-$ALLOWED = '#^(index\.html|Hooks/index\.html|impressum/index\.html|imprint/index\.html|privacy-policy/index\.html|trade/index\.html|stade/index\.html|services/([a-z0-9-]+/)*index\.html|(sf|trade/media|stade/media)/[a-z0-9][a-z0-9._/-]*\.(css|js|svg|png|jpe?g|webp|avif|gif|mp4|webm|woff2?|txt))$#';
+$ALLOWED = '#^(index\.html|robots\.txt|sitemap\.xml|Hooks/index\.html|impressum/index\.html|imprint/index\.html|privacy-policy/index\.html|trade/index\.html|stade/index\.html|services/([a-z0-9-]+/)*index\.html|(sf|trade/media|stade/media)/[a-z0-9][a-z0-9._/-]*\.(css|js|svg|png|jpe?g|webp|avif|gif|mp4|webm|woff2?|txt))$#';
 $MAX_FILE = 15 * 1024 * 1024;
 
 function logline($m) { global $CFG; @file_put_contents($CFG['state'] . '/deploy.log', gmdate('c') . ' ' . $m . "\n", FILE_APPEND | LOCK_EX); }
