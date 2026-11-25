@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-25 (daily routine): Organization data for search
+- What: one JSON-LD Organization block in the head of index.html (name, url, logo, image, description, Facebook page). Only facts already on the page.
+- Why: lets Google show the right name and logo; no visual change, no risk to layout.
+- Checked: JSON parses; tests/check.mjs: no failures outside the audit sub-checks (those fail in this sandbox on the unchanged tree too). The DM bot service is still suspended, so audit design notes could not be read.
+
 ## 2026-11-24 (daily routine): Apple touch icon
 - What: new sf/apple-touch-icon.png (180x180, the SF mark from the existing favicon) and one `<link rel="apple-touch-icon">` in index.html. No visible page change.
 - Why: iOS home-screen and bookmark tiles showed a blank or screenshot icon; now they show the brand mark.
