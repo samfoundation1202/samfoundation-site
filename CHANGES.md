@@ -4,7 +4,7 @@ Newest first. One entry per day, written by the daily routine (or by hand). Each
 
 
 ## 2026-11-26 (daily routine): Web app manifest and Android icons
-- What: new sf/manifest.webmanifest (name, short name, theme/background colour, 192 and 512 px icons sf/icon-192.png, sf/icon-512.png rendered from the existing SF favicon) and one `<link rel="manifest">` in index.html. No visible page change.
+- What: new sf/manifest.json (name, short name, theme/background colour, 192 and 512 px icons sf/icon-192.png, sf/icon-512.png rendered from the existing SF favicon) and one `<link rel="manifest">` in index.html. No visible page change.
 - Why: Android/Chrome showed a generic tile and no brand name when the site was saved or shared; now it shows the SF mark and name.
 - Checked: manifest JSON parses, icons viewed, tests/check.mjs run. Audit design notes could not be read (DM bot service still suspended). Backlog item "tools strip pause on keyboard focus" dropped: the strip has no focusable items.
 

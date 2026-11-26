@@ -32,7 +32,7 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Hero/section headings: tune text-wrap:balance on headlines for cleaner line breaks.
 
 ## Done
-- 2026-11-26 Web app manifest + 192/512 icons (sf/manifest.webmanifest).
+- 2026-11-26 Web app manifest + 192/512 icons (sf/manifest.json).
 - 2026-11-25 JSON-LD Organization data in the head (search results).
 - 2026-11-24 Apple-touch-icon PNG from the SF mark (sf/apple-touch-icon.png).
 - 2026-11-22 Balanced headline line breaks (text-wrap:balance).
