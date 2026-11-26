@@ -1,4 +1,1 @@
-{
- "title": "Search engines: sitemap, robots.txt and brand data",
- "summary": "Google now gets a sitemap with our 15 real pages and a robots.txt that points to it, instead of the old WordPress list. The home page tells Google that Sam Foundation, SamFoundation and samfoundation.tech are one brand, with our Facebook, Instagram, Threads and TikTok. /Hooks gets a proper title and description for search results. Nothing changes on the pages you see."
-}
+{"title": "Brand name and icon when the site is saved to an Android home screen", "summary": "Added a web app manifest and 192/512 px SF icons. Android and Chrome now show the Sam Foundation name, dark theme colour and the SF mark when someone saves or shares the site. No visible change on the page itself; the SF mark is the same one as the favicon."}

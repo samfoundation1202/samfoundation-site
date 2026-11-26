@@ -3,6 +3,11 @@
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
 
+## 2026-11-26 (daily routine): Web app manifest and Android icons
+- What: new sf/manifest.webmanifest (name, short name, theme/background colour, 192 and 512 px icons sf/icon-192.png, sf/icon-512.png rendered from the existing SF favicon) and one `<link rel="manifest">` in index.html. No visible page change.
+- Why: Android/Chrome showed a generic tile and no brand name when the site was saved or shared; now it shows the SF mark and name.
+- Checked: manifest JSON parses, icons viewed, tests/check.mjs run. Audit design notes could not be read (DM bot service still suspended). Backlog item "tools strip pause on keyboard focus" dropped: the strip has no focusable items.
+
 ## 2026-11-25 (by hand, SEO week day 1): Sitemap, robots.txt, brand data for Google
 - What: new /sitemap.xml with the 20 real static pages (home, services and sub-pages, Hooks, Club, Stade, Trade, the 5 free resources FOUR, FDE, Claude-eyes, youtube-agent, mcp-guide, privacy policy) and a new /robots.txt that points to it (before, both came from the old WordPress and listed 130 old WordPress URLs and none of the new pages). Home JSON-LD is now Organization + WebSite with the brand spellings "Sam Foundation", "SamFoundation", "samfoundation", the Facebook page, Instagram and Threads @samfoudation and TikTok @samfoundation1202; og:site_name on home and Hooks. /Hooks gets a real title, description, canonical and share tags; /trade gets a canonical. deploy.php allows robots.txt and sitemap.xml.
 - Server (Sam OK 2026-11-25): https and www now 301 to https://samfoundation.tech; old WordPress pages 301 to the matching new page or get noindex (mu-plugin sf-seo-cleanup.php; Terms, Contact, Lady Nicole portfolio, free resources stay indexable); WordPress sitemap off; site name "Sam Foundation"; 23 backup files and the old /Test/ copy moved to /home/adminsf/old-public/2026-11-25/.
