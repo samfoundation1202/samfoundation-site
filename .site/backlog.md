@@ -6,6 +6,7 @@ Rules for ideas: real, honest, no invented numbers, clients, reviews or logos of
 Read `.site/taste.md` before you pick. Sam likes living, premium details he finds on other sites (rotating words, moving strips, pills that resize with their word), adapted to our brand and kept honest. When two ideas are equally useful, prefer the one in that spirit.
 
 ## Needs Sam
+- Web app manifest: host deploy copies only css/js/images/video/fonts, so sf/manifest.json and .webmanifest return 404. Needs deploy.php/cron to allow one manifest file (manifest JSON is ready in git history, commit c4f8b8c).
 - The DM bot service (samfoundation-dm-bot.onrender.com) says 'suspended by its owner'; audit design notes cannot be read until it is back.
 - Privacy policy page (/privacy-policy/, not in this repo) should mention Google Analytics cookies _ga and _ga_2Q1PRBX503 and the cookie banner; a dedicated cookie policy page could be added there. Not deployable from this repo.
 
@@ -32,7 +33,7 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Hero/section headings: tune text-wrap:balance on headlines for cleaner line breaks.
 
 ## Done
-- 2026-11-26 Web app manifest + 192/512 icons (sf/manifest.json).
+- 2026-11-26 192/512 icons only (manifest blocked by host, see Needs Sam).
 - 2026-11-25 JSON-LD Organization data in the head (search results).
 - 2026-11-24 Apple-touch-icon PNG from the SF mark (sf/apple-touch-icon.png).
 - 2026-11-22 Balanced headline line breaks (text-wrap:balance).
