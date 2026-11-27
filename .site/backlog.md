@@ -29,10 +29,10 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Typography rhythm: consistent section spacing and heading sizes across all sections.
 - Cookie banner: add a link in the footer legal text to a cookie policy once that page exists.
 - Mobile: let the rotating pill keep a fixed min-width per word set so line 1 never shifts.
-- Tools strip: pause on touch/press on phones (hover pause does not exist on touch).
 - Hero/section headings: tune text-wrap:balance on headlines for cleaner line breaks.
 
 ## Done
+- 2026-11-27 Tools strip pauses on press on phones.
 - 2026-11-26 192/512 icons only (manifest blocked by host, see Needs Sam).
 - 2026-11-25 JSON-LD Organization data in the head (search results).
 - 2026-11-24 Apple-touch-icon PNG from the SF mark (sf/apple-touch-icon.png).

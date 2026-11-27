@@ -2,6 +2,10 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-27 (daily routine): Tools strip pauses on press (phones)
+- What: two CSS lines in index.html: the tools strip pauses while pressed (:active), and keeps vertical page scroll (touch-action: pan-y).
+- Why: hover pause does not exist on touch screens; phone visitors could not stop the strip to read it.
+- Checked: tests/check.mjs run: all home/trade/stade/services checks pass; only the audit sub-checks fail (audit-main.js does not run in this sandbox, same as on the unchanged tree). The DM bot service audit notes were not read (service suspended).
 
 ## 2026-11-26 (daily routine): 192/512 icons (manifest blocked by host)
 - Correction: the host does not deploy .webmanifest or .json from sf/ (404 live), so the manifest and its link were removed again; only the icons remain. Manifest is in Needs Sam.
