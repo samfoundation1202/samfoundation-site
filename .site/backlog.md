@@ -15,6 +15,7 @@ Sam gives design notes on audit pages on Telegram. Read them with `curl -s https
 For every note whose id is not in `.site/audit-notes-done.json`: apply it to the audit page design in `sf/audit-main.css` and `sf/audit-main.js` (`sf/audit.js` is only the loader that picks the live commit; do not put design there) (the page itself is public_html/audit/index.html, which loads these; it renders `#app` and fires `sf:audit-rendered`, with `window.sfAudit = {audit, track, esc}`). Keep the page readable if the script fails, follow PAGE-PROTOCOL motion rules, never invent prices or offers (use the existing offer codes DIY, DFY, BUILD, OFFER, CLUB, REFER). Then add the id to `.site/audit-notes-done.json`, note it in CHANGES.md, and write `.site/last-change.json` (its title and summary become the Telegram deploy card, so it must describe THIS change). Audit pages must stay at least as alive as Sam approved on 2026-11-12 (see "Audit pages" in PAGE-PROTOCOL.md); `tests/check.mjs` must still pass, including its audit page check. These notes come before backlog ideas. If the list can't be read, say so in CHANGES.md and go on.
 
 ## Open
+- Bot section points (1-3): same connecting-line treatment for consistency.
 - Check the home page image weights and add width/height to any image still missing them (layout shift).
 - Cookie banner covers the mobile menu on the first visit: consider keeping the menu above it.
 - "What we do": each of the 4 cards gets its own small animated proof (UI mock or SVG loop), per PAGE-PROTOCOL rule 2.
@@ -32,6 +33,7 @@ For every note whose id is not in `.site/audit-notes-done.json`: apply it to the
 - Hero/section headings: tune text-wrap:balance on headlines for cleaner line breaks.
 
 ## Done
+- 2026-11-28 Audit steps: connecting line draws between numbers.
 - 2026-11-27 Tools strip pauses on press on phones.
 - 2026-11-26 192/512 icons only (manifest blocked by host, see Needs Sam).
 - 2026-11-25 JSON-LD Organization data in the head (search results).

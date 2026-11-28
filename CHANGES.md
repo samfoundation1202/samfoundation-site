@@ -2,6 +2,11 @@
 
 Newest first. One entry per day, written by the daily routine (or by hand). Each entry: date, title, what changed, why, how it was checked.
 
+## 2026-11-28 (daily routine): Audit steps connect with a drawing line
+- What: CSS only in index.html: a thin line draws from each step number to the next in the free audit section and the numbers pop in (transform only). Static without JS and under reduced motion.
+- Why: shows the path comment, details, audit as one flow; more polished than three loose rows.
+- Checked: tests/check.mjs: only the audit sub-checks fail (audit-main.js does not run in this sandbox, same as before); step screenshot at 375px viewed. DM bot service still suspended, audit notes not read.
+
 ## 2026-11-27 (daily routine): Tools strip pauses on press (phones)
 - What: two CSS lines in index.html: the tools strip pauses while pressed (:active), and keeps vertical page scroll (touch-action: pan-y).
 - Why: hover pause does not exist on touch screens; phone visitors could not stop the strip to read it.
